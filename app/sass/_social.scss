@@ -1,0 +1,106 @@
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-right: 13px;
+
+  &__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+
+    svg{
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+    }
+
+    &-pinterest{
+      background-color: #cf4c2c;
+    }
+
+    &-twetter{
+      background-color: #2cbde2;
+    }
+
+    &-facebook{
+      background-color: #3f65a6;
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  .social {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .social {
+
+    &__item{
+      position: relative;
+
+      &:after{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 98%;
+        height: 98%;
+        border-radius: 50%;
+        opacity: 0;
+        visibility: hidden;
+        border: .5px solid #fff;
+        -webkit-transition: transform .4s ease, opacity .2s ease, visibility .2s ease;
+        transition: transform .4s ease, opacity .2s ease, visibility .2s ease;
+        -webkit-transform: scale(2) translate(-25%, -25%);
+        transform: scale(2) translate(-25%, -25%);
+        content: '';
+      }
+
+      &:hover, &:active {
+
+        &:after{
+          opacity: 1;
+          visibility: visible;
+          -webkit-transform: scale(1) translate(-50%, -50%);
+          transform: scale(1) translate(-50%, -50%);
+        }
+
+      }
+
+      &-pinterest{
+
+        &:after{
+          border-color: #cf4c2c;
+        }
+
+      }
+
+      &-twetter{
+
+        &:after{
+          border-color: #2cbde2;
+        }
+
+      }
+
+      &-facebook{
+
+        &:after{
+          border-color: #3f65a6;
+        }
+
+      }
+
+    }
+
+  }
+}
+

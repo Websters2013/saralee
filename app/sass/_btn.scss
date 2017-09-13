@@ -1,38 +1,66 @@
 .btn {
-  border: none;
-  height: 50px;
-  padding: 0 10px;
-  color: $btn-color;
-  display: flex;
-  text-align: left;
+  display: inline-flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 50px;
+  margin: 0 auto;
+  padding: 0 28px;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  text-align: left;
+  @include montserrat;
   font-size: 14px;
-  background: $btn-back;
+  background-color: #a41d35;
+  text-transform: uppercase;
+  letter-spacing: .4px;
 
-  &:hover {
-    background: $btn-back-hover;
+  &_1 {
+    height: 50px;
   }
 
-  &:active {
-    color: $btn-color-active;
-    background: $btn-back-active;
+}
+
+@media (min-width: $tablet-portrait) {
+  .btn {
+    font-size: 17px;
   }
+}
 
-  &_2 {
-    width: 150px;
-    height: 40px;
-    background: $btn-2-back;
+@media (min-width: $desktop) {
+  .btn {
+    -webkit-transition: background-color .3s ease, color .3s ease;
+    transition: background-color .3s ease, color .3s ease;
 
-    &:hover {
-      background: $btn-2-back-hover;
+    &:after{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 98%;
+      height: 98%;
+      border-radius: inherit;
+      opacity: 0;
+      visibility: hidden;
+      border: 1px solid #a41d35;
+      -webkit-transition: transform .4s ease, opacity .2s ease, visibility .2s ease;
+      transition: transform .4s ease, opacity .2s ease, visibility .2s ease;
+      -webkit-transform: scale(2) translate(-25%, -25%);
+      transform: scale(2) translate(-25%, -25%);
+      content: '';
     }
 
-    &:active {
-      color: $btn-2-color-active;
-      background: $btn-2-back-active;
-    }
-  }
+    &:hover, &:active {
 
+      &:after{
+        opacity: 1;
+        visibility: visible;
+        -webkit-transform: scale(1) translate(-50%, -50%);
+        transform: scale(1) translate(-50%, -50%);
+      }
+
+    }
+
+  }
 }

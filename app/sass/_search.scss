@@ -1,0 +1,24 @@
+.search {
+  position: relative;
+  top: 2px;
+
+  svg{
+    width: 30px;
+    height: 30px;
+    fill: #be1e2d;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  .search {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .search {
+
+  }
+}
+

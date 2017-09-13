@@ -4,6 +4,31 @@
   font-weight: 400;
   font-style: normal;
 }
+@mixin FuturaPTBold() {
+  font-family: 'FuturaPTBold', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@mixin NexaRustSlab() {
+  font-family: 'NexaRustSlab', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@mixin arial() {
+  font-family: 'Arial', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@mixin Congress() {
+  font-family: 'Congress', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@mixin JustRealize() {
+  font-family: 'JustRealize', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 @mixin justify() {
   text-align: justify;

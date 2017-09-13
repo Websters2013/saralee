@@ -1,0 +1,66 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include montserrat;
+  font-weight: 500;
+  width: 100%;
+  text-transform: uppercase;
+
+  &__item{
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: .5px;
+
+    &:first-child{
+      margin-left: 0;
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  .menu {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .menu {
+    width: auto;
+    flex-direction: row;
+    margin: 3px 32px 0 0;
+
+    &__item{
+      position: relative;
+      margin-left: 40px;
+      margin-bottom: 0;
+      color: #4d2d6b;
+
+      &:after{
+        position: absolute;
+        left: 0;
+        right: 100%;
+        bottom: -5px;
+        border-bottom: 1px solid #4d2d6b;
+        -webkit-transition: right .3s ease;
+        transition: right .3s ease;
+        content: '';
+      }
+
+      &:hover{
+
+        &:after{
+          right: 0;
+        }
+
+      }
+
+    }
+
+  }
+}
+

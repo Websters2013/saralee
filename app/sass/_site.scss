@@ -1,27 +1,38 @@
 .site {
 
   &__header{
+    position: relative;
+    height: 72.5px;
+    padding: 0 calc( 50% - 515px );
+    border-bottom: 2px solid #c72233;
+    z-index: 2;
+
+    &-layout{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      height: inherit;
+      padding: 15px 15px 0;
+    }
 
   }
 
 }
-@media (min-width: $phone-landscape) {
-  .site {
 
-  }
-}
 @media (min-width: $tablet-portrait) {
   .site {
 
   }
 }
-@media (min-width: $tablet-landscape) {
-  .site {
 
-  }
-}
 @media (min-width: $desktop) {
   .site {
+
+    &__header{
+
+    }
 
   }
 }
