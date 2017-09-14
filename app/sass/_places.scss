@@ -1,5 +1,5 @@
 .places {
-  padding: 0 calc( 50% - 515px );
+  padding: 60px calc( 50% - 515px ) 76px;
   background-color: #f6f6f6;
 
   &__layout{
@@ -8,25 +8,30 @@
 
   &__title{
     width: 100%;
-    margin-bottom: 65px;
+    margin-bottom: 11px;
     color: #ce253d;
     text-align: center;
 
-    > div:first-child{
+    > div:nth-child(2){
+      margin-top: 26px;
       @include JustRealize;
       font-size: 26px;
-      line-height: 55px;
+      line-height: 1;
     }
 
     span{
+      padding-bottom: 3px;
       border-bottom: 4px dotted #db9577;
       @include Congress;
       font-size: 42px;
       text-transform: uppercase;
-      letter-spacing: 1.4px;
     }
 
 
+  }
+
+  img{
+    width: 100%;
   }
 
 }

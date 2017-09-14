@@ -268,7 +268,15 @@
                     slidesPerView: 4,
                     loop: true,
                     nextButton: _productsNext,
-                    prevButton: _productsPrev
+                    prevButton: _productsPrev,
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 1
+                        },
+                        1200: {
+                            slidesPerView: 3
+                        }
+                    }
                 } );
 
                 // pagination: _caseMainSliderPagination
