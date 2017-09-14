@@ -118,14 +118,6 @@
       margin: 0 0 0 50px;
     }
 
-    &__img{
-
-      img{
-        max-width: 140%;
-      }
-
-    }
-
     &__prev,
     &__next{
       width: 57px;
@@ -142,14 +134,6 @@
 
 @media (min-width: $desktop) {
   .products {
-
-    &__img{
-
-      img{
-        max-width: 160%;
-      }
-
-    }
 
     &__prev,
     &__next{
