@@ -36,7 +36,7 @@
   &_footer{
     @include FuturaMedium;
     flex-wrap: wrap;
-    margin-right: 0;
+    margin: 0 auto;
     width: 135px;
     font-size: 14px;
     line-height: 15px;
@@ -59,7 +59,7 @@
 
 @media (min-width: $tablet-portrait) {
   .social {
-
+    margin: 0;
   }
 }
 
