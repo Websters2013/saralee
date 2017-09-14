@@ -18,6 +18,10 @@
             new Sliders( $( this ) );
         } );
 
+        $.each( $( '.history' ), function () {
+            new History( $( this ) );
+        } );
+
     } );
 
     var Header = function ( obj ) {
@@ -284,6 +288,71 @@
             },
             _onEvent = function() {
 
+            },
+            _init = function() {
+                _onEvent();
+                _initSlider ();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
+    var History = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _years = _obj.find( '.history__years' ),
+            _yearsLine = _years.find( '.history__years-line' ),
+            _yearsLineLeft = _yearsLine.offset().left,
+            _yearsPoint = _yearsLine.find('.history__years-point'),
+            _yearsList = _years.find( '.history__years-list' ),
+            _contentSlider = _obj.find( '.history__content' ),
+            _sliderItems = _contentSlider.find('.swiper-slide'),
+            _swiper = null,
+            _window = $( window );
+
+        //private methods
+        var _initSlider = function() {
+
+                // _galleryTop = new Swiper(_topSwiper, {
+                //     nextButton: '.swiper-button-next',
+                //     prevButton: '.swiper-button-prev',
+                //     spaceBetween: 10,
+                // });
+                _swiper = new Swiper(_contentSlider, {
+                    spaceBetween: 10,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    touchRatio: 0.2,
+                    slideToClickedSlide: true,
+                    pagination: _yearsList,
+                    paginationClickable: true,
+                    paginationBulletRender: function (index, className) {
+                        console.log(index);
+                        return '<span class="history__years-item ' + className + '">' + _sliderItems.eq(index).data('year') + '</span>';
+                    }
+                });
+                // _galleryTop.params.control = _galleryThumbs;
+                // _galleryThumbs.params.control = _galleryTop;
+
+            },
+            _onEvent = function() {
+
+                _obj.on('click', '.history__years-item', function() {
+                    var activeElem = $(this);
+
+                    _sliding(activeElem);
+                });
+
+            },
+            _sliding = function(elem) {
+                _yearsPoint.css({
+                    'left': (elem.offset().left - _yearsLineLeft - 25) + 'px'
+                });
             },
             _init = function() {
                 _onEvent();
