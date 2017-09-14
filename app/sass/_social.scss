@@ -33,6 +33,28 @@
 
   }
 
+  &_footer{
+    @include FuturaMedium;
+    flex-wrap: wrap;
+    margin-right: 0;
+    width: 135px;
+    font-size: 14px;
+    line-height: 15px;
+    color: #4d2d6b;
+
+    p{
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .social__item{
+      width: 38px;
+      height: 38px;
+      margin-right: 6px;
+    }
+
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {
@@ -46,33 +68,11 @@
 
     &__item{
       position: relative;
-
-      &:after{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        opacity: 0;
-        visibility: hidden;
-        border: 1px solid #fff;
-        -webkit-transition: transform .4s ease, opacity .2s ease, visibility .2s ease;
-        transition: transform .4s ease, opacity .2s ease, visibility .2s ease;
-        -webkit-transform: scale(2) translate(-25%, -25%);
-        transform: scale(2) translate(-25%, -25%);
-        content: '';
-      }
+      -webkit-transition: transform .3s ease;
+      transition: transform .3s ease;
 
       &:hover, &:active {
-
-        &:after{
-          opacity: 1;
-          visibility: visible;
-          -webkit-transform: scale(1) translate(-50%, -50%);
-          transform: scale(1) translate(-50%, -50%);
-        }
-
+        transform: scale(1.1);
       }
 
       &-pinterest{
@@ -103,4 +103,3 @@
 
   }
 }
-

@@ -1,20 +1,43 @@
 .sign-up {
-  padding: 3px 4px;
-  border: 1px solid #4d2d6b;
-  border-radius: 25px;
+  width: 260px;
+  margin-bottom: 24px;
+  color: #4d2d6b;
+  @include FuturaMedium;
+  font-size: 14px;
+  line-height: 15px;
+  letter-spacing: -.2px;
+
+  p{
+    margin-bottom: 14px;
+  }
+
+  form{
+    margin-left: -2px;
+    padding: 3px 4px;
+    border: 1px solid #4d2d6b;
+    border-radius: 25px;
+    width: 252px;
+  }
 
   input{
-    @include FuturaMedium;
+    width: calc( 100% - 104px );
+    margin-left: 12px;
     border: none;
+    color: #4d2d6b;
+    @include FuturaMedium;
+    font-size: 13px;
   }
 
   button{
+    width: 87px;
     height: 27px;
     border-radius: 25px;
     @include FuturaPTBold;
+    font-size: 11px;
     color: #fff;
     background-color: #4d2d6b;
     text-transform: uppercase;
+    border: none;
 
     span{
       width: 100%;
@@ -27,13 +50,14 @@
 
 @media (min-width: $tablet-portrait) {
   .sign-up {
-
+    margin-right: 27px;
+    margin-bottom: 14px;
   }
 }
 
 @media (min-width: $desktop) {
   .sign-up {
-
+    margin-right: 107px;
   }
 }
 

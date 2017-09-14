@@ -1,11 +1,41 @@
 .footer {
 
   &__navigation{
+    margin-bottom: 25px;
+    color: #4d2d6b;
+    @include FuturaMedium;
+    font-size: 12px;
 
     ul{
       display: flex;
+      flex-wrap: wrap;
       justify-content: flex-start;
       align-items: center;
+
+      li{
+        margin-bottom: 17px;
+        white-space: nowrap;
+
+        &:before{
+          content: '•';
+          margin: 0 6px;
+          font-size: 10px;
+        }
+
+        &:first-child:before{
+          display: none;
+        }
+
+      }
+
+    }
+
+    a{
+      color: #4d2d6b;
+    }
+
+    & > div{
+      margin-bottom: 17px;
     }
 
   }
@@ -15,11 +45,47 @@
 @media (min-width: $tablet-portrait) {
   .footer {
 
+    &__navigation{
+      margin-right: 20px;
+
+      ul{
+
+        li {
+
+          &:before {
+            margin: 0 12px;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+}
+
+@media (min-width: $tablet-landscape) {
+  .footer {
+
+    &__navigation{
+      margin-bottom: 0;
+    }
+
   }
 }
 
 @media (min-width: $desktop) {
   .footer {
+
+    &__navigation{
+      margin-right: 66px;
+
+      a:hover{
+        text-decoration: underline;
+      }
+
+    }
 
   }
 }

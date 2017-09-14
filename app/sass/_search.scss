@@ -20,12 +20,12 @@
   .search {
 
     svg{
-      -webkit-transition: fill .3s ease;
-      transition: fill .3s ease;
+      -webkit-transition: transform .3s ease;
+      transition: transform .3s ease;
     }
 
     &:hover svg{
-      fill: #a61c2a;
+      transform: scale(1.1);
     }
 
   }

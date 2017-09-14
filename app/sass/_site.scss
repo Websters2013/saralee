@@ -21,13 +21,17 @@
 
   &__footer{
     position: relative;
-    padding: 0 calc( 50% - 515px );
+    padding: 146px calc( 50% - 515px ) 20px;
 
     &-layout{
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
       padding: 15px 15px 0;
+    }
+
+    .logo{
+      left: -24px;
+      top: 27px;
+      width: 209px;
+      height: 159.5px;
     }
 
   }
@@ -36,6 +40,35 @@
 
 @media (min-width: $tablet-portrait) {
   .site {
+
+    &__footer{
+      padding-top: 46px;
+
+      &-layout{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-left: 185px;
+      }
+
+    }
+
+  }
+}
+
+@media (min-width: $tablet-landscape) {
+  .site {
+
+    &__footer{
+
+      &-layout{
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        padding-left: 0;
+      }
+
+    }
 
   }
 }
