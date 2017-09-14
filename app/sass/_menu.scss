@@ -42,23 +42,23 @@
       margin-bottom: 0;
       color: #4d2d6b;
 
-      &:after{
-        position: absolute;
-        left: 0;
-        right: 100%;
-        bottom: -5px;
-        border-bottom: 1px solid #4d2d6b;
-        -webkit-transition: right .3s ease;
-        transition: right .3s ease;
-        content: '';
-      }
+      //&:after{
+      //  position: absolute;
+      //  left: 0;
+      //  right: 100%;
+      //  bottom: -5px;
+      //  border-bottom: 1px solid #4d2d6b;
+      //  -webkit-transition: right .3s ease;
+      //  transition: right .3s ease;
+      //  content: '';
+      //}
 
       &:hover{
         color: #be1e2e;
 
-        &:after{
-          right: 0;
-        }
+        //&:after{
+        //  right: 0;
+        //}
       }
     }
   }
