@@ -351,7 +351,7 @@
             },
             _sliding = function(elem) {
                 _yearsPoint.css({
-                    'left': (elem.offset().left - _yearsLineLeft - 25) + 'px'
+                    'left': (elem.offset().left - _yearsLineLeft) + 'px'
                 });
             },
             _init = function() {
