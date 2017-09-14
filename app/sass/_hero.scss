@@ -8,6 +8,18 @@
   background: url("../pic/hero-001.jpg") no-repeat top center;
   background-size: cover;
 
+  &.hero_min {
+    display: block;
+    height: auto;
+    padding: 60px 15px;
+    color: #fff;
+    @include NexaRustSlab;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
   &__content{
     width: 100%;
     padding: 45px 0 20px;
@@ -72,9 +84,13 @@
         font-size: 14px;
         line-height: 19px;
       }
-
     }
 
+    &.hero_min {
+      padding: 40px 80px;
+      font-size: 35px;
+      line-height: 45px;
+    }
   }
 }
 
@@ -86,6 +102,16 @@
       line-height: 74px;
     }
 
+    &.hero_min {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 192px;
+      padding: 40px calc(50% - 620px);
+      text-align: left;
+      font-size: 40px;
+      line-height: 52px;
+    }
   }
 }
 
