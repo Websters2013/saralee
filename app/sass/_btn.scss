@@ -26,7 +26,11 @@
     background-color: #8d1c58;
     font-size: 12px;
   }
-
+  &_3 {
+    background-color: #4d2d6b;
+    text-transform: uppercase;
+    @include FuturaPTBold();
+  }
 }
 
 @media (min-width: $tablet-portrait) {
@@ -72,5 +76,12 @@
 
     }
 
+    &_3 {
+      height: 42px;
+      font-size: 14px;
+      letter-spacing: 1.6px;
+
+      &:after { border-color: #4d2d6b }
+    }
   }
 }
