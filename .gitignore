@@ -1,3 +1,4 @@
 .idea/
 node_modules/
-#dist/wp-content/themes/*/assets
+#dist/wp-content/themes/saralee/assets
+#dist
