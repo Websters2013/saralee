@@ -29,6 +29,10 @@
     line-height: 30px;
     color: #535353;
     @include FuturaMedium();
+
+    p {
+      margin-bottom: 15px;
+    }
   }
 }
 
@@ -50,7 +54,7 @@
     overflow: hidden;
     position: relative;
     min-height: 500px;
-    padding: 60px calc(50% - 620px);
+    padding: 52px calc(50% - 615px);
 
     &:before {
       position: absolute;
@@ -64,7 +68,7 @@
       content: '';
     }
 
-    &__title {
+    .main-title {
       position: relative;
       z-index: 2;
     }
@@ -75,6 +79,10 @@
       z-index: 2;
       font-size: 27px;
       line-height: 42px;
+
+      p {
+        margin-bottom: 22px;
+      }
     }
   }
 }

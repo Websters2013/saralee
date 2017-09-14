@@ -307,7 +307,6 @@
         var _obj = obj,
             _years = _obj.find( '.history__years' ),
             _yearsLine = _years.find( '.history__years-line' ),
-            _yearsLineLeft = _yearsLine.offset().left,
             _yearsPoint = _yearsLine.find('.history__years-point'),
             _yearsList = _years.find( '.history__years-list' ),
             _contentSlider = _obj.find( '.history__content' ),
@@ -318,11 +317,6 @@
         //private methods
         var _initSlider = function() {
 
-                // _galleryTop = new Swiper(_topSwiper, {
-                //     nextButton: '.swiper-button-next',
-                //     prevButton: '.swiper-button-prev',
-                //     spaceBetween: 10,
-                // });
                 _swiper = new Swiper(_contentSlider, {
                     pagination: _yearsList,
                     paginationClickable: true,
@@ -333,22 +327,25 @@
                         _sliding($(e.bullets[e.activeIndex]));
                     }
                 });
-                // _galleryTop.params.control = _galleryThumbs;
-                // _galleryThumbs.params.control = _galleryTop;
 
             },
             _onEvent = function() {
 
                 _obj.on('click', '.history__years-item', function() {
                     var activeElem = $(this);
-
                     _sliding(activeElem);
+                });
+
+                $(window).on({
+                    'resize': function () {
+                        _sliding(_obj.find('.swiper-pagination-bullet-active'));
+                    }
                 });
 
             },
             _sliding = function(elem) {
                 _yearsPoint.css({
-                    'left': (elem.offset().left - _yearsLineLeft) + 'px'
+                    'left': (elem.offset().left - _yearsLine.offset().left) + 'px'
                 });
             },
             _init = function() {
