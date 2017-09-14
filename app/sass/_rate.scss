@@ -1,0 +1,26 @@
+.rate {
+  display: block;
+  width: 125px;
+
+  &__progress {
+    display: block;
+    height: 21px;
+    background-image: url("../img/star.png");
+    background-repeat: repeat-x;
+    background-position: left center;
+    background-size: auto 100%;
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .rate {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .rate {
+
+  }
+}
+
