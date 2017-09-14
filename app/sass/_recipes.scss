@@ -1,8 +1,9 @@
 .recipes {
+  padding-top: 57px;
 
   &__title{
     width: 100%;
-    margin-bottom: 65px;
+    margin-bottom: 37px;
     color: #ce253d;
     text-align: center;
 
@@ -21,6 +22,35 @@
     }
 
 
+  }
+
+  &__row{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  &__item{
+    position: relative;
+    width: 25%;
+
+    img{
+      width: 100%;
+    }
+
+  }
+
+  &__content{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: rgba(255,255,255,.8);
+    @include montserrat;
+    font-weight: 200;
+    color: #2b2b2b;
+    font-size: 13px;
   }
 
 }
