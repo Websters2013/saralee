@@ -110,20 +110,7 @@
       }
     }
 
-    &-pic {
-      display: none;
-      position: absolute;
-      top: 7px;
-      left: 41.4%;
-      width: 584px;
-      height: 438px;
-      z-index: 1;
-      background-size: cover;
-      background-color: #fff;
-      background-repeat: no-repeat;
-      background-position: center;
-      border-radius: 5px;
-    }
+    &-pic { display: none }
   }
 }
 
@@ -148,87 +135,56 @@
 @media (min-width: $desktop) {
   .history {
     padding: 28px 20px 106px;
-    background-color: #8d2431;
-    @include FuturaMedium();
 
     &__years {
-      margin: 0 auto;
       padding: 30px 0 53px;
-      @include FuturaPTBold();
-
-      &-list {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-bottom: 30px;
-      }
 
       &-item {
-        display: block;
         width: 30px;
         height: 30px;
-        border-radius: 0;
         font-size: 30px;
         transform: rotate(-90deg) scale(.6272957);
-        transform-origin: center;
-        color: #fff;
-        cursor: pointer;
-        opacity: .5;
-        background: none;
-        transition: transform .3s ease-in-out, opacity .3s ease-in-out;
-
-        &.swiper-pagination-bullet-active {
-          background: none;
-          opacity: 1;
-          transform: rotate(-90deg) scale(1);
-        }
       }
 
       &-line {
-        display: block;
-        position: relative;
-        width: 100%;
-        height: 3.5px;
-        border-radius: 3px;
-        background: rgba(255,255,255,.2);
 
         span {
-          @include absoluteCenterY();
-          left: 0;
+          left: 5px;
           width: 40px;
           height: 40px;
-          background: url("../img/point.png") no-repeat center;
-          background-size: contain;
-          transition: left .3s linear;
+          margin-left: -8px;
         }
       }
     }
 
     &__content {
-      margin: 0 auto;
-      width: 100%;
-      overflow: hidden;
 
       &-title {
-        display: block;
-        color: #fff;
         font-size: 74px;
         letter-spacing: 2px;
         padding: 0 51px;
-        @include FuturaPTBold();
       }
 
       &-description {
         padding: 52px 59px 55px;
-        background-color: #fff;
         font-size: 16px;
         line-height: 30px;
         letter-spacing: .6px;
-        color: #4d2d6b;
         border-radius: 20px 5px 20px 20px;
       }
 
       &-pic {
+        display: block;
+        position: absolute;
+        top: 7px;
+        left: 41.4%;
+        width: 584px;
+        height: 438px;
+        z-index: 1;
+        background-size: cover;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
         border-radius: 5px;
       }
     }
