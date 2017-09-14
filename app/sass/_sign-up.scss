@@ -1,0 +1,39 @@
+.sign-up {
+  padding: 3px 4px;
+  border: 1px solid #4d2d6b;
+  border-radius: 25px;
+
+  input{
+    @include FuturaMedium;
+    border: none;
+  }
+
+  button{
+    height: 27px;
+    border-radius: 25px;
+    @include FuturaPTBold;
+    color: #fff;
+    background-color: #4d2d6b;
+    text-transform: uppercase;
+
+    span{
+      width: 100%;
+      text-align: center;
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  .sign-up {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .sign-up {
+
+  }
+}
+

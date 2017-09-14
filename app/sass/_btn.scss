@@ -21,11 +21,21 @@
     height: 50px;
   }
 
+  &_2{
+    height: 30px;
+    background-color: #8d1c58;
+    font-size: 12px;
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {
   .btn {
-    font-size: 17px;
+
+    &_1 {
+      font-size: 17px;
+    }
+
   }
 }
 

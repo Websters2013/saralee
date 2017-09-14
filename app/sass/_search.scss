@@ -19,6 +19,15 @@
 @media (min-width: $desktop) {
   .search {
 
+    svg{
+      -webkit-transition: fill .3s ease;
+      transition: fill .3s ease;
+    }
+
+    &:hover svg{
+      fill: #a61c2a;
+    }
+
   }
 }
 
