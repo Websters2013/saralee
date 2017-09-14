@@ -1,6 +1,6 @@
 .sign-up {
   width: 260px;
-  margin-bottom: 24px;
+  margin: 0 auto 24px;
   color: #4d2d6b;
   @include FuturaMedium;
   font-size: 14px;
@@ -50,8 +50,7 @@
 
 @media (min-width: $tablet-portrait) {
   .sign-up {
-    margin-right: 27px;
-    margin-bottom: 14px;
+    margin: 0 27px 14px 0;
   }
 }
 

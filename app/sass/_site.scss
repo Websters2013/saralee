@@ -24,7 +24,10 @@
     padding: 146px calc( 50% - 515px ) 20px;
 
     &-layout{
+      position: relative;
       padding: 15px 15px 0;
+      text-align: center;
+      z-index: 1;
     }
 
     .logo{
@@ -50,6 +53,7 @@
         justify-content: flex-start;
         align-items: flex-start;
         padding-left: 185px;
+        text-align: left;
       }
 
     }
