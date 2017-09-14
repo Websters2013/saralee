@@ -49,7 +49,6 @@
     width: calc( 100% - 120px );
   }
 
-
   &__item{
     color: #c56e28;
     @include montserrat;
@@ -69,8 +68,17 @@
 
     svg{
       width: 20px;
+      fill: #fff;
     }
 
+  }
+
+  &__prev svg{
+      transform: rotate(90deg);
+  }
+
+  &__next svg{
+    transform: rotate(-90deg);
   }
 
 }

@@ -1,0 +1,45 @@
+.places {
+  padding: 0 calc( 50% - 515px );
+  background-color: #f6f6f6;
+
+  &__layout{
+    padding: 0 15px;
+  }
+
+  &__title{
+    width: 100%;
+    margin-bottom: 65px;
+    color: #ce253d;
+    text-align: center;
+
+    > div:first-child{
+      @include JustRealize;
+      font-size: 26px;
+      line-height: 55px;
+    }
+
+    span{
+      border-bottom: 4px dotted #db9577;
+      @include Congress;
+      font-size: 42px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  .places {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .places {
+
+  }
+}
+
