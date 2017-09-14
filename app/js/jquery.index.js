@@ -324,16 +324,13 @@
                 //     spaceBetween: 10,
                 // });
                 _swiper = new Swiper(_contentSlider, {
-                    spaceBetween: 10,
-                    centeredSlides: true,
-                    slidesPerView: 'auto',
-                    touchRatio: 0.2,
-                    slideToClickedSlide: true,
                     pagination: _yearsList,
                     paginationClickable: true,
                     paginationBulletRender: function (index, className) {
-                        console.log(index);
                         return '<span class="history__years-item ' + className + '">' + _sliderItems.eq(index).data('year') + '</span>';
+                    },
+                    onSlideChangeStart: function (e) {
+                        _sliding($(e.bullets[e.activeIndex]));
                     }
                 });
                 // _galleryTop.params.control = _galleryThumbs;

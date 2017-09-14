@@ -1,0 +1,81 @@
+.about-us {
+  padding: 30px;
+
+  &__title{
+    width: 100%;
+    margin-bottom: 37px;
+    color: #ce253d;
+    text-align: center;
+
+    > div:nth-child(2){
+      @include JustRealize;
+      font-size: 26px;
+      line-height: 55px;
+    }
+
+    span {
+      display: inline-block;
+      padding-top: 15px;
+      border-top: 4px dotted #db9577;
+      @include Congress;
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  &__wrap {
+    font-size: 18px;
+    line-height: 30px;
+    color: #535353;
+    @include FuturaMedium();
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .about-us {
+
+    &__title {
+      margin-bottom: 54px;
+
+      span{
+        font-size: 42px;
+      }
+    }
+  }
+}
+
+@media (min-width: $desktop) {
+  .about-us {
+    overflow: hidden;
+    position: relative;
+    min-height: 500px;
+    padding: 60px calc(50% - 620px);
+
+    &:before {
+      position: absolute;
+      top: 5px;
+      right: 0;
+      width: 475px;
+      height: 740px;
+      z-index: 1;
+      background: url("../img/about-us-bg.jpg") no-repeat top right;
+      background-size: contain;
+      content: '';
+    }
+
+    &__title {
+      position: relative;
+      z-index: 2;
+    }
+
+    &__wrap {
+      position: relative;
+      max-width: 830px;
+      z-index: 2;
+      font-size: 27px;
+      line-height: 42px;
+    }
+  }
+}
+
