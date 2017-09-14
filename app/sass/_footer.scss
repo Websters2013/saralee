@@ -1,0 +1,26 @@
+.footer {
+
+  &__navigation{
+
+    ul{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  .footer {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .footer {
+
+  }
+}
+

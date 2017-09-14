@@ -270,11 +270,11 @@
                     nextButton: _productsNext,
                     prevButton: _productsPrev,
                     breakpoints: {
-                        768: {
+                        767: {
                             slidesPerView: 1
                         },
-                        1200: {
-                            slidesPerView: 3
+                        1199: {
+                            slidesPerView: 2
                         }
                     }
                 } );

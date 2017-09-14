@@ -1,5 +1,5 @@
 .products {
-  padding: 80px calc( 50% - 692px ) 82px;
+  padding: 40px calc( 50% - 692px ) 82px;
 
   &__content{
     display: flex;
@@ -25,7 +25,7 @@
     span{
       border-top: 4px dotted #db9577;
       @include Congress;
-      font-size: 42px;
+      font-size: 32px;
       text-transform: uppercase;
       letter-spacing: 1.4px;
     }
@@ -45,7 +45,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      max-width: 160%;
+      max-width: 100%;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
     }
@@ -53,8 +53,7 @@
   }
 
   &__swiper{
-    width: calc( 100% - 170px );
-    margin: 0 0 0 50px;
+    width: calc( 100% - 60px );
   }
 
   &__item{
@@ -69,31 +68,74 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 57px;
-    height: 57px;
+    width: 28px;
+    height: 28px;
     margin-bottom: 65px;
     border-radius: 50%;
     background-color: #dedede;
 
     svg{
-      width: 20px;
+      width: 15px;
       fill: #fff;
     }
 
   }
 
-  &__prev svg{
+  &__prev{
+    padding-right: 3px;
+
+    svg{
       transform: rotate(90deg);
+    }
+
   }
 
-  &__next svg{
-    transform: rotate(-90deg);
+  &__next {
+    padding-left: 3px;
+
+    svg{
+      transform: rotate(-90deg);
+    }
+
   }
 
 }
 
 @media (min-width: $tablet-portrait) {
   .products {
+    padding-bottom: 80px;
+
+    &__title{
+
+      span{
+        font-size: 42px;
+      }
+
+    }
+
+    &__swiper {
+      width: calc(100% - 170px);
+      margin: 0 0 0 50px;
+    }
+
+    &__img{
+
+      img{
+        max-width: 140%;
+      }
+
+    }
+
+    &__prev,
+    &__next{
+      width: 57px;
+      height: 57px;
+
+      svg {
+        width: 20px;
+      }
+
+    }
 
   }
 }
@@ -101,6 +143,24 @@
 @media (min-width: $desktop) {
   .products {
 
+    &__img{
+
+      img{
+        max-width: 160%;
+      }
+
+    }
+
+    &__prev,
+    &__next{
+      -webkit-transition: background-color .3s ease;
+      transition: background-color .3s ease;
+
+      &:hover{
+        background-color: #cbcbcb;
+      }
+
+    }
+
   }
 }
-
