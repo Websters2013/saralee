@@ -1,61 +1,41 @@
 .websters-select {
-  overflow: hidden;
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
   position: relative;
-  width: 200px;
-  height: 22px;
-  border: 1px solid $websters-select-border;
+  border: 2px solid #fff;
+  color: #fff;
+  @include FuturaHeavyRegular();
 
   &_opened {
 
     .websters-select__arrow {
-      transform: rotate(180deg);
+      //top: 20px;
+      //transform: rotate(225deg);
     }
 
   }
 
   &__arrow{
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 20px;
+    top: 11px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #fff;
+    clip: rect(3px, 15px, 15px, 3px);
+    transform: rotate(45deg);
     transform-origin: center;
-    -webkit-transition: -webkit-transform 200ms ease-in-out;
-    transition: transform 200ms ease-in-out;
-
-    &:after,
-    &:before {
-      position: absolute;
-      top: 9px;
-      width: 10px;
-      height: 2px;
-      border-radius: 2px;
-      background: $websters-select-border;
-      content: '';
-    }
-
-    &:after {
-      left: 4px;
-      transform: rotate(70deg);
-
-    }
-
-    &:before {
-      right: 3px;
-      transform: rotate(-70deg);
-
-    }
+    transition: transform .3s ease-in-out;
   }
 
   &__item {
     overflow: hidden;
-    @include absoluteCenterY();
-    right: 20px;
-    left: 5px;
-    padding: 1px 5px 0;
+    display: flex;
+    align-items: center;
+    width: 274px;
+    height: 48px;
+    padding: 0 50px 0 17px;
     box-sizing: border-box;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -88,30 +68,41 @@
     position: absolute;
     z-index: 10;
     box-sizing: border-box;
-    border: 1px solid $websters-select-border;
-    background: $websters-select-popup-back;
+    border: 1px solid #fff;
+    background: #9a192a;
+    color: #fff;
 
     ul {
       z-index: 1;
     }
 
     li {
+      padding: 15px 20px;
       white-space: nowrap;
       overflow: hidden;
       cursor: pointer;
 
       &:hover {
-        color: $websters-select-popup-item-active-color;
-        background: $websters-select-popup-item-active-back;
+        color: #9a192a;
+        background: #fff;
       }
 
       &.active {
-        color: $websters-select-popup-item-active-color !important;
-        background: $websters-select-popup-item-active-back !important;
+        color: #9a192a !important;
+        background: #fff !important;
       }
-
     }
-
   }
+}
 
+.ps-container > .ps-scrollbar-y-rail {
+  right: 0 !important;
+  width: 5px;
+}
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #4d2d6b;
+  border-radius: 2px;
+  border: 1px solid #fff;
+  right: 0;
+  width: 5px;
 }

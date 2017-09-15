@@ -31,6 +31,16 @@
     text-transform: uppercase;
     @include FuturaPTBold();
   }
+  &_4 {
+    height: 44px;
+    padding: 0 25px;
+    border-radius: 13px;
+  }
+  &_5 {
+    padding: 0 25px;
+    border-radius: 13px;
+    background: #6f0010;
+  }
 }
 
 @media (min-width: $tablet-portrait) {
@@ -83,5 +93,6 @@
 
       &:after { border-color: #4d2d6b }
     }
+    &_4 { font-size: 18px }
   }
 }

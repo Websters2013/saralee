@@ -48,10 +48,7 @@
     border-width: 1px;
     border-color: rgba(146, 146, 146,.86);
 
-    .rate {
-      display: inline-block;
-      margin-bottom: 10px;
-    }
+    .rate { margin-bottom: 10px }
   }
 
   &__pic {
@@ -97,13 +94,6 @@
 @media (min-width: $tablet-portrait) {
   .products-list {
 
-  }
-}
-
-@media (min-width: $desktop) {
-  .products-list {
-    padding: 77px calc(50% - 650px) 43px;
-
     &__title {
       left: 5px;
       margin-bottom: 40px;
@@ -112,13 +102,19 @@
     }
 
     &__item {
+      position: relative;
       margin: 0 20px 70px;
+      transition: box-shadow .3s ease-in-out;
 
       strong {
         padding: 0 23px 14px;
         font-size: 20px;
         line-height: 24px;
         letter-spacing: .7px;
+      }
+
+      &:hover {
+        box-shadow: 0 0 10px rgba(0,0,0,.5);
       }
     }
 
@@ -131,3 +127,8 @@
   }
 }
 
+@media (min-width: $desktop) {
+  .products-list {
+    padding: 77px calc(50% - 650px) 43px;
+  }
+}

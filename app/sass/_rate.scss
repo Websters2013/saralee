@@ -1,9 +1,9 @@
 .rate {
   display: block;
-  width: 125px;
+  text-align: center;
 
   &__progress {
-    display: block;
+    display: inline-block;
     height: 21px;
     background-image: url("../img/star.png");
     background-repeat: repeat-x;
