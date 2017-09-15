@@ -1,0 +1,96 @@
+.tips {
+  background-color: #c15026;
+
+  &__pic {
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px;
+    text-align: center;
+    @include montserrat();
+    font-weight: 300;
+
+    &:before {
+      @include absoluteCenter();
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      border: 4px dotted #db9577;
+      box-sizing: border-box;
+      pointer-events: none;
+      content: '';
+    }
+
+    p {
+      margin-bottom: 25px;
+      font-size: 16px;
+      line-height: 20px;
+      color: #fff;
+    }
+  }
+
+  &__title {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #fff;
+    @include CongressMedium();
+
+    span {
+      display: block;
+      margin-bottom: 23px;
+      font-size: 30px;
+      @include JustRealizeRegular();
+    }
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .tips {
+    display: flex;
+    height: 38vw;
+
+    &__pic,
+    &__content {
+      width: 50%
+    }
+  }
+}
+
+@media (min-width: $desktop) {
+  .tips {
+
+    &__content {
+      padding: 60px;
+
+      &:before {
+        width: calc(100% - 60px);
+        height: calc(100% - 60px);
+      }
+
+      p {
+        margin-bottom: 37px;
+        font-size: 22px;
+        line-height: 26px;
+      }
+    }
+
+    &__title {
+      font-size: 41px;
+
+      span {
+        font-size: 50px;
+        letter-spacing: 2px;
+      }
+    }
+  }
+}
+

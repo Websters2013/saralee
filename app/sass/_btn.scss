@@ -10,7 +10,7 @@
   border: none;
   border-radius: 25px;
   color: #fff;
-  text-align: left;
+  text-align: center;
   @include montserrat;
   font-size: 14px;
   background-color: #a41d35;
@@ -30,6 +30,16 @@
     background-color: #4d2d6b;
     text-transform: uppercase;
     @include FuturaPTBold();
+  }
+  &_4 {
+    height: 44px;
+    padding: 0 25px;
+    border-radius: 13px;
+  }
+  &_5 {
+    padding: 0 25px;
+    border-radius: 13px;
+    background: #6f0010;
   }
 }
 
@@ -83,5 +93,7 @@
 
       &:after { border-color: #4d2d6b }
     }
+    &_4 { font-size: 18px }
+    &_5:after { border-color: #6f0010 }
   }
 }

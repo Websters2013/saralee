@@ -14,6 +14,11 @@
   font-weight: 400;
   font-style: normal;
 }
+@mixin FuturaHeavyRegular() {
+  font-family: 'FuturaHeavyRegular', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 @mixin NexaRustSlab() {
   font-family: 'NexaRustSlab', sans-serif;
   font-weight: 400;
@@ -29,8 +34,18 @@
   font-weight: 400;
   font-style: normal;
 }
+@mixin CongressMedium() {
+  font-family: 'Congress-Medium', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 @mixin JustRealize() {
   font-family: 'JustRealize', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@mixin JustRealizeRegular() {
+  font-family: 'JustRealize-Regular', sans-serif;
   font-weight: 400;
   font-style: normal;
 }

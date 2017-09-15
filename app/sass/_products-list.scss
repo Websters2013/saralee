@@ -1,0 +1,134 @@
+.products-list {
+  padding: 30px 10px 10px;
+
+  &__title {
+    display: block;
+    position: relative;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 28px;
+    color: #ce253d;
+    text-transform: uppercase;
+    @include Congress();
+  }
+
+  &__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item {
+    display: block;
+    width: 100%;
+    max-width: 390px;
+    margin: 0 10px 20px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(146, 146, 146,.86);
+    background-color: rgb(255, 255, 255);
+
+    strong {
+      display: block;
+      padding: 0 15px 10px;
+      font-size: 16px;
+      line-height: 20px;
+      color: #ce253d;
+      text-transform: uppercase;
+      @include montserrat();
+      font-weight: 600;
+    }
+  }
+
+  &__info {
+    margin: 10px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(146, 146, 146,.86);
+
+    .rate { margin-bottom: 10px }
+  }
+
+  &__pic {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    left: -1px;
+    top: -1px;
+    width: calc(100% + 2px);
+    height: 239px;
+
+    img {
+      @include absoluteCenter();
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
+
+  &__comments {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 22px;
+    color: rgba(43,43,43,.55);
+    @include montserrat();
+    font-weight: 600;
+
+    &:before {
+      position: relative;
+      top: -2px;
+      left: -6px;
+      width: 25px;
+      height: 22px;
+      background-image: url("../img/comments.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      content: '';
+    }
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .products-list {
+
+    &__title {
+      left: 5px;
+      margin-bottom: 40px;
+      font-size: 34px;
+      letter-spacing: 1px;
+    }
+
+    &__item {
+      position: relative;
+      margin: 0 20px 70px;
+      transition: box-shadow .3s ease-in-out;
+
+      strong {
+        padding: 0 23px 14px;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: .7px;
+      }
+
+      &:hover {
+        box-shadow: 0 0 10px rgba(0,0,0,.5);
+      }
+    }
+
+    &__info {
+      margin: 8px 11px 12px;
+      padding: 13px 8px 10px;
+
+      .rate { margin-bottom: 13px }
+    }
+  }
+}
+
+@media (min-width: $desktop) {
+  .products-list {
+    padding: 77px calc(50% - 650px) 43px;
+  }
+}

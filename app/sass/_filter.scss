@@ -1,0 +1,151 @@
+.filter {
+  position: relative;
+  padding: 0 30px;
+  background: #9a192b;
+
+  &__title {
+    position: absolute;
+    bottom: 100%;
+    left: 30px;
+    height: 30px;
+    padding: 10px 15px 10px 20px;
+    @include CongressMedium();
+    font-size: 18px;
+    color: #fff;
+    background: #9a192b;
+    cursor: pointer;
+    user-select: none;
+
+    span {
+      position: relative;
+      z-index: 2;
+    }
+
+    &:after {
+      position: absolute;
+      bottom: 0;
+      right: -15px;
+      width: 0;
+      height: 0;
+      z-index: 1;
+      border-style: solid;
+      border-width: 0 15px 30px 15px;
+      border-color: transparent transparent #9a192a transparent;
+      content: '';
+    }
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 20px 0;
+    color: #fff;
+    font-size: 18px;
+    @include FuturaHeavyRegular();
+
+    > span {
+      display: block;
+      margin-bottom: 20px;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .websters-select {
+      width: 100%;
+      margin-bottom: 20px;
+
+      &__item { width: 100% }
+    }
+
+    input[type=search] {
+      width: 100%;
+      height: 50px;
+      padding: 0 20px;
+      margin-bottom: 20px;
+      font-size: 21px;
+      color: #9a192b;
+      background-color: #fff;
+      border: none;
+      @include FuturaHeavyRegular();
+
+      &::-webkit-input-placeholder {
+        color: #9a192b;
+      }
+      &::-moz-placeholder {
+        color: #9a192b;
+      }
+      &:-ms-input-placeholder {
+        color: #9a192b;
+      }
+      &:-moz-placeholder {
+        color: #9a192b;
+      }
+    }
+
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+      display: none;
+    }
+
+    .btn {
+      margin: 0;
+    }
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .filter {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .filter {
+
+    &__title {
+      left: calc(50% - 619px);
+      height: 52px;
+      padding: 15px 20px 15px 27px;
+      font-size: 26px;
+      pointer-events: none;
+
+      &:after {
+        right: -26px;
+        border-width: 0 26px 52px 26px;
+      }
+    }
+
+    &__wrap {
+      flex-direction: row;
+      justify-content: flex-start;
+      max-width: 1238px;
+      padding: 32px 0;
+      font-size: 21px;
+
+      > span {
+        margin: 0 30px 0 0;
+        font-size: 26px;
+      }
+
+      .websters-select {
+        width: 278px;
+        margin: 0 30px 0 0;
+
+        &:first-child { margin: 0 44px 0 0 }
+      }
+
+      input[type=search] {
+        max-width: 360px;
+        margin: 0 14px 0 0;
+      }
+    }
+  }
+}
+

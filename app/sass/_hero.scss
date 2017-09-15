@@ -5,7 +5,8 @@
   position: relative;
   max-height: 585px;
   overflow: hidden;
-  background: url("../pic/hero-001.jpg") no-repeat top center;
+  background-repeat: no-repeat;
+  background-position: top center;
   background-size: cover;
 
   &.hero_min {
@@ -91,6 +92,16 @@
       font-size: 35px;
       line-height: 45px;
     }
+
+    &.hero_centering {
+      align-items: center;
+      max-height: 487px;
+
+      .hero__content {
+        width: auto;
+        padding: 0 calc(50% - 515px) 40px;
+      }
+    }
   }
 }
 
@@ -111,6 +122,14 @@
       text-align: left;
       font-size: 40px;
       line-height: 52px;
+    }
+
+    &.hero_centering {
+
+      .hero__title {
+        font-size: 61px;
+        line-height: 83px;
+      }
     }
   }
 }
