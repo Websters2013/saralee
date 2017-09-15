@@ -59,7 +59,12 @@
 
 @media (min-width: $tablet-portrait) {
   .social {
-    margin: 0;
+    margin: 0 13px 0 0;
+
+    &_footer{
+      margin: 0;
+    }
+
   }
 }
 
