@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @include montserrat;
-  font-weight: 500;
+  @include montserrat();
+  font-weight: 600;
   width: 100%;
   text-transform: uppercase;
 
