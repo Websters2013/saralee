@@ -2,6 +2,10 @@
 
     $( function(){
 
+        $.each( $( '.contact-us' ), function () {
+            new ContactUs( $(this) );
+        } );
+
         $.each( $( '.site__header' ), function () {
             new Header( $(this) );
         } );
@@ -23,6 +27,46 @@
         } );
 
     } );
+
+    var ContactUs = function ( obj ) {
+        var _self = this,
+            _obj = obj,
+            _checkboxes = obj.find('input[type=checkbox]'),
+            _radio = obj.find('input[type=radio]'),
+            _wrap = _obj.find('.ginput_container_fileupload'),
+            _dataText = _wrap.parent().find('.gfield_description').text(),
+            _inputFile = _obj.find('input[type=file]');
+
+        var _onEvents = function() {
+
+                _inputFile.on( {
+                    'change': function ( e ) {
+                        if( this.files && this.files[0] ){
+                            _dataText = this.files[0].name;
+                            _wrap.addClass('changing');
+                            _wrap.attr('data-text', _dataText);
+                        }
+                    }
+                } );
+
+            },
+            _construct = function() {
+                _obj[ 0 ].obj = _self;
+                _onEvents();
+
+                _checkboxes.each(function () {
+                    $(this).parent().addClass('nice-checkbox');
+                });
+                _radio.each(function () {
+                    $(this).parent().addClass('nice-radio');
+                });
+                _wrap.attr('data-text', _dataText);
+            };
+
+        //public methods
+
+        _construct()
+    };
 
     var Header = function ( obj ) {
         var _self = this,

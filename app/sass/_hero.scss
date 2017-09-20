@@ -27,7 +27,7 @@
     left: 30px;
     z-index: 1;
     height: 30px;
-    padding: 10px 15px 10px 20px;
+    padding: 5px 20px 5px 10px;
     @include CongressMedium();
     font-size: 18px;
     line-height: normal;
@@ -56,16 +56,16 @@
 
     &:before {
       position: absolute;
-      top: 22px;
+      top: 9px;
       right: 5px;
-      width: 15px;
-      height: 15px;
+      width: 13px;
+      height: 13px;
       z-index: 2;
       border: 2px solid #fff;
       box-sizing: border-box;
       transform: rotate(45deg);
       transform-origin: center;
-      clip: rect(0px, 15px, 12px, 3px);
+      clip: rect(0px, 13px, 10px, 3px);
       content: '';
     }
   }
@@ -220,6 +220,19 @@
       &:after {
         right: -26px;
         border-width: 0 26px 52px 26px;
+      }
+
+      &:before {
+        top: 22px;
+        right: 5px;
+        width: 15px;
+        height: 15px;
+        clip: rect(0px, 15px, 12px, 3px);
+        transition: right .3s ease-in-out;
+      }
+
+      &:hover:before {
+        right: 0;
       }
     }
 
