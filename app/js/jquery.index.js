@@ -10,6 +10,10 @@
             new Header( $(this) );
         } );
 
+        $.each( $( '.list-info' ), function () {
+            new ListInfo( $( this ) );
+        } );
+
         $.each( $( '.mobile-menu' ), function () {
             new Menu( $( this ) );
         } );
@@ -24,6 +28,10 @@
 
         $.each( $( '.history' ), function () {
             new History( $( this ) );
+        } );
+
+        $.each( $( '.hero-slider' ), function () {
+            new HeroSlider( $( this ) );
         } );
 
     } );
@@ -173,6 +181,102 @@
         };
 
         _construct()
+    };
+
+    var ListInfo = function( obj ){
+
+        //private properties
+        var _obj = obj,
+            _btn = _obj.find('.list-info__menu-title'),
+            _wrap = _obj.find('nav'),
+            _navItems = _wrap.find('a'),
+            _content = _obj.find('.list-info__content'),
+            _path = _obj.data( 'path' ),
+            _request = new XMLHttpRequest();
+
+        //private methods
+        var _constructor = function(){
+                _onEvents();
+            },
+            _onEvents = function(){
+
+                _obj.on( 'click', function() {
+
+                    if (!_wrap.hasClass('open')) {
+                        _openMenu();
+                    } else {
+                        _closeMenu();
+                    }
+
+                } );
+
+                _navItems.on( 'click', function() {
+                    var curElem = $(this);
+
+                    if ( !curElem.hasClass('active') ) {
+                        _navItems.attr('class', '');
+                        curElem.addClass('active');
+                        _ajaxRequest(curElem.data('post'));
+                        _closeMenu();
+                    }
+                    return false;
+                } );
+
+            },
+            _ajaxRequest = function() {
+
+                _request.abort();
+                _request = $.ajax({
+                    url: _path,
+                    data: '1',
+                    dataType: 'html',
+                    timeout: 20000,
+                    type: "get",
+                    success: function (msg) {
+
+                        _writeNewContent(msg);
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if( XMLHttpRequest.statusText != "abort" ) {
+                            alert( 'Error!' );
+                        }
+                    }
+                });
+
+            },
+            _openMenu = function(){
+                var winScrollTop = $(window).scrollTop(),
+                    positionTop = _btn.outerHeight(),
+                    heightElem = $(window).height() - _btn.offset().top - positionTop + winScrollTop;
+
+                _wrap.addClass('open');
+                _wrap.css({
+                    'height': heightElem + 'px',
+                    'top': positionTop + 'px'
+                });
+
+                $('html').css({ 'overflow': 'hidden' });
+
+                $( '.site__header' )[0].obj.setCanUseScroll( true );
+            },
+            _closeMenu = function(){
+                _wrap.removeClass('open');
+                _wrap.attr('style', '');
+                $('html').attr('style', '');
+
+                $( '.site__header' )[0].obj.setCanUseScroll( false );
+            },
+            _writeNewContent = function(html){
+                _content.html('');
+                _content.html(html);
+            };
+
+        //public properties
+
+        //public methods
+
+        _constructor();
+
     };
 
     var Menu = function( obj ){
@@ -391,6 +495,42 @@
                 _yearsPoint.css({
                     'left': (elem.offset().left - _yearsLine.offset().left) + 'px'
                 });
+            },
+            _init = function() {
+                _onEvent();
+                _initSlider ();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
+    var HeroSlider = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _slider = _obj.find( '.swiper-container' ),
+            _pagination = _obj.find( '.swiper-pagination' ),
+            _swiper = null;
+
+        //private methods
+        var _initSlider = function() {
+                console.log(111);
+                _swiper = new Swiper ( _slider, {
+                    autoplay: 3000,
+                    speed: 500,
+                    effect: 'fade',
+                    loop: true,
+                    pagination: _pagination,
+                    paginationClickable: true
+                } );
+
+            },
+            _onEvent = function() {
+
             },
             _init = function() {
                 _onEvent();

@@ -134,7 +134,29 @@
     }
 
   }
+}
 
+.hero-slider {
+
+  .hero {
+    align-items: center;
+  }
+
+  .swiper-pagination {
+
+    .swiper-pagination-bullet {
+      width: 18px;
+      height: 18px;
+      margin: 0 10px;
+      background: #fff;
+      opacity: .55;
+      transition: opacity .15s ease-in-out;
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+  }
 }
 
 @media (min-width: $tablet-portrait) {
