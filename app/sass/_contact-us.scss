@@ -217,10 +217,6 @@
       }
     }
 
-    .gform_fields {
-
-    }
-
     .address_line_1,
     .address_line_2 {
       width: 100%;
@@ -253,6 +249,20 @@
     }
 
     .nice-radio { margin-right: 10px }
+
+    .name_first,
+    .name_last,
+    .address_line_1,
+    .address_city,
+    .address_state,
+    .address_zip,
+    .address_country {
+
+      label:after {
+        content: '*';
+        color: #e10027;
+      }
+    }
   }
 
   &__aside {
