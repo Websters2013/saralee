@@ -200,7 +200,14 @@
             },
             _onEvents = function(){
 
-                _obj.on( 'click', function() {
+                window.addEventListener("popstate", function(e) {
+                    // Передаем текущий URL
+                    // getContent(location.pathname, false);
+                    // console.log(e);
+                    // _writeNewContent(e.state.html);
+                });
+            
+                _btn.on( 'click', function() {
 
                     if (!_wrap.hasClass('open')) {
                         _openMenu();
@@ -210,31 +217,41 @@
 
                 } );
 
-                _navItems.on( 'click', function() {
-                    var curElem = $(this);
+                _navItems.on( 'click', function(e) {
+
+                    e.preventDefault();
+                    var curElem = $(this),
+                        curPostData = curElem.data('post');
 
                     if ( !curElem.hasClass('active') ) {
                         _navItems.attr('class', '');
                         curElem.addClass('active');
-                        _ajaxRequest(curElem.data('post'));
+                        //
+                        // _getContext(curPostData);
+
+                        _ajaxRequest(curPostData);
                         _closeMenu();
+
+                        // _getContext(curPostData);
                     }
-                    return false;
+                    // return false;
                 } );
 
             },
-            _ajaxRequest = function() {
+            _ajaxRequest = function(postData) {
 
                 _request.abort();
                 _request = $.ajax({
                     url: _path,
-                    data: '1',
+                    data: { action: 'post', data: postData },
                     dataType: 'html',
                     timeout: 20000,
                     type: "get",
                     success: function (msg) {
 
                         _writeNewContent(msg);
+
+                        history.pushState({html: msg}, null, null);
                     },
                     error: function ( XMLHttpRequest ) {
                         if( XMLHttpRequest.statusText != "abort" ) {
@@ -243,6 +260,17 @@
                     }
                 });
 
+            },
+            _getContext = function(url){
+                $.get(url)
+                    .done(function( data ) {
+
+                        // Updating Content on Page
+                        _writeNewContent(data);
+
+                        history.pushState(null, null, url);
+
+                    });
             },
             _openMenu = function(){
                 var winScrollTop = $(window).scrollTop(),

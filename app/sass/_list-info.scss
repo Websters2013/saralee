@@ -1,4 +1,6 @@
 .list-info {
+  max-width: 1400px;
+  margin: 0 auto;
   @include FuturaMedium();
 
   &__menu {
@@ -111,17 +113,15 @@
   }
 }
 
-@media (min-width: $desktop) {
+@media (min-width: $tablet-landscape) {
   .list-info {
     display: flex;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 80px;
 
     &__menu {
       width: 365px;
 
       &-title {
+        padding: 37px 26px 28px;
         font-size: 43px;
         text-align: left;
 
@@ -135,8 +135,9 @@
         a,
         a:visited {
           position: relative;
-          padding: 20px;
+          padding: 15px 24px 25px;
           font-size: 26px;
+          letter-spacing: .5px;
           text-align: left;
 
           &:hover { background: #aa3341 }
@@ -159,33 +160,40 @@
 
     &__content {
       width: calc(100% - 375px);
-      padding: 50px 0 200px 80px;
+      padding: 45px 78px 400px;
       font-size: 30px;
 
       h2 {
-        padding-bottom: 15px;
-        margin-bottom: 30px;
+        padding-bottom: 11px;
+        margin-bottom: 18px;
         font-size: 50px;
       }
 
       p {
-        margin-bottom: 30px;
+        margin-bottom: 48px;
       }
 
       ul {
 
         li {
-          padding: 0 0 30px 55px;
+          padding: 0 0 26px 58px;
 
           &:before {
-            top: 0;
-            left: 0;
+            top: -4px;
+            left: -2px;
             width: 43px;
             height: 42px;
           }
         }
       }
     }
+  }
+}
+
+@media (min-width: $desktop) {
+  .list-info {
+
+    &__content { padding-bottom: 505px }
   }
 }
 
