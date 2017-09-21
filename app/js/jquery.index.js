@@ -18,6 +18,10 @@
             new ListInfo( $( this ) );
         } );
 
+        $.each( $( '.faq' ), function () {
+            new Faq( $( this ) );
+        } );
+
         $.each( $( '.mobile-menu' ), function () {
             new Menu( $( this ) );
         } );
@@ -316,6 +320,118 @@
                         history.pushState(null, null, url);
 
                     });
+            },
+            _openMenu = function(){
+                var winScrollTop = $(window).scrollTop(),
+                    positionTop = _btn.outerHeight(),
+                    heightElem = $(window).height() - _btn.offset().top - positionTop + winScrollTop;
+
+                _wrap.addClass('open');
+                _wrap.css({
+                    'height': heightElem + 'px',
+                    'top': positionTop + 'px'
+                });
+
+                $('html').css({ 'overflow': 'hidden' });
+
+                $( '.site__header' )[0].obj.setCanUseScroll( true );
+            },
+            _closeMenu = function(){
+                _wrap.removeClass('open');
+                _wrap.attr('style', '');
+                $('html').attr('style', '');
+
+                $( '.site__header' )[0].obj.setCanUseScroll( false );
+            },
+            _writeNewContent = function(html){
+                _content.html('');
+                _content.html(html);
+            };
+
+        //public properties
+
+        //public methods
+
+        _constructor();
+
+    };
+
+    var Faq = function( obj ){
+
+        //private properties
+        var _obj = obj,
+            _btn = _obj.find('.faq__menu-title'),
+            _wrap = _obj.find('nav'),
+            _navItems = _wrap.find('a'),
+            _content = _obj.find('.faq__content'),
+            _path = $('body').data( 'action' ),
+            _request = new XMLHttpRequest();
+
+        //private methods
+        var _constructor = function(){
+                _onEvents();
+            },
+            _onEvents = function(){
+
+                window.addEventListener("popstate", function(e) {
+                    // Передаем текущий URL
+                    // getContent(location.pathname, false);
+                    // console.log(e);
+                    // _writeNewContent(e.state.html);
+                });
+
+                _btn.on( 'click', function() {
+
+                    if (!_wrap.hasClass('open')) {
+                        _openMenu();
+                    } else {
+                        _closeMenu();
+                    }
+
+                } );
+
+                _navItems.on( 'click', function(e) {
+
+                    e.preventDefault();
+                    var curElem = $(this),
+                        curPostData = curElem.data('post');
+
+                    if ( !curElem.hasClass('active') ) {
+                        _navItems.attr('class', '');
+                        curElem.addClass('active');
+                        //
+                        // _getContext(curPostData);
+
+                        _ajaxRequest(curPostData);
+                        _closeMenu();
+
+                        // _getContext(curPostData);
+                    }
+                } );
+
+            },
+            _ajaxRequest = function(postData) {
+
+                _request.abort();
+                _request = $.ajax({
+                    url: _path,
+                    data: { action: 'post', data: postData },
+                    dataType: 'html',
+                    timeout: 20000,
+                    type: "get",
+                    success: function (msg) {
+
+                        _writeNewContent(msg);
+
+                        history.pushState({html: msg}, null, null);
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if( XMLHttpRequest.statusText != "abort" ) {
+                            alert( 'Error!' );
+                        }
+                    }
+                });
+
             },
             _openMenu = function(){
                 var winScrollTop = $(window).scrollTop(),
