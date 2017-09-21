@@ -139,15 +139,16 @@
 .hero-slider {
 
   .hero {
+    height: 200px;
     align-items: center;
   }
 
   .swiper-pagination {
 
     .swiper-pagination-bullet {
-      width: 18px;
-      height: 18px;
-      margin: 0 10px;
+      width: 10px;
+      height: 10px;
+      margin: 0 3px;
       background: #fff;
       opacity: .55;
       transition: opacity .15s ease-in-out;
@@ -192,6 +193,30 @@
       .hero__content {
         width: auto;
         padding: 0 calc(50% - 515px) 40px;
+      }
+    }
+  }
+
+  .hero-slider {
+
+    .hero {
+      height: 100vh;
+      max-height: 491px;
+
+      &__content {
+        padding: 40px calc(50% - 515px);
+      }
+    }
+
+    .swiper-pagination {
+      padding: 0 calc(50% - 630px);
+      bottom: 21px;
+      text-align: right;
+
+      .swiper-pagination-bullet {
+        width: 18px;
+        height: 18px;
+        margin: 0 0 0 11px;
       }
     }
   }

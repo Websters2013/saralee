@@ -6,6 +6,10 @@
             new ContactUs( $(this) );
         } );
 
+        $.each( $( '.dropdown' ), function () {
+            new Dropdown( $(this) );
+        } );
+
         $.each( $( '.site__header' ), function () {
             new Header( $(this) );
         } );
@@ -72,6 +76,47 @@
             };
 
         //public methods
+
+        _construct()
+    };
+
+    var Dropdown = function ( obj ) {
+        var _self = this,
+            _obj = obj,
+            _titles = _obj.find('.dropdown__title'),
+            _contents = _obj.find('.dropdown__content');
+
+        var _onEvents = function() {
+
+                _titles.on( {
+                    'click': function () {
+                       var curElem = $(this);
+
+                        if ( !curElem.hasClass('active') ) {
+                            _titles.removeClass('active');
+                            curElem.addClass('active');
+                            _contents.slideUp();
+                            $(this).next().slideDown();
+                        }
+                    }
+                } );
+
+            },
+            _show = function () {
+                _obj.removeClass( 'hidden' );
+            },
+            _hide = function () {
+                _obj.addClass( 'hidden' );
+            },
+            _construct = function() {
+                _obj[ 0 ].obj = _self;
+                _onEvents();
+            };
+
+        //public methods
+        _self.setCanUseScroll = function ( param ) {
+            _canUseSmoothScroll = param;
+        };
 
         _construct()
     };
@@ -191,7 +236,7 @@
             _wrap = _obj.find('nav'),
             _navItems = _wrap.find('a'),
             _content = _obj.find('.list-info__content'),
-            _path = _obj.data( 'path' ),
+            _path = $('body').data( 'action' ),
             _request = new XMLHttpRequest();
 
         //private methods
@@ -441,25 +486,35 @@
         //private methods
         var _initSlider = function() {
 
-                _products = new Swiper ( _productsSwiper, {
-                    autoplay: false,
-                    speed: 500,
-                    effect: 'slide',
-                    slidesPerView: 4,
-                    loop: true,
-                    nextButton: _productsNext,
-                    prevButton: _productsPrev,
-                    breakpoints: {
-                        767: {
-                            slidesPerView: 1
-                        },
-                        1199: {
-                            slidesPerView: 2
+                if ( _obj.hasClass('products_single') ) {
+                    _products = new Swiper ( _productsSwiper, {
+                        autoplay: false,
+                        speed: 500,
+                        effect: 'slide',
+                        slidesPerView: 1,
+                        loop: true,
+                        nextButton: _productsNext,
+                        prevButton: _productsPrev
+                    } );
+                } else {
+                    _products = new Swiper ( _productsSwiper, {
+                        autoplay: false,
+                        speed: 500,
+                        effect: 'slide',
+                        slidesPerView: 4,
+                        loop: true,
+                        nextButton: _productsNext,
+                        prevButton: _productsPrev,
+                        breakpoints: {
+                            767: {
+                                slidesPerView: 1
+                            },
+                            1199: {
+                                slidesPerView: 2
+                            }
                         }
-                    }
-                } );
-
-                // pagination: _caseMainSliderPagination
+                    } );
+                }
 
             },
             _onEvent = function() {
