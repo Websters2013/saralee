@@ -90,7 +90,7 @@
 
     <link rel="stylesheet" property="stylesheet"  href="css/swiper.min.css">
     <link rel="stylesheet" href="css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="css/recipes_page.css">
+    <link rel="stylesheet" href="css/faq_page.css">
 
 </head>
 <body>
@@ -117,9 +117,9 @@
             <div class="site__header-layout">
 
                 <!-- logo -->
-                <h1 class="logo">
+                <a href="#" class="logo">
                     <img src="img/logo.png" alt="logo"/>
-                </h1>
+                </a>
                 <!-- /logo -->
 
                 <!-- mobile-menu -->
@@ -128,8 +128,8 @@
                     <!-- menu -->
                     <nav class="menu">
                         <a href="#" class="menu__item">Products</a>
-                        <a href="#" class="menu__item active">Recipes</a>
-                        <a href="#" class="menu__item">About Us</a>
+                        <a href="#" class="menu__item">Recipes</a>
+                        <a href="#" class="menu__item active">About Us</a>
                         <a href="#" class="menu__item">Where to Buy</a>
                     </nav>
                     <!-- /menu -->
@@ -170,269 +170,187 @@
         <!-- /site__header -->
 
         <!-- hero -->
-        <div class="hero hero_centering" style="background-image: url(pic/hero-002.jpg)">
+        <div class="hero hero_min" style="background-image: url(pic/hero-004.jpg)">
 
-            <!-- hero_content -->
-            <div class="hero__content">
+            <h1>Frequently asked questions</h1>
 
-                <h1 class="hero__title">
-                    <span>Wow them with</span>
-                    <span>something special</span>
-                </h1>
-
-            </div>
-            <!-- /hero_content -->
+            <!-- hero__nav -->
+            <nav class="hero__nav">
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">FAQs</a>
+            </nav>
+            <!-- /hero__nav -->
 
         </div>
         <!-- /hero -->
-        
-        <!-- filter -->
-        <div class="filter">
 
-            <!-- filter__title -->
-            <strong class="filter__title"><span>Find Recipes:</span></strong>
-            <!-- /filter__title -->
+        <!-- faq -->
+        <div class="faq">
 
-            <!-- filter__wrap -->
-            <form action="#" class="filter__wrap">
+            <!-- main-title -->
+            <h2 class="main-title">
+                <span>You Have Questions?</span>
+                We Have Answers!
+            </h2>
+            <!-- main-title -->
 
-                <select>
-                    <option value="0">Product</option>
-                    <option value="1">Product 1</option>
-                    <option value="2">Product 2</option>
-                    <option value="3">Product 3</option>
-                    <option value="4">Product 4</option>
-                    <option value="5">Product 5</option>
-                    <option value="6">Product 6</option>
-                </select>
-                <select>
-                    <option value="0">Ingredient</option>
-                    <option value="1">Ingredient 1</option>
-                    <option value="2">Ingredient 2</option>
-                    <option value="3">Ingredient 3</option>
-                    <option value="4">Ingredient 4</option>
-                    <option value="5">Ingredient 5</option>
-                    <option value="6">Ingredient 6</option>
-                </select>
-                <span>OR</span>
-                <input type="search" placeholder="Search Recipes">
-                <button type="submit" class="btn btn_5">Search</button>
-            </form>
-            <!-- /filter__wrap -->
+            <!-- faq__wrap -->
+            <div class="faq__wrap">
 
-        </div>
-        <!-- /filter -->
+                <!-- faq__menu -->
+                <div class="faq__menu">
 
-        <!-- products-list -->
-        <div class="products-list">
-            
-            <!-- products-list__title -->
-            <strong class="products-list__title">Popular Recipes</strong>
-            <!-- /products-list__title -->
-            
-            <!-- products-list__wrap -->
-            <div class="products-list__wrap">
-                
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
+                    <strong class="faq__menu-title">Questions about:</strong>
 
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic1.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
+                    <nav>
+                        <a href="#" data-post="0">Products</a>
+                        <a href="#" class="active" data-post="1">Preparation</a>
+                        <a href="#" data-post="2">Ingredients</a>
+                        <a href="#" data-post="3">Dessert Calender</a>
+                    </nav>
 
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
+                </div>
+                <!-- /faq__menu -->
+
+                <!-- faq__content -->
+                <div class="faq__content">
+
+                    <!-- dropdown -->
+                    <div class="dropdown">
                         
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
+                        <!-- dropdown__item -->
+                        <div class="dropdown__item">
+                            
+                            <!-- dropdown__title -->
+                            <div class="dropdown__title">
+                                Can Sara Lee® desserts and other frozen products be refrozen after they are thawed?</div>
+                            <!-- /dropdown__title -->
+                            
+                            <!-- dropdown__content -->
+                            <div class="dropdown__content">
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                            </div>
+                            <!-- /dropdown__content -->
+                            
+                        </div>
+                        <!-- /dropdown__item -->
 
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
+                        <!-- dropdown__item -->
+                        <div class="dropdown__item">
+
+                            <!-- dropdown__title -->
+                            <div class="dropdown__title">How long do Sara Lee® frozen products last after thawed?</div>
+                            <!-- /dropdown__title -->
+
+                            <!-- dropdown__content -->
+                            <div class="dropdown__content">
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                            </div>
+                            <!-- /dropdown__content -->
+
+                        </div>
+                        <!-- /dropdown__item -->
+
+                        <!-- dropdown__item -->
+                        <div class="dropdown__item">
+
+                            <!-- dropdown__title -->
+                            <div class="dropdown__title">Where can I find baking instructions and tips for Sara Lee® frozen products?</div>
+                            <!-- /dropdown__title -->
+
+                            <!-- dropdown__content -->
+                            <div class="dropdown__content">
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                            </div>
+                            <!-- /dropdown__content -->
+
+                        </div>
+                        <!-- /dropdown__item -->
+
+                        <!-- dropdown__item -->
+                        <div class="dropdown__item">
+
+                            <!-- dropdown__title -->
+                            <div class="dropdown__title">Are there different baking directions for high altitude?</div>
+                            <!-- /dropdown__title -->
+
+                            <!-- dropdown__content -->
+                            <div class="dropdown__content">
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                            </div>
+                            <!-- /dropdown__content -->
+
+                        </div>
+                        <!-- /dropdown__item -->
+
+                        <!-- dropdown__item -->
+                        <div class="dropdown__item">
+
+                            <!-- dropdown__title -->
+                            <div class="dropdown__title">How do I make the perfect pie?</div>
+                            <!-- /dropdown__title -->
+
+                            <!-- dropdown__content -->
+                            <div class="dropdown__content">
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                            </div>
+                            <!-- /dropdown__content -->
+
+                        </div>
+                        <!-- /dropdown__item -->
+
+                        <!-- dropdown__item -->
+                        <div class="dropdown__item">
+
+                            <!-- dropdown__title -->
+                            <div class="dropdown__title">How do I make a Sara Lee pie more of my own?</div>
+                            <!-- /dropdown__title -->
+
+                            <!-- dropdown__content -->
+                            <div class="dropdown__content">
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                                <p>No, high altitudes should not affect the preparation of Sara Lee® frozen products.
+                                    You can find other detailed baking information, instructions and tips in the <a
+                                            href="#">Products</a> section.</p>
+                            </div>
+                            <!-- /dropdown__content -->
+
+                        </div>
+                        <!-- /dropdown__item -->
+
                     </div>
-                    <!-- /products-list__info -->
+                    <!-- /dropdown -->
 
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic2.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic3.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic1.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic2.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic3.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
+                </div>
+                <!-- /faq__content -->
 
             </div>
-            <!-- /products-list__wrap -->
+            <!-- /faq__wrap -->
             
         </div>
-        <!-- /products-list -->
-        
-        <!-- tips -->
-        <div class="tips">
-
-            <!-- tips__content -->
-            <div class="tips__content">
-
-                <!-- tips__title -->
-                <strong class="tips__title">
-                    <span>More Inspiration?</span>
-                    Check Our Tips & How To’s
-                </strong>
-                <!-- /tips__title -->
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dolor sit amet, Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit,.</p>
-
-                <a href="#" class="btn btn_4">View Tips & How-To’s</a>
-            </div>
-            <!-- /tips__content -->
-
-            <!-- tips__pic -->
-            <span class="tips__pic" style="background-image: url(pic/tips-pic1.jpg)"></span>
-            <!-- /tips__pic -->
-
-        </div>
-        <!-- /tips -->
+        <!-- /faq -->
 
         <!-- site__footer -->
         <div class="site__footer">
@@ -500,7 +418,7 @@
     <!-- /site -->
 
     <script src="js/vendors/jquery-2.2.1.min.js"></script>
-    <script src="js/vendors/perfect-scrollbar.jquery.min.js"></script>
-    <script src="js/recipes.min.js"></script>
+    <script src="js/vendors/swiper.jquery.min.js"></script>
+    <script src="js/recipe.min.js"></script>
 </body>
 </html>

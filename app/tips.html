@@ -89,11 +89,10 @@
     </style>
 
     <link rel="stylesheet" property="stylesheet"  href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="css/recipes_page.css">
+    <link rel="stylesheet" href="css/tips_page.css">
 
 </head>
-<body>
+<body data-action="../saralee/php/tips-list.php">
 
     <!-- site -->
     <div class="site">
@@ -117,9 +116,9 @@
             <div class="site__header-layout">
 
                 <!-- logo -->
-                <h1 class="logo">
+                <a href="#" class="logo">
                     <img src="img/logo.png" alt="logo"/>
-                </h1>
+                </a>
                 <!-- /logo -->
 
                 <!-- mobile-menu -->
@@ -128,8 +127,8 @@
                     <!-- menu -->
                     <nav class="menu">
                         <a href="#" class="menu__item">Products</a>
-                        <a href="#" class="menu__item active">Recipes</a>
-                        <a href="#" class="menu__item">About Us</a>
+                        <a href="#" class="menu__item">Recipes</a>
+                        <a href="#" class="menu__item active">About Us</a>
                         <a href="#" class="menu__item">Where to Buy</a>
                     </nav>
                     <!-- /menu -->
@@ -170,14 +169,14 @@
         <!-- /site__header -->
 
         <!-- hero -->
-        <div class="hero hero_centering" style="background-image: url(pic/hero-002.jpg)">
+        <div class="hero hero_centering" style="background-image: url(pic/hero-005.jpg)">
 
             <!-- hero_content -->
             <div class="hero__content">
 
                 <h1 class="hero__title">
-                    <span>Wow them with</span>
-                    <span>something special</span>
+                    <span>Tips from our</span>
+                    <span>kitchen to yours</span>
                 </h1>
 
             </div>
@@ -185,254 +184,62 @@
 
         </div>
         <!-- /hero -->
-        
-        <!-- filter -->
-        <div class="filter">
 
-            <!-- filter__title -->
-            <strong class="filter__title"><span>Find Recipes:</span></strong>
-            <!-- /filter__title -->
+        <!-- list-info -->
+        <div class="list-info">
 
-            <!-- filter__wrap -->
-            <form action="#" class="filter__wrap">
+            <!-- list-info__menu -->
+            <div class="list-info__menu">
 
-                <select>
-                    <option value="0">Product</option>
-                    <option value="1">Product 1</option>
-                    <option value="2">Product 2</option>
-                    <option value="3">Product 3</option>
-                    <option value="4">Product 4</option>
-                    <option value="5">Product 5</option>
-                    <option value="6">Product 6</option>
-                </select>
-                <select>
-                    <option value="0">Ingredient</option>
-                    <option value="1">Ingredient 1</option>
-                    <option value="2">Ingredient 2</option>
-                    <option value="3">Ingredient 3</option>
-                    <option value="4">Ingredient 4</option>
-                    <option value="5">Ingredient 5</option>
-                    <option value="6">Ingredient 6</option>
-                </select>
-                <span>OR</span>
-                <input type="search" placeholder="Search Recipes">
-                <button type="submit" class="btn btn_5">Search</button>
-            </form>
-            <!-- /filter__wrap -->
+                <strong class="list-info__menu-title">Tips & How-To’s</strong>
 
-        </div>
-        <!-- /filter -->
-
-        <!-- products-list -->
-        <div class="products-list">
-            
-            <!-- products-list__title -->
-            <strong class="products-list__title">Popular Recipes</strong>
-            <!-- /products-list__title -->
-            
-            <!-- products-list__wrap -->
-            <div class="products-list__wrap">
-                
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic1.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
-                        
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic2.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic3.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic1.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic2.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic3.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
+                <nav>
+                    <a href="#" data-post="0">Perfectly Sweet and Salty <img src="img/arrow.png" alt=""></a>
+                    <a href="#" class="active" data-post="1">Absofruitly Delicious <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="2">Latte-Infused Desserts <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="3">Spiced-Up Dessert <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="4">Toasted to Pound Cake Perfection <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="5">Perfect Chocolate Pairings <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="6">One-Bite Delight <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="7">On-the-Go Desserts <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="8">Leftover Pie Makeover <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="9">Perfecting Pumpkin Pie <img src="img/arrow.png" alt=""></a>
+                </nav>
 
             </div>
-            <!-- /products-list__wrap -->
-            
-        </div>
-        <!-- /products-list -->
-        
-        <!-- tips -->
-        <div class="tips">
+            <!-- /list-info__menu -->
 
-            <!-- tips__content -->
-            <div class="tips__content">
+            <!-- list-info__content -->
+            <div class="list-info__content">
 
-                <!-- tips__title -->
-                <strong class="tips__title">
-                    <span>More Inspiration?</span>
-                    Check Our Tips & How To’s
-                </strong>
-                <!-- /tips__title -->
+                <h2>Absofruitly Delicious</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dolor sit amet, Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit,.</p>
+                <p>When you’re craving something cool, add ice cream or sorbet to your favorite Sara Lee dessert. You
+                    can go way beyond vanilla with these fun, fruity flavor combinations: </p>
 
-                <a href="#" class="btn btn_4">View Tips & How-To’s</a>
+                <ul>
+                    <li>Pound cake goes tropical when you add a scoop of mango sorbet. Add flavor and color with a ha
+                        ndful of berries or sliced kiwi!
+                    </li>
+                    <li>Cinnamon and apples go hand-in-hand. Top a freshly-baked apple pie with cinnamon ice cream. Add
+                        a sprinkle of chopped pecans for extra crunch. If you don’t have cinnamon ice cream on hand,
+                        make your own: soften a scoop of vanilla ice cream in the microwave. Stir in ¼ teaspoon of
+                        ground cinnamon and serve.
+                    </li>
+                    <li>Make an updated banana split with pound cake. Top a slice of pound cake with a scoop of
+                        Neapolitan ice cream (chocolate/vanilla/strawberry) and finish with a generous helping of sliced
+                        banana and a few chopped peanuts.
+                    </li>
+                    <li>If you’re not big on fruit, try pairing mint chocolate chip ice cream and a drizzle of chocolate
+                        liqueur with chocolate layer cake.
+                    </li>
+                </ul>
+
             </div>
-            <!-- /tips__content -->
-
-            <!-- tips__pic -->
-            <span class="tips__pic" style="background-image: url(pic/tips-pic1.jpg)"></span>
-            <!-- /tips__pic -->
+            <!-- /list-info__content -->
 
         </div>
-        <!-- /tips -->
+        <!-- /list-info -->
 
         <!-- site__footer -->
         <div class="site__footer">
@@ -500,7 +307,7 @@
     <!-- /site -->
 
     <script src="js/vendors/jquery-2.2.1.min.js"></script>
-    <script src="js/vendors/perfect-scrollbar.jquery.min.js"></script>
-    <script src="js/recipes.min.js"></script>
+    <script src="js/vendors/swiper.jquery.min.js"></script>
+    <script src="js/index.min.js"></script>
 </body>
 </html>

@@ -89,8 +89,7 @@
     </style>
 
     <link rel="stylesheet" property="stylesheet"  href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="css/recipes_page.css">
+    <link rel="stylesheet" href="css/product_page.css">
 
 </head>
 <body>
@@ -117,9 +116,9 @@
             <div class="site__header-layout">
 
                 <!-- logo -->
-                <h1 class="logo">
+                <a href="#" class="logo">
                     <img src="img/logo.png" alt="logo"/>
-                </h1>
+                </a>
                 <!-- /logo -->
 
                 <!-- mobile-menu -->
@@ -127,8 +126,8 @@
 
                     <!-- menu -->
                     <nav class="menu">
-                        <a href="#" class="menu__item">Products</a>
-                        <a href="#" class="menu__item active">Recipes</a>
+                        <a href="#" class="menu__item active">Products</a>
+                        <a href="#" class="menu__item">Recipes</a>
                         <a href="#" class="menu__item">About Us</a>
                         <a href="#" class="menu__item">Where to Buy</a>
                     </nav>
@@ -169,270 +168,159 @@
         </header>
         <!-- /site__header -->
 
-        <!-- hero -->
-        <div class="hero hero_centering" style="background-image: url(pic/hero-002.jpg)">
+        <!-- breadcrumbs -->
+        <div class="breadcrumbs">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Fruit and Seasonal Pies</a>
+            <span>Dutch Apple Pie</span>
+        </div>
+        <!-- /breadcrumbs -->
 
-            <!-- hero_content -->
-            <div class="hero__content">
+        <!-- products -->
+        <div class="products">
 
-                <h1 class="hero__title">
-                    <span>Wow them with</span>
-                    <span>something special</span>
-                </h1>
+            <!-- site__title -->
+            <h2 class="site__title"><span>You may also like</span></h2>
+            <!-- site__title -->
+
+            <!-- products__content -->
+            <div class="products__content">
+
+                <a href="#" class="products__prev">
+                    <svg viewBox="146 23 12 6"><path d="M7,10l6,6,6-6Z" transform="translate(139 13)"/></svg>
+                </a>
+
+                <!-- products__swiper -->
+                <div class="products__swiper swiper-container">
+
+                    <!-- swiper-wrapper -->
+                    <div class="swiper-wrapper">
+
+                        <a href="#" class="products__item swiper-slide">
+
+                            <div class="products__img">
+                                <img src="pic/img-001.jpg" alt="img"/>
+                            </div>
+                            <p>Pound Cakes</p>
+                        </a>
+
+                        <a href="#" class="products__item swiper-slide">
+
+                            <div class="products__img">
+                                <img src="pic/img-002.jpg" alt="img"/>
+                            </div>
+                            <p>Cheesecakes</p>
+                        </a>
+
+                        <a href="#" class="products__item swiper-slide">
+
+                            <div class="products__img">
+                                <img src="pic/img-003.jpg" alt="img"/>
+                            </div>
+                            <p>Fruit and Seasonal Pies</p>
+                        </a>
+
+                        <a href="#" class="products__item swiper-slide">
+
+                            <div class="products__img">
+                                <img src="pic/img-004.jpg" alt="img"/>
+                            </div>
+                            <p>Crème Pies</p>
+                        </a>
+
+                    </div>
+                    <!-- /swiper-wrapper -->
+
+                </div>
+                <!-- /products__swiper -->
+
+                <a href="#" class="products__next">
+                    <svg viewBox="146 23 12 6"><path d="M7,10l6,6,6-6Z" transform="translate(139 13)"/></svg>
+                </a>
 
             </div>
-            <!-- /hero_content -->
+            <!-- /products__content -->
 
         </div>
-        <!-- /hero -->
-        
-        <!-- filter -->
-        <div class="filter">
+        <!-- /products -->
 
-            <!-- filter__title -->
-            <strong class="filter__title"><span>Find Recipes:</span></strong>
-            <!-- /filter__title -->
+        <!-- recipes -->
+        <div class="recipes">
 
-            <!-- filter__wrap -->
-            <form action="#" class="filter__wrap">
+            <!-- recipes__title -->
+            <div class="recipes__title">
+                <div>featured</div>
+                <div><span>RECIPES</span></div>
+            </div>
+            <!-- /recipes__title -->
 
-                <select>
-                    <option value="0">Product</option>
-                    <option value="1">Product 1</option>
-                    <option value="2">Product 2</option>
-                    <option value="3">Product 3</option>
-                    <option value="4">Product 4</option>
-                    <option value="5">Product 5</option>
-                    <option value="6">Product 6</option>
-                </select>
-                <select>
-                    <option value="0">Ingredient</option>
-                    <option value="1">Ingredient 1</option>
-                    <option value="2">Ingredient 2</option>
-                    <option value="3">Ingredient 3</option>
-                    <option value="4">Ingredient 4</option>
-                    <option value="5">Ingredient 5</option>
-                    <option value="6">Ingredient 6</option>
-                </select>
-                <span>OR</span>
-                <input type="search" placeholder="Search Recipes">
-                <button type="submit" class="btn btn_5">Search</button>
-            </form>
-            <!-- /filter__wrap -->
+            <div class="recipes__row">
 
-        </div>
-        <!-- /filter -->
+                <div class="recipes__item">
+                    <img src="pic/img-005.jpg" alt="img"/>
 
-        <!-- products-list -->
-        <div class="products-list">
-            
-            <!-- products-list__title -->
-            <strong class="products-list__title">Popular Recipes</strong>
-            <!-- /products-list__title -->
-            
-            <!-- products-list__wrap -->
-            <div class="products-list__wrap">
-                
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
+                    <div class="recipes__content">
 
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic1.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
+                        <h3>Nutella Filled
+                            Pound Cake</h3>
 
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
-                        
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
 
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
+                        <a href="#" class="btn btn_2">View Recipe</a>
                     </div>
-                    <!-- /products-list__info -->
 
-                </a>
-                <!-- /products-list__item -->
+                </div>
 
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
+                <div class="recipes__item">
+                    <img src="pic/img-006.jpg" alt="img"/>
 
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic2.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
+                    <div class="recipes__content">
 
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
+                        <h3>Nutella Filled
+                            Pound Cake</h3>
 
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
 
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
+                        <a href="#" class="btn btn_2">View Recipe</a>
                     </div>
-                    <!-- /products-list__info -->
 
-                </a>
-                <!-- /products-list__item -->
+                </div>
 
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
+                <div class="recipes__item">
+                    <img src="pic/img-007.jpg" alt="img"/>
 
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic3.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
+                    <div class="recipes__content">
 
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound  Cake</strong>
+                        <h3>Nutella Filled
+                            Pound Cake</h3>
 
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
 
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
+                        <a href="#" class="btn btn_2">View Recipe</a>
                     </div>
-                    <!-- /products-list__info -->
 
-                </a>
-                <!-- /products-list__item -->
+                </div>
 
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
+                <div class="recipes__item">
+                    <img src="pic/img-008.jpg" alt="img"/>
 
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic1.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
+                    <div class="recipes__content">
 
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
+                        <h3>Nutella Filled
+                            Pound Cake</h3>
 
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
 
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
+                        <a href="#" class="btn btn_2">View Recipe</a>
                     </div>
-                    <!-- /products-list__info -->
 
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic2.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
-
-                <!-- products-list__item -->
-                <a href="#" class="products-list__item">
-
-                    <!-- products-list__pic -->
-                    <span class="products-list__pic"><img src="pic/pic3.jpg" alt=""></span>
-                    <!-- /products-list__pic -->
-
-                    <!-- products-list__info -->
-                    <div class="products-list__info">
-                        <strong>Nutella Filled Pound Cake</strong>
-
-                        <!-- rate -->
-                        <span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-                            <!-- /rate__progress -->
-                        </span>
-                        <!-- /rate -->
-
-                        <!-- products-list__comments -->
-                        <span class="products-list__comments">12</span>
-                        <!-- /products-list__comments -->
-                    </div>
-                    <!-- /products-list__info -->
-
-                </a>
-                <!-- /products-list__item -->
+                </div>
 
             </div>
-            <!-- /products-list__wrap -->
-            
-        </div>
-        <!-- /products-list -->
-        
-        <!-- tips -->
-        <div class="tips">
-
-            <!-- tips__content -->
-            <div class="tips__content">
-
-                <!-- tips__title -->
-                <strong class="tips__title">
-                    <span>More Inspiration?</span>
-                    Check Our Tips & How To’s
-                </strong>
-                <!-- /tips__title -->
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dolor sit amet, Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit,.</p>
-
-                <a href="#" class="btn btn_4">View Tips & How-To’s</a>
-            </div>
-            <!-- /tips__content -->
-
-            <!-- tips__pic -->
-            <span class="tips__pic" style="background-image: url(pic/tips-pic1.jpg)"></span>
-            <!-- /tips__pic -->
 
         </div>
-        <!-- /tips -->
+        <!-- /recipes -->
 
         <!-- site__footer -->
         <div class="site__footer">
@@ -500,7 +388,7 @@
     <!-- /site -->
 
     <script src="js/vendors/jquery-2.2.1.min.js"></script>
-    <script src="js/vendors/perfect-scrollbar.jquery.min.js"></script>
-    <script src="js/recipes.min.js"></script>
+    <script src="js/vendors/swiper.jquery.min.js"></script>
+    <script src="js/index.min.js"></script>
 </body>
 </html>

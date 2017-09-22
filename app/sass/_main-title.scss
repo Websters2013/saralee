@@ -12,6 +12,14 @@
   &.color2 {
     color: #fff;
   }
+  &.single {
+
+    span {
+      border: none !important;
+      padding: 0;
+      letter-spacing: normal;
+    }
+  }
 
   span {
     display: block;

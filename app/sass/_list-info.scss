@@ -1,0 +1,199 @@
+.list-info {
+  max-width: 1400px;
+  margin: 0 auto;
+  @include FuturaMedium();
+
+  &__menu {
+    position: relative;
+    color: #fff;
+    background: #8d2431;
+
+    &-title {
+      display: block;
+      position: relative;
+      padding: 20px;
+      background: #791420;
+      font-size: 24px;
+      text-align: center;
+      color: rgb(255, 255, 255);
+      line-height: 1.2;
+      @include JustRealizeRegular();
+
+      &:after {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        width: 15px;
+        height: 15px;
+        margin-top: -8px;
+        border: 2px solid #fff;
+        transform: rotate(45deg) translate(0, -50%);
+        clip: rect(3px, 15px, 15px, 3px);
+        box-sizing: border-box;
+        content: '';
+      }
+    }
+
+    nav {
+      overflow: hidden;
+      height: 0;
+      transition: height .3s ease-in-out;
+      background: #8d2431;
+
+      &.open {
+        overflow-y: scroll;
+      }
+
+      a,
+      a:visited {
+        display: block;
+        padding: 20px;
+        font-size: 16px;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        line-height: 1.577;
+        border-bottom: 1px solid rgba(206,206,206,.25);
+        transition: background .3s ease-in-out;
+
+        &.active { background: #aa3341 }
+
+        img { display: none }
+      }
+    }
+  }
+
+  &__content {
+    padding: 20px 20px 200px;
+    font-size: 18px;
+    color: rgb(55, 55, 55);
+    line-height: 1.2;
+    background: #fff url("../img/list-info-bg.jpg") no-repeat right bottom;
+    background-size: contain;
+
+    h2 {
+      display: inline-block;
+      padding-bottom: 7px;
+      margin-bottom: 15px;
+      border-bottom: 4px dotted #db9577;
+      @include Congress();
+      font-size: 30px;
+      color: rgb(206, 37, 61);
+      line-height: 1.2;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul {
+
+      li {
+        position: relative;
+        padding: 0 0 15px 40px;
+
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 25px;
+          height: 25px;
+          background: url("../img/yes-icon.png") no-repeat center;
+          background-size: contain;
+          pointer-events: none;
+          content: '';
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .list-info {
+
+  }
+}
+
+@media (min-width: $tablet-landscape) {
+  .list-info {
+    display: flex;
+
+    &__menu {
+      width: 365px;
+
+      &-title {
+        padding: 37px 26px 28px;
+        font-size: 43px;
+        text-align: left;
+
+        &:after { display: none }
+      }
+
+      nav {
+        height: auto;
+        overflow: visible !important;
+
+        a,
+        a:visited {
+          position: relative;
+          padding: 15px 24px 25px;
+          font-size: 26px;
+          letter-spacing: .5px;
+          text-align: left;
+
+          &:hover { background: #aa3341 }
+
+          img {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: calc(100% - 2px);
+            height: 100%;
+            width: 0;
+            pointer-events: none;
+            transition: width .3s ease-in-out;
+          }
+
+          &.active img { width: 28px }
+        }
+      }
+    }
+
+    &__content {
+      width: calc(100% - 375px);
+      padding: 45px 78px 400px;
+      font-size: 30px;
+
+      h2 {
+        padding-bottom: 11px;
+        margin-bottom: 18px;
+        font-size: 50px;
+      }
+
+      p {
+        margin-bottom: 48px;
+      }
+
+      ul {
+
+        li {
+          padding: 0 0 26px 58px;
+
+          &:before {
+            top: -4px;
+            left: -2px;
+            width: 43px;
+            height: 42px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $desktop) {
+  .list-info {
+
+    &__content { padding-bottom: 505px }
+  }
+}
+

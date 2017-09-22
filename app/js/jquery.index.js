@@ -2,8 +2,24 @@
 
     $( function(){
 
+        $.each( $( '.contact-us' ), function () {
+            new ContactUs( $(this) );
+        } );
+
+        $.each( $( '.dropdown' ), function () {
+            new Dropdown( $(this) );
+        } );
+
         $.each( $( '.site__header' ), function () {
             new Header( $(this) );
+        } );
+
+        $.each( $( '.list-info' ), function () {
+            new ListInfo( $( this ) );
+        } );
+
+        $.each( $( '.faq' ), function () {
+            new Faq( $( this ) );
         } );
 
         $.each( $( '.mobile-menu' ), function () {
@@ -22,7 +38,92 @@
             new History( $( this ) );
         } );
 
+        $.each( $( '.hero-slider' ), function () {
+            new HeroSlider( $( this ) );
+        } );
+
     } );
+
+    var ContactUs = function ( obj ) {
+        var _self = this,
+            _obj = obj,
+            _checkboxes = obj.find('input[type=checkbox]'),
+            _radio = obj.find('input[type=radio]'),
+            _wrap = _obj.find('.ginput_container_fileupload'),
+            _dataText = _wrap.parent().find('.gfield_description').text(),
+            _inputFile = _obj.find('input[type=file]');
+
+        var _onEvents = function() {
+
+                _inputFile.on( {
+                    'change': function ( e ) {
+                        if( this.files && this.files[0] ){
+                            _dataText = this.files[0].name;
+                            _wrap.addClass('changing');
+                            _wrap.attr('data-text', _dataText);
+                        }
+                    }
+                } );
+
+            },
+            _construct = function() {
+                _obj[ 0 ].obj = _self;
+                _onEvents();
+
+                _checkboxes.each(function () {
+                    $(this).parent().addClass('nice-checkbox');
+                });
+                _radio.each(function () {
+                    $(this).parent().addClass('nice-radio');
+                });
+                _wrap.attr('data-text', _dataText);
+            };
+
+        //public methods
+
+        _construct()
+    };
+
+    var Dropdown = function ( obj ) {
+        var _self = this,
+            _obj = obj,
+            _titles = _obj.find('.dropdown__title'),
+            _contents = _obj.find('.dropdown__content');
+
+        var _onEvents = function() {
+
+                _titles.on( {
+                    'click': function () {
+                       var curElem = $(this);
+
+                        if ( !curElem.hasClass('active') ) {
+                            _titles.removeClass('active');
+                            curElem.addClass('active');
+                            _contents.slideUp();
+                            $(this).next().slideDown();
+                        }
+                    }
+                } );
+
+            },
+            _show = function () {
+                _obj.removeClass( 'hidden' );
+            },
+            _hide = function () {
+                _obj.addClass( 'hidden' );
+            },
+            _construct = function() {
+                _obj[ 0 ].obj = _self;
+                _onEvents();
+            };
+
+        //public methods
+        _self.setCanUseScroll = function ( param ) {
+            _canUseSmoothScroll = param;
+        };
+
+        _construct()
+    };
 
     var Header = function ( obj ) {
         var _self = this,
@@ -129,6 +230,242 @@
         };
 
         _construct()
+    };
+
+    var ListInfo = function( obj ){
+
+        //private properties
+        var _obj = obj,
+            _btn = _obj.find('.list-info__menu-title'),
+            _wrap = _obj.find('nav'),
+            _navItems = _wrap.find('a'),
+            _content = _obj.find('.list-info__content'),
+            _path = $('body').data( 'action' ),
+            _request = new XMLHttpRequest();
+
+        //private methods
+        var _constructor = function(){
+                _onEvents();
+            },
+            _onEvents = function(){
+
+                window.addEventListener("popstate", function(e) {
+                    // Передаем текущий URL
+                    // getContent(location.pathname, false);
+                    // console.log(e);
+                    // _writeNewContent(e.state.html);
+                });
+            
+                _btn.on( 'click', function() {
+
+                    if (!_wrap.hasClass('open')) {
+                        _openMenu();
+                    } else {
+                        _closeMenu();
+                    }
+
+                } );
+
+                _navItems.on( 'click', function(e) {
+
+                    e.preventDefault();
+                    var curElem = $(this),
+                        curPostData = curElem.data('post');
+
+                    if ( !curElem.hasClass('active') ) {
+                        _navItems.attr('class', '');
+                        curElem.addClass('active');
+                        //
+                        // _getContext(curPostData);
+
+                        _ajaxRequest(curPostData);
+                        _closeMenu();
+
+                        // _getContext(curPostData);
+                    }
+                    // return false;
+                } );
+
+            },
+            _ajaxRequest = function(postData) {
+
+                _request.abort();
+                _request = $.ajax({
+                    url: _path,
+                    data: { action: 'post', data: postData },
+                    dataType: 'html',
+                    timeout: 20000,
+                    type: "get",
+                    success: function (msg) {
+
+                        _writeNewContent(msg);
+
+                        history.pushState({html: msg}, null, null);
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if( XMLHttpRequest.statusText != "abort" ) {
+                            alert( 'Error!' );
+                        }
+                    }
+                });
+
+            },
+            _getContext = function(url){
+                $.get(url)
+                    .done(function( data ) {
+
+                        // Updating Content on Page
+                        _writeNewContent(data);
+
+                        history.pushState(null, null, url);
+
+                    });
+            },
+            _openMenu = function(){
+                var winScrollTop = $(window).scrollTop(),
+                    positionTop = _btn.outerHeight(),
+                    heightElem = $(window).height() - _btn.offset().top - positionTop + winScrollTop;
+
+                _wrap.addClass('open');
+                _wrap.css({
+                    'height': heightElem + 'px',
+                    'top': positionTop + 'px'
+                });
+
+                $('html').css({ 'overflow': 'hidden' });
+
+                $( '.site__header' )[0].obj.setCanUseScroll( true );
+            },
+            _closeMenu = function(){
+                _wrap.removeClass('open');
+                _wrap.attr('style', '');
+                $('html').attr('style', '');
+
+                $( '.site__header' )[0].obj.setCanUseScroll( false );
+            },
+            _writeNewContent = function(html){
+                _content.html('');
+                _content.html(html);
+            };
+
+        //public properties
+
+        //public methods
+
+        _constructor();
+
+    };
+
+    var Faq = function( obj ){
+
+        //private properties
+        var _obj = obj,
+            _btn = _obj.find('.faq__menu-title'),
+            _wrap = _obj.find('nav'),
+            _navItems = _wrap.find('a'),
+            _content = _obj.find('.faq__content'),
+            _path = $('body').data( 'action' ),
+            _request = new XMLHttpRequest();
+
+        //private methods
+        var _constructor = function(){
+                _onEvents();
+            },
+            _onEvents = function(){
+
+                window.addEventListener("popstate", function(e) {
+                    // Передаем текущий URL
+                    // getContent(location.pathname, false);
+                    // console.log(e);
+                    // _writeNewContent(e.state.html);
+                });
+
+                _btn.on( 'click', function() {
+
+                    if (!_wrap.hasClass('open')) {
+                        _openMenu();
+                    } else {
+                        _closeMenu();
+                    }
+
+                } );
+
+                _navItems.on( 'click', function(e) {
+
+                    e.preventDefault();
+                    var curElem = $(this),
+                        curPostData = curElem.data('post');
+
+                    if ( !curElem.hasClass('active') ) {
+                        _navItems.attr('class', '');
+                        curElem.addClass('active');
+                        //
+                        // _getContext(curPostData);
+
+                        _ajaxRequest(curPostData);
+                        _closeMenu();
+
+                        // _getContext(curPostData);
+                    }
+                } );
+
+            },
+            _ajaxRequest = function(postData) {
+
+                _request.abort();
+                _request = $.ajax({
+                    url: _path,
+                    data: { action: 'post', data: postData },
+                    dataType: 'html',
+                    timeout: 20000,
+                    type: "get",
+                    success: function (msg) {
+
+                        _writeNewContent(msg);
+
+                        history.pushState({html: msg}, null, null);
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if( XMLHttpRequest.statusText != "abort" ) {
+                            alert( 'Error!' );
+                        }
+                    }
+                });
+
+            },
+            _openMenu = function(){
+                var winScrollTop = $(window).scrollTop(),
+                    positionTop = _btn.outerHeight(),
+                    heightElem = $(window).height() - _btn.offset().top - positionTop + winScrollTop;
+
+                _wrap.addClass('open');
+                _wrap.css({
+                    'height': heightElem + 'px',
+                    'top': positionTop + 'px'
+                });
+
+                $('html').css({ 'overflow': 'hidden' });
+
+                $( '.site__header' )[0].obj.setCanUseScroll( true );
+            },
+            _closeMenu = function(){
+                _wrap.removeClass('open');
+                _wrap.attr('style', '');
+                $('html').attr('style', '');
+
+                $( '.site__header' )[0].obj.setCanUseScroll( false );
+            },
+            _writeNewContent = function(html){
+                _content.html('');
+                _content.html(html);
+            };
+
+        //public properties
+
+        //public methods
+
+        _constructor();
+
     };
 
     var Menu = function( obj ){
@@ -265,25 +602,35 @@
         //private methods
         var _initSlider = function() {
 
-                _products = new Swiper ( _productsSwiper, {
-                    autoplay: false,
-                    speed: 500,
-                    effect: 'slide',
-                    slidesPerView: 4,
-                    loop: true,
-                    nextButton: _productsNext,
-                    prevButton: _productsPrev,
-                    breakpoints: {
-                        767: {
-                            slidesPerView: 1
-                        },
-                        1199: {
-                            slidesPerView: 2
+                if ( _obj.hasClass('products_single') ) {
+                    _products = new Swiper ( _productsSwiper, {
+                        autoplay: false,
+                        speed: 500,
+                        effect: 'slide',
+                        slidesPerView: 1,
+                        loop: true,
+                        nextButton: _productsNext,
+                        prevButton: _productsPrev
+                    } );
+                } else {
+                    _products = new Swiper ( _productsSwiper, {
+                        autoplay: false,
+                        speed: 500,
+                        effect: 'slide',
+                        slidesPerView: 4,
+                        loop: true,
+                        nextButton: _productsNext,
+                        prevButton: _productsPrev,
+                        breakpoints: {
+                            767: {
+                                slidesPerView: 1
+                            },
+                            1199: {
+                                slidesPerView: 2
+                            }
                         }
-                    }
-                } );
-
-                // pagination: _caseMainSliderPagination
+                    } );
+                }
 
             },
             _onEvent = function() {
@@ -347,6 +694,42 @@
                 _yearsPoint.css({
                     'left': (elem.offset().left - _yearsLine.offset().left) + 'px'
                 });
+            },
+            _init = function() {
+                _onEvent();
+                _initSlider ();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
+    var HeroSlider = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _slider = _obj.find( '.swiper-container' ),
+            _pagination = _obj.find( '.swiper-pagination' ),
+            _swiper = null;
+
+        //private methods
+        var _initSlider = function() {
+                console.log(111);
+                _swiper = new Swiper ( _slider, {
+                    autoplay: 3000,
+                    speed: 500,
+                    effect: 'fade',
+                    loop: true,
+                    pagination: _pagination,
+                    paginationClickable: true
+                } );
+
+            },
+            _onEvent = function() {
+
             },
             _init = function() {
                 _onEvent();

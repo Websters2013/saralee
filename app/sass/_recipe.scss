@@ -1,0 +1,292 @@
+.recipe {
+  padding: 20px;
+  @include FuturaMedium();
+
+  .main-title {
+    margin-bottom: 18px;
+  }
+
+  &__sub-title {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #e10027;
+    @include JustRealize();
+  }
+
+  &__pic {
+    margin-bottom: 38px;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  }
+
+  &__indicators {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    border: solid 1px #d4d4d4;
+    font-size: 12px;
+    text-align: center;
+    color: #e34f00;
+
+    &:before {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      bottom: 5px;
+      left: 5px;
+      box-sizing: border-box;
+      border: solid 1px #d4d4d4;
+      pointer-events: none;
+      content: '';
+    }
+
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      margin-bottom: 7px;
+      font-size: 16px;
+      color: #000000;
+
+      img {
+        display: block;
+        margin-right: 5px;
+      }
+    }
+
+    &-item {
+      padding: 20px;
+      border-top: 4px dotted #db9577;
+
+      &:first-child { border: none }
+
+      > span,
+      li span {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 30px;
+        @include FuturaHeavyRegular();
+      }
+
+      .social {
+        margin: 0;
+
+        .social__item {
+          margin: 0 6px;
+        }
+      }
+    }
+
+    ul {
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      &:before {
+        @include absoluteCenterX();
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: #e6906e;
+        content: '';
+      }
+
+      li {
+        padding: 0 15px;
+      }
+    }
+  }
+
+  &__wrap {
+    padding-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.25;
+    text-align: left;
+    color: #797979;
+    border-bottom: 4px dotted #db9577;
+
+    a,
+    a:visited {
+      color: #e34f00;
+      text-decoration: underline;
+
+      &:hover { text-decoration: none }
+
+      sup {
+        display: inline-block;
+        font-size: .6em;
+        text-decoration: none;
+      }
+    }
+
+    ul {
+
+      li {
+        margin-bottom: 14px;
+      }
+    }
+
+    ol {
+      counter-reset: list 0;
+
+      li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 14px;
+
+        &:before {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: -1px;
+          left: 0;
+          width: 20px;
+          height: 20px;
+          background-color: #3256a4;
+          border-radius: 50%;
+          font-size: 12px;
+          color: #ffffff;
+          @include FuturaPTBold();
+          counter-increment: list;
+          content: counter(list);
+        }
+      }
+    }
+  }
+
+  &__ingredients {
+    margin-bottom: 30px;
+  }
+
+  &__descriptions {
+
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .recipe {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .recipe {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 80px 0;
+
+    &__sub-title {
+      margin-bottom: 16px;
+      font-size: 35px;
+    }
+
+    &__indicators {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1065px;
+      margin: 0 auto 80px;
+      padding: 34px 0;
+      font-size: 17.4px;
+
+      &:before {
+        top: 7px;
+        right: 7px;
+        bottom: 7px;
+        left: 7px;
+      }
+
+      &-title {
+        min-height: 47px;
+        margin-bottom: 7px;
+        font-size: 21.5px;
+
+        img {
+          margin-right: 10px;
+        }
+      }
+
+      &-item {
+        width: 25%;
+        padding: 2px 40px;
+        border-top: none;
+        border-left: 4px dotted #db9577;
+
+        &:first-child { border: none }
+
+        > span,
+        li span {
+          font-size: 41.4px;
+          line-height: 0.68;
+        }
+
+        .social {
+          @include FuturaMedium;
+          display: block;
+          white-space: nowrap;
+          font-size: 14px;
+          line-height: 15px;
+          color: #4d2d6b;
+
+          .social__item {
+            display: inline-flex;
+            width: 38px;
+            height: 38px;
+            margin: 0 0 0 6px;
+
+            &:first-child { margin-left: 0 }
+          }
+        }
+      }
+    }
+
+    &__wrap {
+      display: flex;
+      padding-bottom: 52px;
+      font-size: 22.4px;
+
+      ul {
+
+        li {
+          margin-bottom: 28px;
+        }
+      }
+
+      ol {
+
+        li {
+          padding-left: 46px;
+          margin-bottom: 31px;
+
+          &:before {
+            top: -7px;
+            left: 2px;
+            width: 34.5px;
+            height: 34.5px;
+            font-size: 22.8px;
+          }
+        }
+      }
+    }
+
+    &__ingredients {
+      width: 500px;
+      margin-bottom: 0;
+      padding-right: 70px;
+    }
+
+    &__directions {
+      width: calc(100% - 500px);
+
+      .recipe__sub-title { padding-left: 44px }
+    }
+  }
+}
+

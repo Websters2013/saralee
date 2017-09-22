@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @include montserrat;
+  @include montserrat();
   font-weight: 600;
   width: 100%;
   text-transform: uppercase;

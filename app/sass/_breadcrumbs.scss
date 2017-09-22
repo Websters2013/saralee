@@ -1,0 +1,37 @@
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 20px;
+  @include montserrat();
+  font-size: 17px;
+  text-align: right;
+
+  a,
+  a:visited {
+    padding: 0 12px 0 11px;
+    color: #c56e28;
+    font-size: 17px;
+    transition: color .3s ease-in-out;
+    border-right: 1px solid #c56e28;
+
+    &:hover { color: #4d2d6b }
+  }
+
+  span {
+    padding: 0 12px 0 11px;
+    color: #ce253d;
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .breadcrumbs {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .breadcrumbs {
+    padding: 55px calc(50% - 620px);
+  }
+}
