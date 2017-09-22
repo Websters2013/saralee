@@ -1,0 +1,25 @@
+/*
+Theme Name: Design studio
+Theme URI: localhost
+Author: HVH
+Author URI: localhost
+Description: Design studio
+Version: 2.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: Design studio
+Text Domain: design-studio
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+span.wpcf7-not-valid-tip {
+    display: none;
+}
+.contact-us__form input.wpcf7-not-valid,
+.request__form input.wpcf7-not-valid {
+    border-color: red;
+}
+.wpcf7-list-item.nice-radio {
+    display: block;
+}
