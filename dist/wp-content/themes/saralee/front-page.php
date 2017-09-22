@@ -6,10 +6,12 @@ get_header();
 
 require_once('product-pl.php');
 require_once('store-pl.php');
-
-$res = get_terms('product_cat', array(
-	'hide_empty' => false,
-));
+$args = array(
+  'taxonomy' => 'product_cat',
+  'parent' => 0,
+  'hide_empty' => false,
+);
+$res = get_terms($args);
 $categories = array();
 
 foreach ($res as $row) {

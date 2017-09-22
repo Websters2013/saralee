@@ -53,7 +53,7 @@ if(!empty($history) && $history_title_top && $history_title_bottom) {?>
 
                         <p><?= $row['content']; ?></p>
 
-                        <a href="#" class="btn btn_3">Learn more</a>
+                        <!--<a href="#" class="btn btn_3">Learn more</a>-->
                     </div>
                     <!-- /history__content-description -->
 

@@ -39,7 +39,7 @@ function custom_post_type() {
 				'product',
 				array(
 					'label' => __( 'Product Categories' ),
-					'hierarchical' => false,
+					'hierarchical' => true,
 				)
 			);
 		}

@@ -15,12 +15,22 @@ if($logo) {
 $current_id = get_the_ID();
 $hero_title = get_field('hero_title', $current_id);
 if($hero_title) {
-	$hero_title = '<div class="hero__title">'.$hero_title.'</div>';
+    if(is_front_page()) {
+        $hero_title = '<div class="hero__title">'.$hero_title.'</div>';
+    } else {
+        $hero_title = '<h1>'.$hero_title.'</h1>';
+    }
 }
 
 $hero_button = get_field('hero_button', $current_id);
 if($hero_button) {
 	$hero_button = '<a href="'.$hero_button['url'].'" class="btn btn_1">'.$hero_button['title'].'</a>';
+}
+
+$hero_class = '';
+
+if(!is_front_page()) {
+    $hero_class = ' hero_min';
 }
 ?>
 <!DOCTYPE html>
@@ -214,18 +224,57 @@ if($hero_button) {
     </header>
     <!-- /site__header -->
 
+    <?php if(!is_page_template('page-products.php')){ ?>
     <!-- hero -->
-    <div class="hero" style="background-image: url(<?= get_field('hero_image', $current_id)['url']; ?>)">
+    <div class="hero <?= $hero_class; ?>" style="background-image: url(<?= get_field('hero_image', $current_id)['url']; ?>)">
 
+        <?php
+            if(is_front_page()) { ?>
         <!-- hero_content -->
         <div class="hero__content">
-
-	        <?= $hero_title; ?>
-
+            <?= $hero_title; ?>
 	        <?= $hero_button; ?>
-
-            </div>
+        </div>
         <!-- /hero_content -->
+        <?php } else { echo $hero_title; } ?>
 
     </div>
     <!-- /hero -->
+    <?php } else {
+        $hero_slider = get_field('hero_slider', $current_id);
+        if(!empty($hero_slider)) { ?>
+        <!-- hero -->
+        <div class="hero-slider">
+
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+
+                <?php foreach ($hero_slider as $row) { ?>
+                    <div class="swiper-slide">
+                        <div class="hero" style="background-image: url(<?= $row['image']['url']; ?>)">
+                            <!-- hero_content -->
+                            <div class="hero__content">
+                                <div class="hero__title">
+                                    <?= $row['title']; ?>
+                                </div>
+                            </div>
+                            <!-- /hero_content -->
+                        </div>
+                    </div>
+                <?php } ?>
+
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <!-- /hero -->
+        <?php } ?>
+
+
+
+
+
+
+
+    <?php } ?>

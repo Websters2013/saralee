@@ -66,18 +66,34 @@ function add_js() {
 	wp_register_style('style', get_stylesheet_uri(), false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/style.css'));
 	wp_register_style('index', get_template_directory_uri() . '/assets/css/index.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/index.css'));
 	wp_register_style('swiper', get_template_directory_uri() . '/assets/css/swiper.min.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/swiper.min.css'));
+	wp_register_style('about-us', get_template_directory_uri() . '/assets/css/about-us_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/about-us_page.css'));
+	wp_register_style('products_page', get_template_directory_uri() . '/assets/css/products_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/products_page.css'));
+
+	
 
 
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('swiper');
 	wp_enqueue_script('index');
 
+	wp_enqueue_style('swiper');
+
 	if(is_front_page()) {
 		wp_enqueue_script('map');
+
+		wp_enqueue_style('index');
 	}
 
-	wp_enqueue_style('swiper');
-	wp_enqueue_style('index');
+	if(is_page_template('page-about.php')) {
+		wp_enqueue_style('about-us');
+	}
+
+	if(is_page_template('page-products.php')) {
+		wp_enqueue_style('products_page');
+	}
+
+	
+	
 	wp_enqueue_style('style');
 }
 
