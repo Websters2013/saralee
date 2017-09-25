@@ -68,6 +68,7 @@ function add_js() {
 	wp_register_style('swiper', get_template_directory_uri() . '/assets/css/swiper.min.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/swiper.min.css'));
 	wp_register_style('about-us', get_template_directory_uri() . '/assets/css/about-us_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/about-us_page.css'));
 	wp_register_style('products_page', get_template_directory_uri() . '/assets/css/products_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/products_page.css'));
+	wp_register_style('contact-us', get_template_directory_uri() . '/assets/css/contact-us_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/contact-us_page.css'));
 
 	
 
@@ -90,6 +91,10 @@ function add_js() {
 
 	if(is_page_template('page-products.php')) {
 		wp_enqueue_style('products_page');
+	}
+
+	if(is_page_template('page-contact.php')) {
+		wp_enqueue_style('contact-us');
 	}
 
 	

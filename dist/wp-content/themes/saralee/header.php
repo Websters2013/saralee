@@ -32,6 +32,8 @@ $hero_class = '';
 if(!is_front_page()) {
     $hero_class = ' hero_min';
 }
+
+$hero_image = get_field('hero_image', $current_id)['url']
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -224,9 +226,9 @@ if(!is_front_page()) {
     </header>
     <!-- /site__header -->
 
-    <?php if(!is_page_template('page-products.php')){ ?>
+    <?php if(!is_page_template('page-products.php') && $hero_image){ ?>
     <!-- hero -->
-    <div class="hero <?= $hero_class; ?>" style="background-image: url(<?= get_field('hero_image', $current_id)['url']; ?>)">
+    <div class="hero <?= $hero_class; ?>" style="background-image: url(<?= $hero_image; ?>)">
 
         <?php
             if(is_front_page()) { ?>
