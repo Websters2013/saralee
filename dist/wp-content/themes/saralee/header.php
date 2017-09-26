@@ -13,27 +13,42 @@ if($logo) {
 }
 
 $current_id = get_the_ID();
+
+if(is_singular('tips') || is_page(165)){
+$current_id = 165;
+}
 $hero_title = get_field('hero_title', $current_id);
+$hero_button = get_field('hero_button', $current_id);
+$hero_image = get_field('hero_image', $current_id)['url'];
+
+
+
 if($hero_title) {
     if(is_front_page()) {
         $hero_title = '<div class="hero__title">'.$hero_title.'</div>';
+    } elseif(is_singular('tips') || is_page(165)) {
+        $hero_title = '<h1 class="hero__title">'.$hero_title.'</h1>';
     } else {
         $hero_title = '<h1>'.$hero_title.'</h1>';
     }
 }
 
-$hero_button = get_field('hero_button', $current_id);
+
 if($hero_button) {
 	$hero_button = '<a href="'.$hero_button['url'].'" class="btn btn_1">'.$hero_button['title'].'</a>';
 }
 
 $hero_class = '';
 
-if(!is_front_page()) {
+if(is_front_page()) {
+    $hero_class = '';
+} elseif ( is_singular('tips') || is_page(165)) {
+    $hero_class = ' hero_centering';
+} else {
     $hero_class = ' hero_min';
 }
 
-$hero_image = get_field('hero_image', $current_id)['url']
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,7 +143,7 @@ $hero_image = get_field('hero_image', $current_id)['url']
 	<?php wp_head(); ?>
 
 </head>
-<body>
+<body data-action="<?php echo admin_url( 'admin-ajax.php' );?>">
 
 <!-- site -->
 <div class="site">
@@ -231,7 +246,7 @@ $hero_image = get_field('hero_image', $current_id)['url']
     <div class="hero <?= $hero_class; ?>" style="background-image: url(<?= $hero_image; ?>)">
 
         <?php
-            if(is_front_page()) { ?>
+            if(is_front_page() || is_singular('tips') || is_page(165)) { ?>
         <!-- hero_content -->
         <div class="hero__content">
             <?= $hero_title; ?>
@@ -272,11 +287,5 @@ $hero_image = get_field('hero_image', $current_id)['url']
         </div>
         <!-- /hero -->
         <?php } ?>
-
-
-
-
-
-
 
     <?php } ?>
