@@ -20,6 +20,7 @@
       width: calc(100% - 40px);
       height: 100%;
       padding: 0 10px;
+      color: #4f4f4f;
       background: none;
       border: none;
       font-size: 18px;
@@ -63,7 +64,7 @@
       }
 
       &:hover svg {
-        fill: rgb(202, 202, 202);
+        fill: #4f4f4f;
       }
     }
   }

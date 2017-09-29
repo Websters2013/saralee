@@ -660,15 +660,14 @@
 
         //private properties
         var _obj = obj,
-            _productsSwiper = _obj.find( '.products__swiper' ),
-            _products,
-            _window = $( window );
+            _topGallery = _obj.find('.gallery-top'),
+            _thumbsGallery = _obj.find('.gallery-thumbs');
 
         //private methods
         var _initSlider = function() {
 
-                var galleryTop = new Swiper('.gallery-top', {});
-                var galleryThumbs = new Swiper('.gallery-thumbs', {
+                var galleryTop = new Swiper(_topGallery, {});
+                var galleryThumbs = new Swiper(_thumbsGallery, {
                     centeredSlides: true,
                     slidesPerView: 'auto',
                     slideToClickedSlide: true
@@ -778,78 +777,6 @@
             _init = function() {
                 _onEvent();
                 _initSlider ();
-            };
-
-        //public properties
-
-        //public methods
-
-        _init();
-    };
-
-    var Tabs = function(obj) {
-
-        //private properties
-        var _obj = obj,
-            _tabsControlsWrap = _obj.find('.tabs__controls'),
-            _tabsControlsWrapLeft = _tabsControlsWrap.offset().left,
-            _tabsControls = _tabsControlsWrap.find('.tabs__controls-item'),
-            _activeControl = _tabsControlsWrap.find('.active'),
-            _tabsSlider = _obj.find('.tabs__controls-slider'),
-            _tabsContentWrap = _obj.find('.tabs__content'),
-            _tabsContent = _tabsContentWrap.find('.tabs__content-item');
-
-        //private methods
-        var _addEvents = function() {
-
-                _tabsControls.on({
-                    'click': function () {
-                        var activeElem = $(this);
-
-                        if ( !activeElem.hasClass('active') ) {
-                            _tabsControls.removeClass('active');
-                            activeElem.addClass('active');
-                            _sliding(activeElem);
-                        }
-
-                    }
-                });
-
-                $(window).on({
-                    'resize': function () {
-                        _tabsControlsWrapLeft = _tabsControlsWrap.offset().left;
-                        _sliding(_tabsControlsWrap.find('.active'));
-                    }
-                });
-            },
-            _checkActiveControl = function() {
-                if ( _activeControl.length > 0 ) {
-                    if ( _activeControl.length > 1 ) {
-                        _activeControl.removeClass('active');
-                        _activeControl.eq(0).addClass('active');
-                    }
-                } else {
-                    _activeControl = _tabsControls.eq(0);
-                    _activeControl.addClass('active');
-                }
-                _sliding(_activeControl);
-
-            },
-            _sliding = function(elem) {
-                _tabsSlider.css({
-                    'width': elem.outerWidth(),
-                    'left': (elem.offset().left - _tabsControlsWrapLeft) + 'px'
-                });
-                _showActiveContent(elem.index());
-            },
-            _showActiveContent = function(activeIndex) {
-                _tabsContent.removeClass('active');
-                _tabsContent.eq(activeIndex - 1).addClass('active');
-                _tabsContentWrap.css({ 'height': _tabsContent.eq(activeIndex - 1).outerHeight() + 'px' });
-            },
-            _init = function() {
-                _addEvents();
-                _checkActiveControl();
             };
 
         //public properties
