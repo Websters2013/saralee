@@ -5,6 +5,21 @@
   &__slider {
     width: 100%;
 
+    &-top {
+      position: relative;
+
+      &:after {
+        @include absoluteCenterX();
+        top: 0;
+        width: calc(100% + 40px);
+        height: 110%;
+        background: url("../img/shadow.png") no-repeat bottom center;
+        background-size: contain;
+        content: '';
+      }
+
+    }
+
     .swiper-container {
       position: relative;
       width: 100%;
@@ -172,7 +187,7 @@
 @media (min-width: $tablet-portrait) {
   .product {
     padding: 16px 65px;
-    margin-bottom: 43px;
+    margin: 0 auto 43px;
 
     &__slider {
 
@@ -256,6 +271,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 65px;
+    max-width: 1380px;
 
     &__slider {
       width: 511px;
