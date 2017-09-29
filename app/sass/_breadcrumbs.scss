@@ -33,7 +33,7 @@
 @media (min-width: $desktop) {
   .breadcrumbs {
     flex-direction: row;
-    padding: 55px calc(50% - 620px);
+    padding: 55px calc(50% - 620px) 51px;
 
     a {
       margin: 0;

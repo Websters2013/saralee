@@ -30,6 +30,10 @@
             new Preloader( $( this ) );
         } );
 
+        $.each( $( '.product' ), function () {
+            new Product( $( this ) );
+        } );
+
         $.each( $( '.products' ), function () {
             new Sliders( $( this ) );
         } );
@@ -631,6 +635,43 @@
                         }
                     } );
                 }
+
+            },
+            _onEvent = function() {
+
+            },
+            _init = function() {
+                _onEvent();
+                _initSlider ();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
+    var Product = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _productsSwiper = _obj.find( '.products__swiper' ),
+            _products,
+            _window = $( window );
+
+        //private methods
+        var _initSlider = function() {
+
+                var galleryTop = new Swiper('.gallery-top', {
+                });
+                var galleryThumbs = new Swiper('.gallery-thumbs', {
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    slideToClickedSlide: true
+                });
+                galleryTop.params.control = galleryThumbs;
+                galleryThumbs.params.control = galleryTop;
 
             },
             _onEvent = function() {
