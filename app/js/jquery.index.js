@@ -38,6 +38,10 @@
             new Sliders( $( this ) );
         } );
 
+        $.each( $( '.tab' ), function () {
+            new Tab( $( this ) );
+        } );
+
         $.each( $( '.history' ), function () {
             new History( $( this ) );
         } );
@@ -663,8 +667,7 @@
         //private methods
         var _initSlider = function() {
 
-                var galleryTop = new Swiper('.gallery-top', {
-                });
+                var galleryTop = new Swiper('.gallery-top', {});
                 var galleryThumbs = new Swiper('.gallery-thumbs', {
                     centeredSlides: true,
                     slidesPerView: 'auto',
@@ -775,6 +778,127 @@
             _init = function() {
                 _onEvent();
                 _initSlider ();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
+    var Tabs = function(obj) {
+
+        //private properties
+        var _obj = obj,
+            _tabsControlsWrap = _obj.find('.tabs__controls'),
+            _tabsControlsWrapLeft = _tabsControlsWrap.offset().left,
+            _tabsControls = _tabsControlsWrap.find('.tabs__controls-item'),
+            _activeControl = _tabsControlsWrap.find('.active'),
+            _tabsSlider = _obj.find('.tabs__controls-slider'),
+            _tabsContentWrap = _obj.find('.tabs__content'),
+            _tabsContent = _tabsContentWrap.find('.tabs__content-item');
+
+        //private methods
+        var _addEvents = function() {
+
+                _tabsControls.on({
+                    'click': function () {
+                        var activeElem = $(this);
+
+                        if ( !activeElem.hasClass('active') ) {
+                            _tabsControls.removeClass('active');
+                            activeElem.addClass('active');
+                            _sliding(activeElem);
+                        }
+
+                    }
+                });
+
+                $(window).on({
+                    'resize': function () {
+                        _tabsControlsWrapLeft = _tabsControlsWrap.offset().left;
+                        _sliding(_tabsControlsWrap.find('.active'));
+                    }
+                });
+            },
+            _checkActiveControl = function() {
+                if ( _activeControl.length > 0 ) {
+                    if ( _activeControl.length > 1 ) {
+                        _activeControl.removeClass('active');
+                        _activeControl.eq(0).addClass('active');
+                    }
+                } else {
+                    _activeControl = _tabsControls.eq(0);
+                    _activeControl.addClass('active');
+                }
+                _sliding(_activeControl);
+
+            },
+            _sliding = function(elem) {
+                _tabsSlider.css({
+                    'width': elem.outerWidth(),
+                    'left': (elem.offset().left - _tabsControlsWrapLeft) + 'px'
+                });
+                _showActiveContent(elem.index());
+            },
+            _showActiveContent = function(activeIndex) {
+                _tabsContent.removeClass('active');
+                _tabsContent.eq(activeIndex - 1).addClass('active');
+                _tabsContentWrap.css({ 'height': _tabsContent.eq(activeIndex - 1).outerHeight() + 'px' });
+            },
+            _init = function() {
+                _addEvents();
+                _checkActiveControl();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
+    var Tab = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _controlsWrap = _obj.find('.tab__controls'),
+            _controls = _controlsWrap.find('.tab__controls-item'),
+            _activeControl = _controlsWrap.find('.active'),
+            _contentsWrap = _obj.find('.tab__content'),
+            _contents = _contentsWrap.find('.tab__content-item');
+        
+        //private methods
+        var _onEvent = function() {
+
+                _controls.on({
+                    'click': function () {
+                        var curItem = $(this);
+
+                        if ( !curItem.hasClass('active') ) {
+                            _controls.removeClass('active');
+                            curItem.addClass('active');
+                            _showActiveContent(curItem.index());
+                        }
+                    }
+                });
+
+                $(window).on({
+                    'load': function () {
+                        _activeControl.removeClass('active');
+                        _activeControl.trigger('click');
+                    }
+                });
+
+            },
+            _showActiveContent = function(activeIndex) {
+                _contents.removeClass('active');
+                _contents.eq(activeIndex).addClass('active');
+                _contentsWrap.css({ 'height': _contents.eq(activeIndex).outerHeight() + 'px' });
+            },
+            _init = function() {
+                _onEvent();
             };
 
         //public properties
