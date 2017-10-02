@@ -48,9 +48,10 @@
 
       a,
       a:visited {
-        display: block;
+        display: flex;
+        align-items: center;
         position: relative;
-        padding: 20px;
+        padding: 20px 20px 20px 0;
         font-size: 16px;
         text-align: center;
         color: #4f4f4f;
@@ -74,7 +75,30 @@
         &.active {
           background: #fff;
           color: #ce253d;
+
+          .faq__icon svg {
+            fill: #ce253d;
+          }
         }
+      }
+    }
+  }
+
+  &__icon {
+    display: block;
+    position: relative;
+    width: 50px;
+
+    svg {
+      @include absoluteCenter();
+      width: 30px;
+      height: 30px;
+    }
+
+    &.pie {
+
+      svg {
+        margin-top: -5px;
       }
     }
   }
@@ -156,11 +180,17 @@
         a,
         a:visited {
           position: relative;
-          padding: 22px 20px 22px 103px;
+          padding: 22px 20px;
           font-size: 31px;
           text-align: left;
 
-          &:hover { color: #ce253d }
+          &:hover {
+            color: #ce253d;
+
+            .faq__icon svg {
+              fill: #ce253d;
+            }
+          }
 
           &.active {
             border-right-color: transparent;
@@ -177,6 +207,26 @@
               content: '';
             }
           }
+        }
+      }
+    }
+
+    &__icon {
+      width: 63px;
+      margin-right: 20px;
+
+      svg {
+        width: 53px;
+        height: 53px;
+        transition: fill .3s ease-in-out;
+      }
+
+      &.pie {
+
+        svg {
+          margin-top: -7px;
+          width: 48px;
+          height: 48px;
         }
       }
     }
