@@ -61,6 +61,7 @@ function add_js() {
 	wp_register_script('jquery', get_template_directory_uri() . '/assets/js/vendors/jquery-2.2.1.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/vendors/jquery-2.2.1.min.js'), false);
 	wp_register_script('index', get_template_directory_uri() . '/assets/js/index.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/index.min.js'), true);
 	wp_register_script('swiper', get_template_directory_uri() . '/assets/js/vendors/swiper.jquery.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/vendors/swiper.jquery.min.js'), true);
+	wp_register_script('recipe', get_template_directory_uri() . '/assets/js/recipe.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/recipe.min.js'), true);
 	wp_register_script('map',  'http://maps.google.com/maps/api/js?key=AIzaSyBBm0kRd1Ala8zPQVH9XJR46H3s_IUisoU', false, '', false);
 
 	wp_register_style('style', get_stylesheet_uri(), false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/style.css'));
@@ -70,11 +71,16 @@ function add_js() {
 	wp_register_style('products_page', get_template_directory_uri() . '/assets/css/products_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/products_page.css'));
 	wp_register_style('contact-us', get_template_directory_uri() . '/assets/css/contact-us_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/contact-us_page.css'));
 	wp_register_style('tips_page', get_template_directory_uri() . '/assets/css/tips_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/tips_page.css'));
+	wp_register_style('faq_page', get_template_directory_uri() . '/assets/css/faq_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/faq_page.css'));
+	wp_register_style('perfect-scrollbar', get_template_directory_uri() . '/assets/css/perfect-scrollbar.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/perfect-scrollbar.css'));
 
 
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('swiper');
-	wp_enqueue_script('index');
+
+	if(!is_singular('faq') || !is_page_template('page-faq.php')) {
+		wp_enqueue_script( 'index' );
+	}
 
 	wp_enqueue_style('swiper');
 
@@ -86,6 +92,13 @@ function add_js() {
 
 	if(is_singular('tips') || is_page_template('page-tips.php')) {
 		wp_enqueue_style('tips_page');
+	}
+
+	if(is_singular('faq') || is_page_template('page-faq.php')) {
+		wp_enqueue_script('recipe');
+
+		wp_enqueue_style('perfect-scrollbar');
+		wp_enqueue_style('faq_page');
 	}
 
 	if(is_page_template('page-about.php')) {

@@ -17,9 +17,13 @@ $current_id = get_the_ID();
 if(is_singular('tips') || is_page(165)){
 $current_id = 165;
 }
+if(is_singular('faq') || is_page(177)){
+$current_id = 177;
+}
 $hero_title = get_field('hero_title', $current_id);
 $hero_button = get_field('hero_button', $current_id);
 $hero_image = get_field('hero_image', $current_id)['url'];
+$hero_nav = get_field('hero_nav', $current_id);
 
 
 
@@ -36,6 +40,20 @@ if($hero_title) {
 
 if($hero_button) {
 	$hero_button = '<a href="'.$hero_button['url'].'" class="btn btn_1">'.$hero_button['title'].'</a>';
+}
+
+$hero_nav_string = '';
+if($hero_nav) {
+    $hero_nav_string = '<nav class="hero__nav">';
+    if(acf_is_array($hero_nav)) {
+        foreach ($hero_nav as $row) {
+            $hero_nav_string .= '<a href="'.get_permalink($row).'">'.get_the_title($row).'</a>';
+        }
+    } else {
+         $hero_nav_string .= '<a href="'.get_permalink($hero_nav).'">'.get_the_title($hero_nav).'</a>';
+    }
+    $hero_nav_string .= '</nav>';
+
 }
 
 $hero_class = '';
@@ -254,6 +272,8 @@ if(is_front_page()) {
         </div>
         <!-- /hero_content -->
         <?php } else { echo $hero_title; } ?>
+
+        <?= $hero_nav_string; ?>
 
     </div>
     <!-- /hero -->
