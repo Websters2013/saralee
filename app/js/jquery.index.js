@@ -30,8 +30,16 @@
             new Preloader( $( this ) );
         } );
 
+        $.each( $( '.product' ), function () {
+            new Product( $( this ) );
+        } );
+
         $.each( $( '.products' ), function () {
             new Sliders( $( this ) );
+        } );
+
+        $.each( $( '.tab' ), function () {
+            new Tab( $( this ) );
         } );
 
         $.each( $( '.history' ), function () {
@@ -648,6 +656,42 @@
         _init();
     };
 
+    var Product = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _topGallery = _obj.find('.gallery-top'),
+            _thumbsGallery = _obj.find('.gallery-thumbs');
+
+        //private methods
+        var _initSlider = function() {
+
+                var galleryTop = new Swiper(_topGallery, {});
+                var galleryThumbs = new Swiper(_thumbsGallery, {
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    paginationClickable: true,
+                    slideToClickedSlide: true
+                });
+                galleryTop.params.control = galleryThumbs;
+                galleryThumbs.params.control = galleryTop;
+
+            },
+            _onEvent = function() {
+
+            },
+            _init = function() {
+                _onEvent();
+                _initSlider ();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
     var History = function( obj ) {
 
         //private properties
@@ -734,6 +778,55 @@
             _init = function() {
                 _onEvent();
                 _initSlider ();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
+    var Tab = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _controlsWrap = _obj.find('.tab__controls'),
+            _controls = _controlsWrap.find('.tab__controls-item'),
+            _activeControl = _controlsWrap.find('.active'),
+            _contentsWrap = _obj.find('.tab__content'),
+            _contents = _contentsWrap.find('.tab__content-item');
+        
+        //private methods
+        var _onEvent = function() {
+
+                _controls.on({
+                    'click': function () {
+                        var curItem = $(this);
+
+                        if ( !curItem.hasClass('active') ) {
+                            _controls.removeClass('active');
+                            curItem.addClass('active');
+                            _showActiveContent(curItem.index());
+                        }
+                    }
+                });
+
+                $(window).on({
+                    'load': function () {
+                        _activeControl.removeClass('active');
+                        _activeControl.trigger('click');
+                    }
+                });
+
+            },
+            _showActiveContent = function(activeIndex) {
+                _contents.removeClass('active');
+                _contents.eq(activeIndex).addClass('active');
+                _contentsWrap.css({ 'height': _contents.eq(activeIndex).outerHeight() + 'px' });
+            },
+            _init = function() {
+                _onEvent();
             };
 
         //public properties

@@ -56,17 +56,17 @@
     min-height: 500px;
     padding: 52px calc(50% - 615px);
 
-    &:before {
-      position: absolute;
-      top: 5px;
-      right: 0;
-      width: 475px;
-      height: 740px;
-      z-index: 1;
-      background: url("../img/about-us-bg.jpg") no-repeat top right;
-      background-size: contain;
-      content: '';
-    }
+    //&:before {
+    //  position: absolute;
+    //  top: 5px;
+    //  right: 0;
+    //  width: 475px;
+    //  height: 740px;
+    //  z-index: 1;
+    //  background: url("../img/about-us-bg.jpg") no-repeat top right;
+    //  background-size: contain;
+    //  content: '';
+    //}
 
     .main-title {
       position: relative;
@@ -76,6 +76,7 @@
     &__wrap {
       position: relative;
       max-width: 830px;
+      margin: 0 auto;
       z-index: 2;
       font-size: 27px;
       line-height: 42px;

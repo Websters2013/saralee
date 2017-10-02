@@ -1,6 +1,15 @@
 .recipes {
   padding: 57px 0 79px;
 
+
+  &.recipes_product {
+    padding: 32px 0 0;
+
+    .recipes__row {
+      margin-bottom: 0;
+    }
+  }
+
   &__title{
     width: 100%;
     margin-bottom: 37px;

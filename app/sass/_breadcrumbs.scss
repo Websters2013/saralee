@@ -1,6 +1,7 @@
 .breadcrumbs {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: flex-end;
   padding: 20px;
   @include montserrat();
@@ -9,17 +10,16 @@
 
   a,
   a:visited {
-    padding: 0 12px 0 11px;
+    display: block;
+    margin-bottom: 10px;
     color: #c56e28;
     font-size: 17px;
     transition: color .3s ease-in-out;
-    border-right: 1px solid #c56e28;
 
     &:hover { color: #4d2d6b }
   }
 
   span {
-    padding: 0 12px 0 11px;
     color: #ce253d;
   }
 }
@@ -32,6 +32,17 @@
 
 @media (min-width: $desktop) {
   .breadcrumbs {
-    padding: 55px calc(50% - 620px);
+    flex-direction: row;
+    padding: 55px calc(50% - 620px) 51px;
+
+    a {
+      margin: 0;
+      padding: 0 12px 0 11px;
+      border-right: 1px solid #c56e28;
+    }
+
+    span {
+      padding: 0 12px 0 11px;
+    }
   }
 }
