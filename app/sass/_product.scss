@@ -55,8 +55,9 @@
     }
     .gallery-thumbs .swiper-slide {
       width: calc(100%/3);
-      border: 9px solid #fff;
       height: 100%;
+      transform: translate(-100%,0);
+      border: 9px solid #fff;
       cursor: pointer;
 
       &:after {

@@ -670,6 +670,7 @@
                 var galleryThumbs = new Swiper(_thumbsGallery, {
                     centeredSlides: true,
                     slidesPerView: 'auto',
+                    paginationClickable: true,
                     slideToClickedSlide: true
                 });
                 galleryTop.params.control = galleryThumbs;
