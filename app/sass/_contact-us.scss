@@ -18,8 +18,9 @@
       margin-bottom: 20px;
       line-height: 1.38;
 
-      span {
+      strong {
         display: block;
+        font-weight: normal;
       }
 
       a,
@@ -164,12 +165,12 @@
         }
       }
 
-      #field_1_10 {
+      #field_2_10 {
 
         .gfield_description { display: none }
       }
 
-      #field_1_12 {
+      #field_2_12 {
         margin-bottom: 23px;
       }
 
@@ -222,15 +223,15 @@
       width: 100%;
     }
 
-    #field_1_11 {
+    #field_2_11 {
 
-      .gchoice_1_11_1 {
+      .gchoice_2_11_1 {
         display: flex;
         align-items: center;
       }
     }
 
-    #field_1_12 {
+    #field_2_12 {
 
       .gfield_checkbox {
         display: flex;
@@ -432,12 +433,12 @@
           }
         }
 
-        #field_1_10 {
+        #field_2_10 {
 
           .gfield_description { display: none }
         }
 
-        #field_1_12 {
+        #field_2_12 {
           padding-top: 32px;
           margin-bottom: 36px;
           display: flex;
@@ -507,10 +508,10 @@
           width: 100%;
         }
 
-        #field_1_5 {
+        #field_2_5 {
           width: calc(50% - 21px);
         }
-        #field_1_6 {
+        #field_2_6 {
           width: calc(50% - 21px);
         }
       }
@@ -524,7 +525,7 @@
         }
       }
 
-      #input_1_7 {
+      #input_2_7 {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
