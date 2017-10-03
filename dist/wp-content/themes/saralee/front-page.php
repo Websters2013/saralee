@@ -7,7 +7,7 @@ get_header();
 require_once('product-pl.php');
 require_once('store-pl.php');
 $args = array(
-  'taxonomy' => 'product_cat',
+  'taxonomy' => 'products_cat',
   'parent' => 0,
   'hide_empty' => false,
 );
@@ -138,13 +138,9 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
                     <select id="agg" class="custom" name="group" tabindex="1"  onchange="updateProducts()">
                         <option value="0" selected="selected">Select Category</option>
                         <!--<option value="cheesecakes">Cheesecakes</option>-->
-							        <?php
-							        foreach ($categories as $c) {
-								        ?>
+						<?php foreach ($categories as $c) { ?>
                           <option value="<?php echo $c[0]; ?>"><?php echo $c[1]; ?></option>
-								        <?php
-							        }
-							        ?>
+						<?php } ?>
                     </select>
                     <select id="upc" class="custom" name="upc" tabindex="2">
                         <option selected="selected" value="">Select Product</option>
@@ -313,33 +309,25 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
         }
 
         function initialize() {
-					<?php
-					if ($locatorOn) {
-					?>
+			<?php if ($locatorOn) { ?>
             var options = {
                 zoom: 9,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             map = new google.maps.Map(document.getElementById("locatorUI"),options);
-					<?php
-					if ($storeCount > 0)  {
-					$s = $stores[0];
-					?>
+				<?php
+                if ($storeCount > 0)  {
+                $s = $stores[0];
+                ?>
             addMarker(map,'<?php echo $s->address . ', ' . $s->city . ', ' . $s->state . ' ' . $s->zip; ?>','<?php echo $s->name; ?><br /><?php echo $s->address; ?><br /><?php echo $s->city; ?>,<?php echo $s->state; ?> <?php echo $s->zip; ?>');
-					<?php
-					} else {
-					?>
+				<?php } else { ?>
             setPositionByAddress('<?php echo $_POST['zip']; ?>');
-					<?php
-					}
-					?>
+				<?php } ?>
             document.forms['productLocatorForm'].elements['group'].value = "<?php echo $_POST['group']; ?>";
             updateProducts();
             document.forms['productLocatorForm'].elements['upc'].value = "<?php echo $_POST['upc']; ?>";
             document.forms['productLocatorForm'].elements['miles'].value = "<?php echo $_POST['miles']; ?>";
-					<?php
-					}
-					?>
+			<?php } ?>
 
         }
 

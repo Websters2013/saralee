@@ -76,6 +76,7 @@ function add_js() {
 	wp_register_style('faq_page', get_template_directory_uri() . '/assets/css/faq_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/faq_page.css'));
 	wp_register_style('recipes_page', get_template_directory_uri() . '/assets/css/recipes_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/recipes_page.css'));
 	wp_register_style('perfect-scrollbar', get_template_directory_uri() . '/assets/css/perfect-scrollbar.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/perfect-scrollbar.css'));
+	wp_register_style('product_page', get_template_directory_uri() . '/assets/css/product_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/product_page.css'));
 
 
 	wp_enqueue_script('jquery');
@@ -95,6 +96,10 @@ function add_js() {
 
 	if(is_singular('tips') || is_page_template('page-tips.php')) {
 		wp_enqueue_style('tips_page');
+	}
+
+	if(is_singular('products')) {
+		wp_enqueue_style('product_page');
 	}
 
 	if(is_singular('faq') || is_page_template('page-faq.php')) {
