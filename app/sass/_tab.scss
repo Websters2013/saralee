@@ -6,9 +6,10 @@
     display: flex;
 
     &-item {
-      display: block;
+      display: flex;
+      align-items: center;
       position: relative;
-      padding: 10px 20px;
+      padding: 10px 20px 10px 0;
       font-size: 16px;
       text-align: center;
       color: #4f4f4f;
@@ -43,6 +44,29 @@
 
         &:after {
           opacity: 1;
+        }
+
+        .tab__controls-icon svg {
+          fill: #ce253d;
+        }
+      }
+    }
+
+    &-icon {
+      display: block;
+      position: relative;
+      width: 50px;
+
+      svg {
+        @include absoluteCenter();
+        width: 30px;
+        height: 30px;
+      }
+
+      &.pie {
+
+        svg {
+          margin-top: -5px;
         }
       }
     }
@@ -80,10 +104,37 @@
     &__controls {
 
       &-item {
-        padding: 15px 78px;
+        padding: 15px 56px 15px 41px;
         font-size: 31px;
         color: rgb(79, 79, 79);
         text-indent: 22px;
+        transition: color .3s ease-in-out;
+
+        &:hover {
+          color: #ce253d;
+
+          .tab__controls-icon svg {
+            fill: #ce253d;
+          }
+        }
+      }
+
+      &-icon {
+        width: 63px;
+        margin-right: 20px;
+
+        svg {
+          width: 48px;
+          height: 48px;
+          transition: fill .3s ease-in-out;
+        }
+
+        &.pie {
+
+          svg {
+            margin-top: -7px;
+          }
+        }
       }
     }
 
