@@ -4,17 +4,57 @@ Template Name: Recipes
 */
 get_header();
 
-if($_POST['search'] && $_POST['search'] !== '') {
 
+$post_id = get_the_ID();
+$title = 'Not Found RECIPES';
+
+if($_POST['search'] && $_POST['search'] !== '') {
+	$popular_recipes = get_posts(array(
+		'posts_per_page' => -1,
+		'post_type' => 'recipes',
+		'post_status' => 'publish',
+		'orderby' => 'menu_order',
+		'fields' => 'ids',
+        's' => $_POST['search']
+		));
+	if($popular_recipes) {
+		$title = 'Found RECIPES';
+	}
 } elseif($_POST['product'] || $_POST['ingredient']) {
 
+	$popular_recipes = get_posts(array(
+		'posts_per_page' => -1,
+		'post_type' => 'recipes',
+		'post_status' => 'publish',
+		'orderby' => 'menu_order',
+		'fields' => 'ids',
+        'tax_query' => array(
+          'relation' => 'AND',
+          array(
+            'taxonomy' => 'recipes_cat',
+            'field'    => 'slug',
+            'terms'    => $_POST['product'],
+          ),
+          array(
+            'taxonomy' => 'recipes_tag',
+            'field'    => 'slug',
+            'terms'    => $_POST['ingredient'],
+          )
+        )
+	));
+	if($popular_recipes) {
+			$title = 'Found RECIPES';
+    }
 
 } else {
 	$popular_recipes = get_field('popular_recipes', $post_id);
-	$popular_recipes_string = '';
-	if(acf_is_array($popular_recipes)) {
-	    foreach ($popular_recipes as $row) {
-	        $popular_recipes_string .= '<a href="'.get_permalink($row).'" class="products-list__item">
+	$title = get_field('title', $post_id);
+}
+
+$popular_recipes_string = '';
+if(is_array($popular_recipes)) {
+	foreach ($popular_recipes as $row) {
+		$popular_recipes_string .= '<a href="'.get_permalink($row).'" class="products-list__item">
 				<span class="products-list__pic">'.get_the_post_thumbnail($row).'</span>
 				<div class="products-list__info">
 					<strong>'.get_the_title($row).'</strong>
@@ -24,19 +64,14 @@ if($_POST['search'] && $_POST['search'] !== '') {
 					<span class="products-list__comments">'.get_comments_number($row).'</span>
 				</div>
 			</a>';
-        }
-    }
+	}
 }
 
 
-
-
-
-$post_id = get_the_ID();
-$title = get_field('title', $post_id);
 if($title) {
 	$title = '<strong class="products-list__title">'.$title.'</strong>';
 }
+
 $find_title = get_field('find_title', $post_id);
 if($find_title) {
 	$find_title = '<strong class="filter__title"><span>'.$find_title.'</span></strong>';
@@ -61,25 +96,31 @@ $tips_image = get_field('tips_image', $post_id);
 
 		<!-- filter__wrap -->
 		<form action="<?= get_permalink(13); ?>" class="filter__wrap" method="post">
-
+            <?php
+            $args = array(
+              'taxonomy' => 'recipes_cat',
+              'hide_empty' => false,
+            );
+            $terms_product = get_terms( $args );
+            if(!empty($terms_product)) { ?>
 			<select name="product">
-				<option value="0">Product</option>
-				<option value="1">Product 1</option>
-				<option value="2">Product 2</option>
-				<option value="3">Product 3</option>
-				<option value="4">Product 4</option>
-				<option value="5">Product 5</option>
-				<option value="6">Product 6</option>
+                <?php foreach ($terms_product as $row) { ?>
+				<option value="<?= $row->slug; ?>" <?php if (isset($_POST['product']) && ($_POST['product'] === $row->slug)) {echo 'selected';} ?>><?= $row->name; ?></option>
+                <?php } ?>
 			</select>
+            <?php }
+            $args = array(
+                'taxonomy' => 'recipes_tag',
+                'hide_empty' => false,
+            );
+            $terms_product = get_terms( $args );
+            if(!empty($terms_product)) { ?>
 			<select name="ingredient">
-				<option value="0">Ingredient</option>
-				<option value="1">Ingredient 1</option>
-				<option value="2">Ingredient 2</option>
-				<option value="3">Ingredient 3</option>
-				<option value="4">Ingredient 4</option>
-				<option value="5">Ingredient 5</option>
-				<option value="6">Ingredient 6</option>
+				<?php foreach ($terms_product as $row) { ?>
+                <option value="<?= $row->slug; ?>" <?php if (isset($_POST['ingredient']) && ($_POST['ingredient'] === $row->slug)) {echo 'selected';} ?>><?= $row->name; ?></option>
+				<?php } ?>
 			</select>
+            <?php } ?>
 			<span>OR</span>
 			<input type="search" placeholder="<?= get_field('find_placeholder', $post_id); ?>" name="search" value="<?php if (isset($_POST['search'])) {echo $_POST['search'];} ?>">
 			<button type="submit" class="btn btn_5"><?= get_field('find_title_button', $post_id); ?></button>
@@ -92,14 +133,12 @@ $tips_image = get_field('tips_image', $post_id);
 	<!-- products-list -->
 	<div class="products-list">
 
-      <?php if($popular_recipes_string) {?>
-
         <?= $title; ?>
 
-		<div class="products-list__wrap">
-            <?= $popular_recipes_string; ?>
-		</div>
-
+      <?php if($popular_recipes_string) {?>
+      <div class="products-list__wrap">
+        <?= $popular_recipes_string; ?>
+      </div>
       <?php } ?>
 
 	</div>
