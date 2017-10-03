@@ -1,0 +1,61 @@
+.store-locator {
+  padding: 30px;
+
+}
+
+@media (min-width: $tablet-portrait) {
+  .store-locator {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .store-locator {
+    padding: 52px calc(50% - 615px);
+
+    #main {
+      position: relative;
+      height: 1125px;
+    }
+
+    .mapWrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      #locatorWrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc(100% - 500px);
+        height: 100%;
+
+        #locatorUI {
+          height: 100% !important;
+        }
+      }
+
+      #storeList {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 500px;
+        height: 100%;
+        padding-top: 340px;
+      }
+    }
+
+    #productLocatorForm {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 340px;
+      background-color: #a41d35;
+    }
+
+  }
+}
+
