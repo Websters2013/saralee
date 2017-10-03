@@ -61,7 +61,9 @@ function add_js() {
 	wp_register_script('jquery', get_template_directory_uri() . '/assets/js/vendors/jquery-2.2.1.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/vendors/jquery-2.2.1.min.js'), false);
 	wp_register_script('index', get_template_directory_uri() . '/assets/js/index.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/index.min.js'), true);
 	wp_register_script('swiper', get_template_directory_uri() . '/assets/js/vendors/swiper.jquery.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/vendors/swiper.jquery.min.js'), true);
+	wp_register_script('perfect-scrollbar', get_template_directory_uri() . '/assets/js/vendors/perfect-scrollbar.jquery.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/vendors/perfect-scrollbar.jquery.min.js'), true);
 	wp_register_script('recipe', get_template_directory_uri() . '/assets/js/recipe.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/recipe.min.js'), true);
+	wp_register_script('recipes', get_template_directory_uri() . '/assets/js/recipes.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/recipes.min.js'), true);
 	wp_register_script('map',  'http://maps.google.com/maps/api/js?key=AIzaSyBBm0kRd1Ala8zPQVH9XJR46H3s_IUisoU', false, '', false);
 
 	wp_register_style('style', get_stylesheet_uri(), false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/style.css'));
@@ -72,6 +74,7 @@ function add_js() {
 	wp_register_style('contact-us', get_template_directory_uri() . '/assets/css/contact-us_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/contact-us_page.css'));
 	wp_register_style('tips_page', get_template_directory_uri() . '/assets/css/tips_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/tips_page.css'));
 	wp_register_style('faq_page', get_template_directory_uri() . '/assets/css/faq_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/faq_page.css'));
+	wp_register_style('recipes_page', get_template_directory_uri() . '/assets/css/recipes_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/recipes_page.css'));
 	wp_register_style('perfect-scrollbar', get_template_directory_uri() . '/assets/css/perfect-scrollbar.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/perfect-scrollbar.css'));
 
 
@@ -95,6 +98,7 @@ function add_js() {
 	}
 
 	if(is_singular('faq') || is_page_template('page-faq.php')) {
+		wp_enqueue_script('perfect-scrollbar');
 		wp_enqueue_script('recipe');
 
 		wp_enqueue_style('perfect-scrollbar');
@@ -112,6 +116,14 @@ function add_js() {
 	if(is_page_template('page-contact.php')) {
 		wp_enqueue_style('contact-us');
 	}
+
+	if(is_page_template('page-recipes.php')) {
+		wp_enqueue_script('perfect-scrollbar');
+		wp_enqueue_script('recipes');
+
+		wp_enqueue_style('perfect-scrollbar');
+		wp_enqueue_style('recipes_page');
+	}
 	
 	wp_enqueue_style('style');
 }
@@ -120,4 +132,28 @@ function add_js() {
 add_filter( 'gform_submit_button_1', 'form_submit_button', 10, 2 );
 function form_submit_button( $button, $form ) {
 	return "<button type=\"submit\" class='btn' id='gform_submit_button_{$form['id']}'><span>".get_field('form_button_title', 30)."</span></button>";
+}
+
+
+
+
+function breadcrumbs($separator = ' » ', $home = 'Home') {
+
+	$path = array_filter(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
+	$base_url = ($_SERVER['HTTPS'] ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+	$breadcrumbs = array("<a href=\"$base_url\">$home</a>");
+
+	$last = end( array_keys($path) );
+
+	foreach( $path as $x => $crumb ){
+		$title = ucwords(str_replace(array('.php', '_'), Array('', ' '), $crumb));
+		if( $x != $last ){
+			$breadcrumbs[] = '<a href="'.$base_url.$crumb.'">'.$title.'</a>';
+		}
+		else {
+			$breadcrumbs[] = $title;
+		}
+	}
+
+	return implode( $separator, $breadcrumbs );
 }

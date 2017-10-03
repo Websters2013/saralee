@@ -15,18 +15,18 @@ if(!empty($page_constructor)) {
         <?php
         foreach ($page_constructor as $row) {
 	        $term = get_term($row['category']);
-	        $terms = get_term_children( $row['category'], 'product_cat');
+	        $terms = get_term_children( $row['category'], 'products_cat');
             if ( empty( $terms ) && !is_wp_error( $terms ) ){
 
 	            $pages = get_posts(array(
 		            'posts_per_page' => -1,
-		            'post_type' => 'product',
+		            'post_type' => 'products',
 		            'post_status' => 'publish',
 		            'orderby' => 'menu_order',
 		            'fields' => 'ids',
 		            'tax_query' => array(
 			            array(
-				            'taxonomy' => 'product_cat',
+				            'taxonomy' => 'products_cat',
 				            'field' => 'id',
 				            'terms' => $row['category'],
 			            )
@@ -100,13 +100,13 @@ if(!empty($page_constructor)) {
                 foreach ($terms as $rows) {
 	                $pages = get_posts(array(
 		                'posts_per_page' => -1,
-		                'post_type' => 'product',
+		                'post_type' => 'products',
 		                'post_status' => 'publish',
 		                'orderby' => 'menu_order',
 		                'fields' => 'ids',
 		                'tax_query' => array(
 			                array(
-				                'taxonomy' => 'product_cat',
+				                'taxonomy' => 'products_cat',
 				                'field' => 'id',
 				                'terms' => $rows,
 			                )
@@ -125,7 +125,7 @@ if(!empty($page_constructor)) {
 	                    continue;
                     }
 
-	                $sub_term = get_term_by('id', $rows, 'product_cat');
+	                $sub_term = get_term_by('id', $rows, 'products_cat');
 
 	                $term_string .= '<!-- dropdown__item -->
                             <div class="dropdown__item">

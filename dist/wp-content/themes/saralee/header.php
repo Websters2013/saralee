@@ -30,7 +30,7 @@ $hero_nav = get_field('hero_nav', $current_id);
 if($hero_title) {
     if(is_front_page()) {
         $hero_title = '<div class="hero__title">'.$hero_title.'</div>';
-    } elseif(is_singular('tips') || is_page(165)) {
+    } elseif(is_singular('tips') || is_page(165) ||  is_page(13)) {
         $hero_title = '<h1 class="hero__title">'.$hero_title.'</h1>';
     } else {
         $hero_title = '<h1>'.$hero_title.'</h1>';
@@ -60,7 +60,7 @@ $hero_class = '';
 
 if(is_front_page()) {
     $hero_class = '';
-} elseif ( is_singular('tips') || is_page(165)) {
+} elseif ( is_singular('tips') || is_page(165) || is_page(13)) {
     $hero_class = ' hero_centering';
 } else {
     $hero_class = ' hero_min';
@@ -264,7 +264,7 @@ if(is_front_page()) {
     <div class="hero <?= $hero_class; ?>" style="background-image: url(<?= $hero_image; ?>)">
 
         <?php
-            if(is_front_page() || is_singular('tips') || is_page(165)) { ?>
+            if(is_front_page() || is_singular('tips') || is_page(165) || is_page(13)) { ?>
         <!-- hero_content -->
         <div class="hero__content">
             <?= $hero_title; ?>

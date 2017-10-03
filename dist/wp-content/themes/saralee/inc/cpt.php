@@ -32,18 +32,18 @@ function custom_post_type() {
 				'with_front' => true
 			)
 		);
-		register_post_type('product', $product_args);
-		function product_taxonomy() {
+		register_post_type('products', $product_args);
+		function products_taxonomy() {
 			register_taxonomy(
-				'product_cat',
-				'product',
+				'products_cat',
+				'products',
 				array(
 					'label' => __( 'Product Categories' ),
 					'hierarchical' => true,
 				)
 			);
 		}
-		add_action( 'init', 'product_taxonomy' );
+		add_action( 'init', 'products_taxonomy' );
 
 
 
@@ -84,12 +84,24 @@ function custom_post_type() {
 			'recipes_cat',
 			'recipes',
 			array(
-				'label' => __( 'Recipes Categories' ),
-				'hierarchical' => false,
+				'label' => __( 'Recipes Product' ),
+				'hierarchical' => true,
 			)
 		);
 	}
 	add_action( 'init', 'recipes_taxonomy' );
+
+	function recipes_taxonomy_2() {
+		register_taxonomy(
+			'recipes_tag',
+			'recipes',
+			array(
+				'label' => __( 'Recipes Ingredient' ),
+				'hierarchical' => false,
+			)
+		);
+	}
+	add_action( 'init', 'recipes_taxonomy_2' );
 
 	$tips_labels = array(
 		'name' => 'Tips',
