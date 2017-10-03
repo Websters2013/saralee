@@ -3,6 +3,35 @@
 Template Name: Recipes
 */
 get_header();
+
+if($_POST['search'] && $_POST['search'] !== '') {
+
+} elseif($_POST['product'] || $_POST['ingredient']) {
+
+
+} else {
+	$popular_recipes = get_field('popular_recipes', $post_id);
+	$popular_recipes_string = '';
+	if(acf_is_array($popular_recipes)) {
+	    foreach ($popular_recipes as $row) {
+	        $popular_recipes_string .= '<a href="'.get_permalink($row).'" class="products-list__item">
+				<span class="products-list__pic">'.get_the_post_thumbnail($row).'</span>
+				<div class="products-list__info">
+					<strong>'.get_the_title($row).'</strong>
+					<span class="rate">
+                            <span class="rate__progress" style="width: 36%"></span>
+                        </span>
+					<span class="products-list__comments">'.get_comments_number($row).'</span>
+				</div>
+			</a>';
+        }
+    }
+}
+
+
+
+
+
 $post_id = get_the_ID();
 $title = get_field('title', $post_id);
 if($title) {
@@ -12,6 +41,18 @@ $find_title = get_field('find_title', $post_id);
 if($find_title) {
 	$find_title = '<strong class="filter__title"><span>'.$find_title.'</span></strong>';
 }
+
+$tips_title = get_field('tips_title', $post_id);
+if($tips_title) {
+	$tips_title = '<strong class="tips__title">'.$tips_title.'</strong>';
+}
+
+$tips_link = get_field('tips_link', $post_id);
+if(!empty($tips_link)) {
+	$tips_link = '<a href="'.$tips_link['url'].'" class="btn btn_4" target="'.$tips_link['target'].'">'.$tips_link['title'].'</a>';
+}
+
+$tips_image = get_field('tips_image', $post_id);
 ?>
 	<!-- filter -->
 	<div class="filter">
@@ -19,7 +60,7 @@ if($find_title) {
 		<?= $find_title; ?>
 
 		<!-- filter__wrap -->
-		<form action="#" class="filter__wrap">
+		<form action="<?= get_permalink(13); ?>" class="filter__wrap" method="post">
 
 			<select name="product">
 				<option value="0">Product</option>
@@ -40,7 +81,7 @@ if($find_title) {
 				<option value="6">Ingredient 6</option>
 			</select>
 			<span>OR</span>
-			<input type="search" placeholder="<?= get_field('find_placeholder', $post_id); ?>" name="search">
+			<input type="search" placeholder="<?= get_field('find_placeholder', $post_id); ?>" name="search" value="<?php if (isset($_POST['search'])) {echo $_POST['search'];} ?>">
 			<button type="submit" class="btn btn_5"><?= get_field('find_title_button', $post_id); ?></button>
 		</form>
 		<!-- /filter__wrap -->
@@ -51,210 +92,38 @@ if($find_title) {
 	<!-- products-list -->
 	<div class="products-list">
 
-		<?= $title; ?>
+      <?php if($popular_recipes_string) {?>
 
-		<!-- products-list__wrap -->
+        <?= $title; ?>
+
 		<div class="products-list__wrap">
-
-			<!-- products-list__item -->
-			<a href="#" class="products-list__item">
-
-				<!-- products-list__pic -->
-				<span class="products-list__pic"><img src="pic/pic1.jpg" alt=""></span>
-				<!-- /products-list__pic -->
-
-				<!-- products-list__info -->
-				<div class="products-list__info">
-					<strong>Nutella Filled Pound  Cake</strong>
-
-					<!-- rate -->
-					<span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-						<!-- /rate__progress -->
-                        </span>
-					<!-- /rate -->
-
-					<!-- products-list__comments -->
-					<span class="products-list__comments">12</span>
-					<!-- /products-list__comments -->
-				</div>
-				<!-- /products-list__info -->
-
-			</a>
-			<!-- /products-list__item -->
-
-			<!-- products-list__item -->
-			<a href="#" class="products-list__item">
-
-				<!-- products-list__pic -->
-				<span class="products-list__pic"><img src="pic/pic2.jpg" alt=""></span>
-				<!-- /products-list__pic -->
-
-				<!-- products-list__info -->
-				<div class="products-list__info">
-					<strong>Nutella Filled Pound  Cake</strong>
-
-					<!-- rate -->
-					<span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-						<!-- /rate__progress -->
-                        </span>
-					<!-- /rate -->
-
-					<!-- products-list__comments -->
-					<span class="products-list__comments">12</span>
-					<!-- /products-list__comments -->
-				</div>
-				<!-- /products-list__info -->
-
-			</a>
-			<!-- /products-list__item -->
-
-			<!-- products-list__item -->
-			<a href="#" class="products-list__item">
-
-				<!-- products-list__pic -->
-				<span class="products-list__pic"><img src="pic/pic3.jpg" alt=""></span>
-				<!-- /products-list__pic -->
-
-				<!-- products-list__info -->
-				<div class="products-list__info">
-					<strong>Nutella Filled Pound  Cake</strong>
-
-					<!-- rate -->
-					<span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-						<!-- /rate__progress -->
-                        </span>
-					<!-- /rate -->
-
-					<!-- products-list__comments -->
-					<span class="products-list__comments">12</span>
-					<!-- /products-list__comments -->
-				</div>
-				<!-- /products-list__info -->
-
-			</a>
-			<!-- /products-list__item -->
-
-			<!-- products-list__item -->
-			<a href="#" class="products-list__item">
-
-				<!-- products-list__pic -->
-				<span class="products-list__pic"><img src="pic/pic1.jpg" alt=""></span>
-				<!-- /products-list__pic -->
-
-				<!-- products-list__info -->
-				<div class="products-list__info">
-					<strong>Nutella Filled Pound Cake</strong>
-
-					<!-- rate -->
-					<span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-						<!-- /rate__progress -->
-                        </span>
-					<!-- /rate -->
-
-					<!-- products-list__comments -->
-					<span class="products-list__comments">12</span>
-					<!-- /products-list__comments -->
-				</div>
-				<!-- /products-list__info -->
-
-			</a>
-			<!-- /products-list__item -->
-
-			<!-- products-list__item -->
-			<a href="#" class="products-list__item">
-
-				<!-- products-list__pic -->
-				<span class="products-list__pic"><img src="pic/pic2.jpg" alt=""></span>
-				<!-- /products-list__pic -->
-
-				<!-- products-list__info -->
-				<div class="products-list__info">
-					<strong>Nutella Filled Pound Cake</strong>
-
-					<!-- rate -->
-					<span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-						<!-- /rate__progress -->
-                        </span>
-					<!-- /rate -->
-
-					<!-- products-list__comments -->
-					<span class="products-list__comments">12</span>
-					<!-- /products-list__comments -->
-				</div>
-				<!-- /products-list__info -->
-
-			</a>
-			<!-- /products-list__item -->
-
-			<!-- products-list__item -->
-			<a href="#" class="products-list__item">
-
-				<!-- products-list__pic -->
-				<span class="products-list__pic"><img src="pic/pic3.jpg" alt=""></span>
-				<!-- /products-list__pic -->
-
-				<!-- products-list__info -->
-				<div class="products-list__info">
-					<strong>Nutella Filled Pound Cake</strong>
-
-					<!-- rate -->
-					<span class="rate">
-                            <!-- rate__progress -->
-                            <span class="rate__progress" style="width: 36%"></span>
-						<!-- /rate__progress -->
-                        </span>
-					<!-- /rate -->
-
-					<!-- products-list__comments -->
-					<span class="products-list__comments">12</span>
-					<!-- /products-list__comments -->
-				</div>
-				<!-- /products-list__info -->
-
-			</a>
-			<!-- /products-list__item -->
-
+            <?= $popular_recipes_string; ?>
 		</div>
-		<!-- /products-list__wrap -->
+
+      <?php } ?>
 
 	</div>
 	<!-- /products-list -->
 
+    <?php if($tips_title && $tips_image) { ?>
 	<!-- tips -->
 	<div class="tips">
 
 		<!-- tips__content -->
 		<div class="tips__content">
 
-			<!-- tips__title -->
-			<strong class="tips__title">
-				<span>More Inspiration?</span>
-				Check Our Tips & How To’s
-			</strong>
-			<!-- /tips__title -->
+			<?= $tips_title.get_field('tips_content', $post_id).$tips_link; ?>
 
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dolor sit amet, Lorem ipsum dolor sit
-				amet, consectetur adipiscing elit,.</p>
-
-			<a href="#" class="btn btn_4">View Tips & How-To’s</a>
 		</div>
 		<!-- /tips__content -->
 
 		<!-- tips__pic -->
-		<span class="tips__pic" style="background-image: url(pic/tips-pic1.jpg)"></span>
+		<span class="tips__pic" style="background-image: url(<?= $tips_image['url']; ?>"></span>
 		<!-- /tips__pic -->
 
 	</div>
 	<!-- /tips -->
 <?php
+}
+
 get_footer();

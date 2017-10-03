@@ -77,12 +77,13 @@ function add_js() {
 	wp_register_style('recipes_page', get_template_directory_uri() . '/assets/css/recipes_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/recipes_page.css'));
 	wp_register_style('perfect-scrollbar', get_template_directory_uri() . '/assets/css/perfect-scrollbar.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/perfect-scrollbar.css'));
 	wp_register_style('product_page', get_template_directory_uri() . '/assets/css/product_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/product_page.css'));
+	wp_register_style('recipe_page', get_template_directory_uri() . '/assets/css/recipe_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/recipe_page.css'));
 
 
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('swiper');
 
-	if(!is_singular('faq') || !is_page_template('page-faq.php')) {
+	if(!is_singular('faq') || !is_page_template('page-faq.php') || is_singular('recipes') || is_page_template('page-recipes.php')) {
 		wp_enqueue_script( 'index' );
 	}
 
@@ -100,6 +101,14 @@ function add_js() {
 
 	if(is_singular('products')) {
 		wp_enqueue_style('product_page');
+	}
+
+	if(is_singular('recipes')) {
+		wp_enqueue_script('perfect-scrollbar');
+		wp_enqueue_script('recipe');
+
+		wp_enqueue_style('perfect-scrollbar');
+		wp_enqueue_style('recipe_page');
 	}
 
 	if(is_singular('faq') || is_page_template('page-faq.php')) {
@@ -137,28 +146,4 @@ function add_js() {
 add_filter( 'gform_submit_button_1', 'form_submit_button', 10, 2 );
 function form_submit_button( $button, $form ) {
 	return "<button type=\"submit\" class='btn' id='gform_submit_button_{$form['id']}'><span>".get_field('form_button_title', 30)."</span></button>";
-}
-
-
-
-
-function breadcrumbs($separator = ' » ', $home = 'Home') {
-
-	$path = array_filter(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
-	$base_url = ($_SERVER['HTTPS'] ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-	$breadcrumbs = array("<a href=\"$base_url\">$home</a>");
-
-	$last = end( array_keys($path) );
-
-	foreach( $path as $x => $crumb ){
-		$title = ucwords(str_replace(array('.php', '_'), Array('', ' '), $crumb));
-		if( $x != $last ){
-			$breadcrumbs[] = '<a href="'.$base_url.$crumb.'">'.$title.'</a>';
-		}
-		else {
-			$breadcrumbs[] = $title;
-		}
-	}
-
-	return implode( $separator, $breadcrumbs );
 }
