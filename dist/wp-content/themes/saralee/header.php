@@ -25,7 +25,10 @@ $hero_button = get_field('hero_button', $current_id);
 $hero_image = get_field('hero_image', $current_id)['url'];
 $hero_nav = get_field('hero_nav', $current_id);
 
-
+if(is_singular('recipes')) {
+$hero_title = get_field('hero_title_2', 13);
+$hero_image = get_field('hero_image_2', 13)['url'];
+}
 
 if($hero_title) {
     if(is_front_page()) {
@@ -210,12 +213,10 @@ if(is_front_page()) {
 	                  ?>
                   </nav>
                   <!-- /menu -->
-			            <?php
-		            }
+			      <?php }
 
-		            $social_links = get_field('social_links', $contact_id);
-		            if(!empty($social_links)) {
-			            ?>
+		          $social_links = get_field('social_links', $contact_id);
+		          if(!empty($social_links)) {?>
                   <!-- social -->
                   <div class="social">
 	                  <?php
@@ -234,12 +235,10 @@ if(is_front_page()) {
 	                  ?>
                   </div>
                   <!-- /social -->
-								<?php
-							}
-							?>
+								<?php } ?>
 
                 <!-- search -->
-                <a href="#" class="search">
+                <a href="<?= get_permalink(259); ?>" class="search">
                     <svg viewBox="47.5 15.5 14 14"><path d="M9-10.214a3.5,3.5,0,0,1-3.5,3.5,3.5,3.5,0,0,1-3.5-3.5,3.5,3.5,0,0,1,3.5-3.5A3.5,3.5,0,0,1,9-10.214Zm4,6.5a1.006,1.006,0,0,0-.289-.7L10.031-7.1A5.487,5.487,0,0,0,11-10.214a5.5,5.5,0,0,0-5.5-5.5,5.5,5.5,0,0,0-5.5,5.5,5.5,5.5,0,0,0,5.5,5.5,5.487,5.487,0,0,0,3.117-.969L11.3-3.011a.98.98,0,0,0,.7.3A1.007,1.007,0,0,0,13-3.714Z" transform="translate(48 31.714)"/></svg>
                 </a>
                 <!-- /search -->
@@ -275,6 +274,18 @@ if(is_front_page()) {
 
         <?= $hero_nav_string; ?>
 
+        <?php if(is_singular('recipes')) { ?>
+            <!-- hero__nav -->
+            <nav class="hero__nav">
+                <a href="<?= get_site_url(); ?>"><?= get_the_title(2); ?></a>
+                <a href="<?= get_permalink(13); ?>"><?= get_the_title(13); ?></a>
+                <a href="<?= get_permalink($current_id); ?>"><?= get_the_title($current_id); ?></a>
+            </nav>
+            <!-- /hero__nav -->
+
+            <a href="<?= get_permalink(13); ?>" class="hero__back"><span>Find Recipes</span></a>
+        <?php } ?>
+
     </div>
     <!-- /hero -->
     <?php } else {
@@ -306,6 +317,4 @@ if(is_front_page()) {
             </div>
         </div>
         <!-- /hero -->
-        <?php } ?>
-
-    <?php } ?>
+        <?php }} ?>
