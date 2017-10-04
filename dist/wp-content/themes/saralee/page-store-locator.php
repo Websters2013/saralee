@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Home
+Template Name: Store Locator
 */
 get_header();
 
@@ -39,8 +39,9 @@ if (isset($_POST['upc']) and isset($_POST['zip']) and isset($_POST['miles'])) {
 
 
 
-
-<div id="main">
+    <!-- store-locator -->
+    <div class="store-locator">
+    <div id="main">
             <form id="productLocatorForm" name="productLocatorForm" autocomplete="off" method="post" action="">
                 <fieldset>
                     <select id="agg" class="custom" name="group" tabindex="1"  onchange="updateProducts()">
@@ -109,8 +110,9 @@ if (isset($_POST['upc']) and isset($_POST['zip']) and isset($_POST['miles'])) {
                 </div><!--end .mapWrap-->
             </div>
             </div>
+    </div>
 
-
+    <?php get_template_part( '/contents/content', 'tip'); ?>
 
     <script type="text/javascript">
         var catProducts = [];

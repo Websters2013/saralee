@@ -64,6 +64,7 @@ function add_js() {
 	wp_register_script('perfect-scrollbar', get_template_directory_uri() . '/assets/js/vendors/perfect-scrollbar.jquery.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/vendors/perfect-scrollbar.jquery.min.js'), true);
 	wp_register_script('recipe', get_template_directory_uri() . '/assets/js/recipe.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/recipe.min.js'), true);
 	wp_register_script('recipes', get_template_directory_uri() . '/assets/js/recipes.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/recipes.min.js'), true);
+	wp_register_script('contact-us', get_template_directory_uri() . '/assets/js/contact-us.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/contact-us.min.js'), true);
 	wp_register_script('map',  'http://maps.google.com/maps/api/js?key=AIzaSyBBm0kRd1Ala8zPQVH9XJR46H3s_IUisoU', false, '', false);
 
 	wp_register_style('style', get_stylesheet_uri(), false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/style.css'));
@@ -79,28 +80,34 @@ function add_js() {
 	wp_register_style('product_page', get_template_directory_uri() . '/assets/css/product_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/product_page.css'));
 	wp_register_style('recipe_page', get_template_directory_uri() . '/assets/css/recipe_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/recipe_page.css'));
 	wp_register_style('search_page', get_template_directory_uri() . '/assets/css/search_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/search_page.css'));
+	wp_register_style('store-locator_page', get_template_directory_uri() . '/assets/css/store-locator_page.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/store-locator_page.css'));
 
 
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('swiper');
 
-	if(!is_singular('faq') || !is_page_template('page-faq.php') || is_singular('recipes') || is_page_template('page-recipes.php')) {
+	/*if(!is_singular('faq') || !is_page_template('page-faq.php') || !is_singular('recipes') || !is_page_template('page-recipes.php') || !is_page_template('page-contact.php')) {
 		wp_enqueue_script( 'index' );
-	}
+	}*/
 
 	wp_enqueue_style('swiper');
 
 	if(is_front_page()) {
 		wp_enqueue_script('map');
+		wp_enqueue_script( 'index' );
 
 		wp_enqueue_style('index');
 	}
 
 	if(is_singular('tips') || is_page_template('page-tips.php')) {
+		wp_enqueue_script( 'index' );
+
 		wp_enqueue_style('tips_page');
 	}
 
 	if(is_singular('products')) {
+		wp_enqueue_script( 'index' );
+
 		wp_enqueue_style('product_page');
 	}
 
@@ -121,19 +128,35 @@ function add_js() {
 	}
 
 	if(is_page_template('page-about.php')) {
+		wp_enqueue_script( 'index' );
+
 		wp_enqueue_style('about-us');
 	}
 
 	if(is_page_template('page-products.php')) {
+		wp_enqueue_script( 'index' );
+
 		wp_enqueue_style('products_page');
 	}
 
 	if(is_page_template('page-search.php')) {
+		wp_enqueue_script( 'index' );
+
 		wp_enqueue_style('search_page');
 	}
 
 	if(is_page_template('page-contact.php')) {
+		wp_enqueue_script('perfect-scrollbar');
+		wp_enqueue_script( 'contact-us' );
+
 		wp_enqueue_style('contact-us');
+	}
+
+	if(is_page_template('page-store-locator.php')) {
+		wp_enqueue_script('map');
+		wp_enqueue_script( 'index' );
+
+		wp_enqueue_style('store-locator_page');
 	}
 
 	if(is_page_template('page-recipes.php')) {

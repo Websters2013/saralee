@@ -50,12 +50,16 @@ if($related_recipes) {
 	}
 }
 
+$gallery_string = '';
+$post_thumbnail = get_the_post_thumbnail_url($post_id);
 
+if($post_thumbnail) {
+	$gallery_string .= '<div class="swiper-slide" style="background-image:url('.$post_thumbnail.')"></div>';
+}
 $gallery = get_field('gallery', $post_id);
 if(!empty($gallery)) {
     foreach ($gallery as $row) {
-	    $gallery_string_1 .= '<div class="swiper-slide" style="background-image:url('.$row['url'].')"></div>';
-	    $gallery_string_2 .= '<div class="swiper-slide" style="background-image:url('.$row['sizes']['thumbnail'].')"></div>';
+	    $gallery_string .= '<div class="swiper-slide" style="background-image:url('.$row['url'].')"></div>';
     }
 }
 
@@ -75,30 +79,30 @@ $category_count = count($category);
 
 	<!-- breadcrumbs -->
 	<div class="breadcrumbs">
-		<a href="<?= get_site_url(); ?>">Home</a>
-		<a href="<?= get_permalink(); ?>">Products</a>
+		<a href="<?= get_site_url(); ?>"><?= get_the_title(2); ?></a>
+		<a href="<?= get_permalink(13); ?>"><?= get_the_title(13); ?></a>
 		<?= $category_string; ?>
-		<span><?= get_the_title(); ?></span>
+		<span><?= get_the_title($post_id); ?></span>
 	</div>
 	<!-- /breadcrumbs -->
 
 	<!-- product -->
 	<div class="product">
-        <?php if($gallery) { ?>
+        <?php if($gallery_string) { ?>
 		<!-- product__slider -->
 		<div class="product__slider">
 			<!-- product__slider-top -->
 			<div class="product__slider-top">
 				<div class="swiper-container gallery-top">
 					<div class="swiper-wrapper">
-						<?= $gallery_string_1; ?>
+						<?= $gallery_string; ?>
 					</div>
 				</div>
 			</div>
 			<!-- /product__slider-top -->
 			<div class="swiper-container gallery-thumbs">
 				<div class="swiper-wrapper">
-					<?= $gallery_string_2; ?>
+					<?= $gallery_string; ?>
 				</div>
 			</div>
 		</div>
