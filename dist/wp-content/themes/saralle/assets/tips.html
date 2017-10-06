@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+
+    <title>Title</title>
+
+    <style>
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 10;
+            background: rgba(255,255,255,1);
+        }
+        .preloader_loaded > div{
+            opacity: 0;
+        }
+        .preloader__points {
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            text-align: center;
+        }
+        .preloader__points span {
+            display: inline-block;
+            vertical-align: top;
+            height: 10px;
+            margin: 60px auto;
+            width: 10px;
+            background: #e30a27;
+            border-radius: 10px;
+            -webkit-animation: loading 1s infinite alternate 0s;
+            animation: loading 1s infinite alternate 0s;
+        }
+        .preloader__points span:nth-of-type(1) {
+            -webkit-animation-delay: 0s;
+        }
+        .preloader__points span:nth-of-type(2) {
+            -webkit-animation-delay: 0.2s;
+            background: #c40923;
+        }
+        .preloader__points span:nth-of-type(3) {
+            -webkit-animation-delay: 0.4s;
+            background: #a60922;
+        }
+        .preloader__points span:nth-of-type(4) {
+            -webkit-animation-delay: 0.6s;
+            background: #8c091f;
+        }
+        .preloader__points span:nth-of-type(5) {
+            -webkit-animation-delay: 0.8s;
+            background: #610717;
+        }
+        @-webkit-keyframes loading {
+            0% {
+                -webkit-transform: translateY(0);
+                height: 10px;
+                width: 10px;
+            }
+            100% {
+                -webkit-transform: translateY(-20px);
+                height: 20px;
+                width: 20px;
+            }
+        }
+        @keyframes loading {
+            0% {
+                transform: translateY(0);
+                height: 10px;
+                width: 10px;
+            }
+            100% {
+                transform: translateY(-20px);
+                height: 20px;
+                width: 20px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" property="stylesheet"  href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/tips_page.css">
+
+</head>
+<body data-action="../saralee/php/tips-list.php">
+
+    <!-- site -->
+    <div class="site">
+
+        <!-- preloader -->
+        <div class="preloader">
+            <div class='preloader__points'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <!-- /preloader -->
+
+        <!-- site__header -->
+        <header class="site__header">
+
+            <!-- site__header-layout -->
+            <div class="site__header-layout">
+
+                <!-- logo -->
+                <a href="#" class="logo">
+                    <img src="img/logo.png" alt="logo"/>
+                </a>
+                <!-- /logo -->
+
+                <!-- mobile-menu -->
+                <div class="mobile-menu">
+
+                    <!-- menu -->
+                    <nav class="menu">
+                        <a href="#" class="menu__item">Products</a>
+                        <a href="#" class="menu__item">Recipes</a>
+                        <a href="#" class="menu__item active">About Us</a>
+                        <a href="#" class="menu__item">Where to Buy</a>
+                    </nav>
+                    <!-- /menu -->
+
+                    <!-- social -->
+                    <div class="social">
+                        <a href="#" class="social__item social__item-pinterest">
+                            <svg enable-background="new 0 0 56.693 56.693" viewBox="0 0 56.693 56.693"><g><path d="M28.348,5.158c-13.599,0-24.625,11.023-24.625,24.625c0,10.082,6.063,18.744,14.739,22.553   c-0.069-1.721-0.012-3.783,0.429-5.654c0.473-2,3.168-13.418,3.168-13.418s-0.787-1.572-0.787-3.896   c0-3.648,2.115-6.373,4.749-6.373c2.24,0,3.322,1.682,3.322,3.695c0,2.252-1.437,5.619-2.175,8.738   c-0.616,2.613,1.31,4.744,3.887,4.744c4.665,0,7.808-5.992,7.808-13.092c0-5.397-3.635-9.437-10.246-9.437   c-7.47,0-12.123,5.57-12.123,11.792c0,2.146,0.633,3.658,1.624,4.83c0.455,0.537,0.519,0.754,0.354,1.371   c-0.118,0.453-0.389,1.545-0.501,1.977c-0.164,0.625-0.669,0.848-1.233,0.617c-3.44-1.404-5.043-5.172-5.043-9.408   c0-6.994,5.899-15.382,17.599-15.382c9.4,0,15.588,6.804,15.588,14.107c0,9.658-5.369,16.875-13.285,16.875   c-2.659,0-5.16-1.438-6.016-3.068c0,0-1.43,5.674-1.732,6.768c-0.522,1.9-1.545,3.797-2.479,5.275   c2.215,0.654,4.554,1.01,6.979,1.01c13.598,0,24.623-11.023,24.623-24.623C52.971,16.181,41.945,5.158,28.348,5.158z"/></g></svg>
+                        </a>
+                        <a href="#" class="social__item social__item-twetter">
+                            <svg enable-background="new 0 0 56.693 56.693" viewBox="0 0 56.693 56.693"><path d="M52.837,15.065c-1.811,0.805-3.76,1.348-5.805,1.591c2.088-1.25,3.689-3.23,4.444-5.592c-1.953,1.159-4.115,2-6.418,2.454  c-1.843-1.964-4.47-3.192-7.377-3.192c-5.581,0-10.106,4.525-10.106,10.107c0,0.791,0.089,1.562,0.262,2.303  c-8.4-0.422-15.848-4.445-20.833-10.56c-0.87,1.492-1.368,3.228-1.368,5.082c0,3.506,1.784,6.6,4.496,8.412  c-1.656-0.053-3.215-0.508-4.578-1.265c-0.001,0.042-0.001,0.085-0.001,0.128c0,4.896,3.484,8.98,8.108,9.91  c-0.848,0.23-1.741,0.354-2.663,0.354c-0.652,0-1.285-0.063-1.902-0.182c1.287,4.015,5.019,6.938,9.441,7.019  c-3.459,2.711-7.816,4.327-12.552,4.327c-0.815,0-1.62-0.048-2.411-0.142c4.474,2.869,9.786,4.541,15.493,4.541  c18.591,0,28.756-15.4,28.756-28.756c0-0.438-0.009-0.875-0.028-1.309C49.769,18.873,51.483,17.092,52.837,15.065z"/></svg>
+                        </a>
+                        <a href="#" class="social__item social__item-facebook">
+                            <svg enable-background="new 0 0 56.693 56.693" viewBox="0 0 56.693 56.693"><path d="M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z"/></svg>
+                        </a>
+                    </div>
+                    <!-- /social -->
+
+                    <!-- search -->
+                    <a href="#" class="search">
+                    <svg viewBox="47.5 15.5 14 14"><path d="M9-10.214a3.5,3.5,0,0,1-3.5,3.5,3.5,3.5,0,0,1-3.5-3.5,3.5,3.5,0,0,1,3.5-3.5A3.5,3.5,0,0,1,9-10.214Zm4,6.5a1.006,1.006,0,0,0-.289-.7L10.031-7.1A5.487,5.487,0,0,0,11-10.214a5.5,5.5,0,0,0-5.5-5.5,5.5,5.5,0,0,0-5.5,5.5,5.5,5.5,0,0,0,5.5,5.5,5.487,5.487,0,0,0,3.117-.969L11.3-3.011a.98.98,0,0,0,.7.3A1.007,1.007,0,0,0,13-3.714Z" transform="translate(48 31.714)"/></svg>
+                </a>
+                    <!-- /search -->
+
+                </div>
+                <!-- /mobile-menu -->
+
+                <!-- menu-btn -->
+                <div class="mobile-menu-btn">
+                    <span></span>
+                </div>
+                <!-- /menu-btn -->
+
+            </div>
+            <!-- /site__header-layout -->
+
+        </header>
+        <!-- /site__header -->
+
+        <!-- hero -->
+        <div class="hero hero_centering" style="background-image: url(pic/hero-005.jpg)">
+
+            <!-- hero_content -->
+            <div class="hero__content">
+
+                <h1 class="hero__title">
+                    <span>Tips from our</span>
+                    <span>kitchen to yours</span>
+                </h1>
+
+            </div>
+            <!-- /hero_content -->
+
+        </div>
+        <!-- /hero -->
+
+        <!-- list-info -->
+        <div class="list-info">
+
+            <!-- list-info__menu -->
+            <div class="list-info__menu">
+
+                <strong class="list-info__menu-title">Tips & How-To’s</strong>
+
+                <nav>
+                    <a href="#" data-post="0">Perfectly Sweet and Salty <img src="img/arrow.png" alt=""></a>
+                    <a href="#" class="active" data-post="1">Absofruitly Delicious <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="2">Latte-Infused Desserts <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="3">Spiced-Up Dessert <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="4">Toasted to Pound Cake Perfection <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="5">Perfect Chocolate Pairings <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="6">One-Bite Delight <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="7">On-the-Go Desserts <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="8">Leftover Pie Makeover <img src="img/arrow.png" alt=""></a>
+                    <a href="#" data-post="9">Perfecting Pumpkin Pie <img src="img/arrow.png" alt=""></a>
+                </nav>
+
+            </div>
+            <!-- /list-info__menu -->
+
+            <!-- list-info__content -->
+            <div class="list-info__content">
+
+                <h2>Absofruitly Delicious</h2>
+
+                <p>When you’re craving something cool, add ice cream or sorbet to your favorite Sara Lee dessert. You
+                    can go way beyond vanilla with these fun, fruity flavor combinations: </p>
+
+                <ul>
+                    <li>Pound cake goes tropical when you add a scoop of mango sorbet. Add flavor and color with a ha
+                        ndful of berries or sliced kiwi!
+                    </li>
+                    <li>Cinnamon and apples go hand-in-hand. Top a freshly-baked apple pie with cinnamon ice cream. Add
+                        a sprinkle of chopped pecans for extra crunch. If you don’t have cinnamon ice cream on hand,
+                        make your own: soften a scoop of vanilla ice cream in the microwave. Stir in ¼ teaspoon of
+                        ground cinnamon and serve.
+                    </li>
+                    <li>Make an updated banana split with pound cake. Top a slice of pound cake with a scoop of
+                        Neapolitan ice cream (chocolate/vanilla/strawberry) and finish with a generous helping of sliced
+                        banana and a few chopped peanuts.
+                    </li>
+                    <li>If you’re not big on fruit, try pairing mint chocolate chip ice cream and a drizzle of chocolate
+                        liqueur with chocolate layer cake.
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /list-info__content -->
+
+        </div>
+        <!-- /list-info -->
+
+        <!-- site__footer -->
+        <div class="site__footer">
+
+            <div class="logo">
+                <img src="img/logo.png" alt="logo"/>
+            </div>
+
+            <!-- site__footer-layout -->
+            <div class="site__footer-layout">
+
+                <!-- footer__navigation -->
+                <div class="footer__navigation">
+
+                    <ul>
+                        <li><a href="#">hillshirebrands.com</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                    <div>©2017 Hillshire Brands Co.</div>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Recipes</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Product Locator</a></li>
+                    </ul>
+
+                </div>
+                <!-- /footer__navigation -->
+
+                <!-- sign-up -->
+                <div class="sign-up">
+                    <p>Sign up to receive sweet recipe ideas, special offers and more</p>
+                    <form method="get" action="/">
+                        <input type="email" placeholder="email address" />
+                        <button type="submit"><span>Sign Up</span></button>
+                    </form>
+
+                </div>
+                <!-- /sign-up -->
+
+                <!-- social -->
+                <div class="social social_footer">
+                    <p>Connect with us on social media</p>
+                    <a href="#" class="social__item social__item-facebook">
+                        <svg enable-background="new 0 0 56.693 56.693" viewBox="0 0 56.693 56.693"><path d="M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z"/></svg>
+                    </a>
+                    <a href="#" class="social__item social__item-twetter">
+                        <svg enable-background="new 0 0 56.693 56.693" viewBox="0 0 56.693 56.693"><path d="M52.837,15.065c-1.811,0.805-3.76,1.348-5.805,1.591c2.088-1.25,3.689-3.23,4.444-5.592c-1.953,1.159-4.115,2-6.418,2.454  c-1.843-1.964-4.47-3.192-7.377-3.192c-5.581,0-10.106,4.525-10.106,10.107c0,0.791,0.089,1.562,0.262,2.303  c-8.4-0.422-15.848-4.445-20.833-10.56c-0.87,1.492-1.368,3.228-1.368,5.082c0,3.506,1.784,6.6,4.496,8.412  c-1.656-0.053-3.215-0.508-4.578-1.265c-0.001,0.042-0.001,0.085-0.001,0.128c0,4.896,3.484,8.98,8.108,9.91  c-0.848,0.23-1.741,0.354-2.663,0.354c-0.652,0-1.285-0.063-1.902-0.182c1.287,4.015,5.019,6.938,9.441,7.019  c-3.459,2.711-7.816,4.327-12.552,4.327c-0.815,0-1.62-0.048-2.411-0.142c4.474,2.869,9.786,4.541,15.493,4.541  c18.591,0,28.756-15.4,28.756-28.756c0-0.438-0.009-0.875-0.028-1.309C49.769,18.873,51.483,17.092,52.837,15.065z"/></svg>
+                    </a>
+                    <a href="#" class="social__item social__item-pinterest">
+                        <svg enable-background="new 0 0 56.693 56.693" viewBox="0 0 56.693 56.693"><g><path d="M28.348,5.158c-13.599,0-24.625,11.023-24.625,24.625c0,10.082,6.063,18.744,14.739,22.553   c-0.069-1.721-0.012-3.783,0.429-5.654c0.473-2,3.168-13.418,3.168-13.418s-0.787-1.572-0.787-3.896   c0-3.648,2.115-6.373,4.749-6.373c2.24,0,3.322,1.682,3.322,3.695c0,2.252-1.437,5.619-2.175,8.738   c-0.616,2.613,1.31,4.744,3.887,4.744c4.665,0,7.808-5.992,7.808-13.092c0-5.397-3.635-9.437-10.246-9.437   c-7.47,0-12.123,5.57-12.123,11.792c0,2.146,0.633,3.658,1.624,4.83c0.455,0.537,0.519,0.754,0.354,1.371   c-0.118,0.453-0.389,1.545-0.501,1.977c-0.164,0.625-0.669,0.848-1.233,0.617c-3.44-1.404-5.043-5.172-5.043-9.408   c0-6.994,5.899-15.382,17.599-15.382c9.4,0,15.588,6.804,15.588,14.107c0,9.658-5.369,16.875-13.285,16.875   c-2.659,0-5.16-1.438-6.016-3.068c0,0-1.43,5.674-1.732,6.768c-0.522,1.9-1.545,3.797-2.479,5.275   c2.215,0.654,4.554,1.01,6.979,1.01c13.598,0,24.623-11.023,24.623-24.623C52.971,16.181,41.945,5.158,28.348,5.158z"/></g></svg>
+                    </a>
+                </div>
+                <!-- /social -->
+
+            </div>
+            <!-- /site__footer-layout -->
+
+        </div>
+        <!-- /site__footer -->
+
+    </div>
+    <!-- /site -->
+
+    <script src="js/vendors/jquery-2.2.1.min.js"></script>
+    <script src="js/vendors/swiper.jquery.min.js"></script>
+    <script src="js/index.min.js"></script>
+</body>
+</html>
