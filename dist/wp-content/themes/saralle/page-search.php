@@ -19,7 +19,7 @@ if($_POST['search'] && $_POST['search'] !== '') {
 	));
 	$recipes = get_posts(array(
 		'posts_per_page' => -1,
-		'post_type' => 'recipes',
+		'post_type' => 'recipe',
 		'post_status' => 'publish',
 		'orderby' => 'menu_order',
 		'fields' => 'ids',
@@ -35,7 +35,7 @@ if($_POST['search'] && $_POST['search'] !== '') {
 	));
 	$recipes = get_posts(array(
 		'posts_per_page' => 5,
-		'post_type' => 'recipes',
+		'post_type' => 'recipe',
 		'post_status' => 'publish',
 		'orderby' => 'menu_order',
 		'fields' => 'ids',

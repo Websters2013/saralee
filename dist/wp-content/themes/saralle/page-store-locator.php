@@ -4,6 +4,9 @@ Template Name: Store Locator
 */
 get_header();
 
+$page = 4;
+
+
 require_once('product-pl.php');
 require_once('store-pl.php');
 $args = array(
@@ -29,7 +32,7 @@ $locatorOn = false;
 
 if (isset($_POST['upc']) and isset($_POST['zip']) and isset($_POST['miles'])) {
 	$locatorOn = true;
-	$xmlURL = "http://productlocator.infores.com/productlocator/servlet/ProductLocatorEngine?clientid=58&productfamilyid=SWGS&producttype=upc&storesperpage=10&storespagenum=" . $_POST['page'] . "&productid=" . $_POST['upc'] . "&zip=" . $_POST['zip'] . "&searchradius=" . $_POST['miles'];
+	$xmlURL = "http://productlocator.infores.com/productlocator/servlet/ProductLocatorEngine?clientid=58&productfamilyid=SWGS&producttype=upc&storesperpage=".$page."&storespagenum=" . $_POST['page'] . "&productid=" . $_POST['upc'] . "&zip=" . $_POST['zip'] . "&searchradius=" . $_POST['miles'];
 	$storeRes = Store::loadXML($xmlURL);
 	$stores = $storeRes['stores'];
 	$storeCount = $storeRes['count'];
@@ -46,15 +49,12 @@ if (isset($_POST['upc']) and isset($_POST['zip']) and isset($_POST['miles'])) {
                 <fieldset>
                     <select id="agg" class="custom" name="group" tabindex="1"  onchange="updateProducts()">
                         <option value="0" selected="selected">Select Category</option>
-                        <!--<option value="cheesecakes">Cheesecakes</option>-->
 						<?php foreach ($categories as $c) { ?>
                           <option value="<?php echo $c[0]; ?>"><?php echo $c[1]; ?></option>
 						<?php } ?>
                     </select>
                     <select id="upc" class="custom" name="upc" tabindex="2">
                         <option selected="selected" value="">Select Product</option>
-                        <option value="3210003721">SARA LEE FRENCH CLASSIC CHEESECAKE</option>
-
                     </select>
 
                     <label for="zip"><span class="hide">zip code</span></label>
@@ -73,8 +73,8 @@ if (isset($_POST['upc']) and isset($_POST['zip']) and isset($_POST['miles'])) {
 			        <?php
 			        if ($locatorOn) {
 				        if ($storeCount > 0) {
-					        $start = (intval($_POST['page']) - 1) * 10 + 1;
-					        $end = (intval($_POST['page'])) * 10;
+					        $start = (intval($_POST['page']) - 1) * $page + 1;
+					        $end = (intval($_POST['page'])) * $page;
 					        if ($end > $storeCount) { $end = $storeCount; }
 					        ?>
                     <p>Showing results <?php echo $start; ?> - <?php echo $end; ?> out of <?php echo $storeCount; ?> stores within <?php echo $_POST['miles']; ?> miles of <?php echo $_POST['zip']; ?>.</p>
@@ -94,7 +94,7 @@ if (isset($_POST['upc']) and isset($_POST['zip']) and isset($_POST['miles'])) {
 					        <?php } ?>
                     <p id="pagination">
 							        <?php if ($storeCount > 0) {
-							        $pages = ceil($storeCount/10);
+							        $pages = ceil($storeCount/$page);
 							        foreach (range(1,$pages) as $i) {
 								        if ($i != intval($_POST['page'])) {
 									        ?>

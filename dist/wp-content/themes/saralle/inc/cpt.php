@@ -77,12 +77,12 @@ function custom_post_type() {
 			'with_front' => true
 		)
 	);
-	register_post_type('recipes', $recipes_args);
+	register_post_type('recipe', $recipes_args);
 
 	function recipes_taxonomy() {
 		register_taxonomy(
-			'recipes_cat',
-			'recipes',
+			'recipe_cat',
+			'recipe',
 			array(
 				'label' => __( 'Recipes Product' ),
 				'hierarchical' => true,
@@ -93,8 +93,8 @@ function custom_post_type() {
 
 	function recipes_taxonomy_2() {
 		register_taxonomy(
-			'recipes_tag',
-			'recipes',
+			'recipe_tag',
+			'recipe',
 			array(
 				'label' => __( 'Recipes Ingredient' ),
 				'hierarchical' => false,

@@ -11,7 +11,7 @@ $title = 'Not Found RECIPES';
 if($_POST['search'] && $_POST['search'] !== '') {
 	$popular_recipes = get_posts(array(
 		'posts_per_page' => -1,
-		'post_type' => 'recipes',
+		'post_type' => 'recipe',
 		'post_status' => 'publish',
 		'orderby' => 'menu_order',
 		'fields' => 'all',
@@ -24,19 +24,19 @@ if($_POST['search'] && $_POST['search'] !== '') {
 
 	$popular_recipes = get_posts(array(
 		'posts_per_page' => -1,
-		'post_type' => 'recipes',
+		'post_type' => 'recipe',
 		'post_status' => 'publish',
 		'orderby' => 'menu_order',
 		'fields' => 'all',
         'tax_query' => array(
           'relation' => 'AND',
           array(
-            'taxonomy' => 'recipes_cat',
+            'taxonomy' => 'recipe_cat',
             'field'    => 'slug',
             'terms'    => $_POST['product'],
           ),
           array(
-            'taxonomy' => 'recipes_tag',
+            'taxonomy' => 'recipe_tag',
             'field'    => 'slug',
             'terms'    => $_POST['ingredient'],
           )
@@ -72,7 +72,7 @@ if($find_title) {
 		<form action="<?= get_permalink(13); ?>" class="filter__wrap" method="post">
             <?php
             $args = array(
-              'taxonomy' => 'recipes_cat',
+              'taxonomy' => 'recipe_cat',
               'hide_empty' => false,
             );
             $terms_product = get_terms( $args );
@@ -84,7 +84,7 @@ if($find_title) {
 			</select>
             <?php }
             $args = array(
-                'taxonomy' => 'recipes_tag',
+                'taxonomy' => 'recipe_tag',
                 'hide_empty' => false,
             );
             $terms_product = get_terms( $args );

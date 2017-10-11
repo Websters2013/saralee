@@ -164,7 +164,7 @@ if(is_front_page()) {
 	<?php wp_head(); ?>
 
 </head>
-<body data-action="<?php echo admin_url( 'admin-ajax.php' );?>">
+<body data-action="<?php echo admin_url( 'admin-ajax.php' );?>" <?= 'class="' . join( ' ', get_body_class( $class ) ) . '"' ?>>
 
 <!-- site -->
 <div class="site">

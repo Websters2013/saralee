@@ -111,7 +111,7 @@ function add_js() {
 		wp_enqueue_style('product_page');
 	}
 
-	if(is_singular('recipes')) {
+	if(is_singular('recipe')) {
 		wp_enqueue_script('perfect-scrollbar');
 		wp_enqueue_script('recipe');
 
