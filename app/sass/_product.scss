@@ -57,7 +57,6 @@
     .gallery-thumbs .swiper-slide {
       width: calc(100%/3);
       height: 100%;
-      transform: translate(-100%,0);
       border: 9px solid #fff;
       cursor: pointer;
 
@@ -74,7 +73,7 @@
         content: '';
       }
     }
-    .gallery-thumbs .swiper-slide-active:after {
+    .gallery-thumbs .active:after {
       opacity: 1;
     }
 

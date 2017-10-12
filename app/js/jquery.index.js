@@ -38,10 +38,6 @@
             new Sliders( $( this ) );
         } );
 
-        $.each( $( '.hero' ), function () {
-            new Sliders( $( this ) );
-        } );
-
         $.each( $( '.tab' ), function () {
             new Tab( $( this ) );
         } );
@@ -734,12 +730,9 @@
         //private properties
         var _obj = obj,
             _productsSwiper = _obj.find( '.products__swiper' ),
-            _heroSwiper = _obj.find( '.hero__swiper' ),
             _productsPrev = _obj.find( '.products__prev' ),
             _productsNext = _obj.find( '.products__next' ),
-            _products,
-            _hero,
-            _window = $( window );
+            _products;
 
         //private methods
         var _initSlider = function() {
@@ -774,14 +767,6 @@
                     } );
                 }
 
-                _hero = new Swiper ( _heroSwiper, {
-                    autoplay: false,
-                    speed: 500,
-                    effect: 'slide',
-                    slidesPerView: 1,
-                    loop: true
-                } );
-
             },
             _onEvent = function() {
 
@@ -802,22 +787,65 @@
 
         //private properties
         var _obj = obj,
-            _topGallery = _obj.find('.gallery-top'),
-            _thumbsGallery = _obj.find('.gallery-thumbs');
+            _topGallery = _obj.find( '.gallery-top' ),
+            _thumbsGallery = _obj.find( '.gallery-thumbs' ),
+            _galleryTop, _galleryThumbs;
 
         //private methods
         var _initSlider = function() {
 
-                var galleryTop = new Swiper( _topGallery, {
-                });
-                var galleryThumbs = new Swiper( _thumbsGallery, {
-                    centeredSlides: true,
+                _galleryTop = new Swiper( _topGallery, {
+                    slidesPerView: 1,
+                    onSlideChangeStart: function () {
+
+                        var promoTabsSlide = $( '.gallery-top' ).find( '.swiper-slide' ),
+                            curSlide = promoTabsSlide.filter( '.swiper-slide-active' ).index(),
+                            promoMainSlide = $( '.gallery-thumbs' ).find( '.swiper-slide' ),
+                            promoMainActiveSlide = promoMainSlide.eq( curSlide );
+
+                        promoMainSlide.removeClass( 'active' );
+                        promoMainActiveSlide.addClass( 'active' );
+
+                        $( '.gallery-thumbs' )[0].swiper.slideTo( curSlide, 200, false )
+
+                    }
+                } );
+                _galleryThumbs = new Swiper( _thumbsGallery, {
                     slidesPerView: 3,
-                    paginationClickable: true,
-                    slideToClickedSlide: true
-                });
-                galleryTop.params.control = galleryThumbs;
-                galleryThumbs.params.control = galleryTop;
+                    onInit: function () {
+
+                        var promoTabsSlide = $( '.gallery-thumbs' ).find( '.swiper-slide' );
+
+                        promoTabsSlide.eq( 0 ).addClass( 'active' );
+
+                        promoTabsSlide.on( 'click', function () {
+
+                            var curSlide = +( $( this ).index() );
+
+                            promoTabsSlide.removeClass( 'active' );
+                            $( this ).addClass( 'active' );
+
+                            $( '.gallery-top' )[0].swiper.slideTo( curSlide, 200, false );
+
+                            return false;
+                        } );
+
+                    },
+                    onSlideChangeStart: function () {
+
+                        var promoTabsSlide = $( '.gallery-thumbs' ).find( '.swiper-slide' ),
+                            curSlide = +( promoTabsSlide.filter( '.active' ).index() ),
+                            curActiveSlide = +( promoTabsSlide.filter( '.swiper-slide-active' ).index() );
+
+                        /*if ( curActiveSlide >= curSlide ){
+
+                        }*/
+
+                        $( '.gallery-top' )[0].swiper.slideTo( curSlide, 200, false );
+
+                    }
+                } );
+
 
             },
             _onEvent = function() {
