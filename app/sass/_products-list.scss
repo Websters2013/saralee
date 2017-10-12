@@ -101,8 +101,14 @@
       letter-spacing: 1px;
     }
 
+    &__wrap {
+      justify-content: flex-start;
+    }
+
     &__item {
       position: relative;
+      width: calc( 50% - 40px );
+      max-width: 100%;
       margin: 0 20px 70px;
       transition: box-shadow .3s ease-in-out;
 
@@ -130,5 +136,10 @@
 @media (min-width: $desktop) {
   .products-list {
     padding: 77px calc(50% - 650px) 43px;
+
+    &__item {
+      width: calc( 33.3333% - 40px );
+    }
+
   }
 }
