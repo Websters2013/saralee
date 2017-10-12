@@ -5,9 +5,13 @@
   position: relative;
   max-height: 585px;
   overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
+
+  &__item{
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    max-height: 585px;
+  }
 
   &.hero_min {
     display: block;
@@ -134,6 +138,7 @@
     }
 
   }
+
 }
 
 .hero-slider {
@@ -141,6 +146,9 @@
   .hero {
     height: 200px;
     align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 
   .swiper-pagination {
@@ -163,6 +171,10 @@
 @media (min-width: $tablet-portrait) {
   .hero {
     height: 100vh;
+
+    &__item{
+      height: 100vh;
+    }
 
     &__content {
       width: 100%;
@@ -195,6 +207,7 @@
         padding: 0 calc(50% - 515px) 40px;
       }
     }
+
   }
 
   .hero-slider {
