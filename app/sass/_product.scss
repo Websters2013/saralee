@@ -27,8 +27,9 @@
       margin-right: auto;
     }
     .swiper-slide {
-      background-size: cover;
+      background-size: contain;
       background-position: center;
+      background-repeat: no-repeat;
     }
     .gallery-top {
       margin-bottom: 30px;
