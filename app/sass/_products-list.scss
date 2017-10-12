@@ -48,7 +48,10 @@
     border-width: 1px;
     border-color: rgba(146, 146, 146,.86);
 
-    .rate { margin-bottom: 10px }
+    .rate {
+      margin-bottom: 10px;
+      pointer-events: none;
+    }
   }
 
   &__pic {

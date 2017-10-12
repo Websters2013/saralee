@@ -50,6 +50,10 @@
             new HeroSlider( $( this ) );
         } );
 
+        $.each( $( '.share' ), function () {
+            new Social( $( this ) );
+        } );
+
     } );
 
     var ContactUs = function ( obj ) {
@@ -835,5 +839,28 @@
 
         _init();
     };
+
+    var Social = function (obj) {
+        var _obj = obj,
+        _socialButton = _obj.find('.social__item');
+
+        //private methods
+        var _onEvent = function() {
+            _socialButton.on({
+                'click': function (event) {
+                    var curItem = $(this);
+                    event.preventDefault();
+                    event.stopPropagation();
+                    $('.et_social_sidebar_networks .et_social_icons_container').find('a[data-social_name='+curItem.attr('data-social')+']').trigger( "click" );
+                }
+            });
+        },
+        _init = function() {
+            _onEvent();
+        };
+
+
+        _init();
+    }
 
 } )();

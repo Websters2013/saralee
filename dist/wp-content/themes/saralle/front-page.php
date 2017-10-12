@@ -92,15 +92,14 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
                 <!-- swiper-wrapper -->
                 <div class="swiper-wrapper">
 
-                    <?php foreach ($product as $row) {?>
+                    <?php $counter = 0; foreach ($product as $row) {  if ($counter > 4) {continue;} ?>
                         <a href="<?= get_permalink($row); ?>" class="products__item swiper-slide">
                             <div class="products__img">
                                 <?= get_the_post_thumbnail($row); ?>
                             </div>
                             <p><?= get_the_title($row); ?></p>
                         </a>
-                    <?php } ?>
-
+                    <?php $counter++; } ?>
 
                 </div>
                 <!-- /swiper-wrapper -->
@@ -221,7 +220,7 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
 
         <div class="recipes__row">
 
-	        <?php foreach ($recipes as $row) {?>
+	        <?php $counter = 0; foreach ($recipes as $row) { if ($counter > 4) {continue;} ?>
             <div class="recipes__item">
 	            <?= get_the_post_thumbnail($row); ?>
                 <div class="recipes__content">
@@ -230,7 +229,7 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
                     <a href="<?= get_permalink($row); ?>" class="btn btn_2">View Recipe</a>
                 </div>
             </div>
-            <?php } ?>
+            <?php $counter++;} ?>
 
         </div>
 

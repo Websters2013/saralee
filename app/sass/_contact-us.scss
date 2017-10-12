@@ -32,6 +32,10 @@
       }
     }
 
+    >p>strong {
+      display: inline;
+    }
+
     .gform_heading,
     .gfield_label.gfield_label_before_complex {
       display: none;
