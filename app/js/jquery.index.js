@@ -38,6 +38,10 @@
             new Sliders( $( this ) );
         } );
 
+        $.each( $( '.hero' ), function () {
+            new Sliders( $( this ) );
+        } );
+
         $.each( $( '.tab' ), function () {
             new Tab( $( this ) );
         } );
@@ -56,6 +60,10 @@
 
         $.each( $( '.menu' ), function () {
             new SubMenu( $( this ) );
+        } );
+
+        $.each( $( '.search' ), function () {
+            new Search( $( this ) );
         } );
 
     } );
@@ -593,6 +601,64 @@
 
     };
 
+    var Search = function( obj ){
+
+        //private properties
+        var _obj = obj,
+            _form = _obj.find( '.search__form' ),
+            _btnOpen = _obj.find( '.search__open-btn' ),
+            _site = $( '.site' ),
+            _window = $( window );
+
+        //private methods
+        var _init = function(){
+                _onEvents();
+            },
+            _onEvents = function(){
+
+                _site.on(
+                    'click', function ( e ) {
+
+                        if ( _form.hasClass( 'show' ) && $( e.target ).closest( _form ).length == 0 ){
+                            _closeFrame();
+                            return false;
+                        }
+
+                    }
+                );
+
+                _btnOpen.on( 'click', function() {
+
+                    if ( !_form.hasClass( 'show' )  ){
+                        _openFrame();
+                    } else {
+                        _closeFrame();
+                    }
+
+                    return false;
+
+                } );
+
+            },
+            _closeFrame = function () {
+
+                _form.removeClass( 'show' );
+
+            },
+            _openFrame = function(){
+
+                _form.addClass( 'show' );
+
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+
+    };
+
     var Preloader = function ( obj ) {
 
         var _obj = obj,
@@ -672,9 +738,11 @@
         //private properties
         var _obj = obj,
             _productsSwiper = _obj.find( '.products__swiper' ),
+            _heroSwiper = _obj.find( '.hero__swiper' ),
             _productsPrev = _obj.find( '.products__prev' ),
             _productsNext = _obj.find( '.products__next' ),
             _products,
+            _hero,
             _window = $( window );
 
         //private methods
@@ -710,6 +778,14 @@
                     } );
                 }
 
+                _hero = new Swiper ( _heroSwiper, {
+                    autoplay: false,
+                    speed: 500,
+                    effect: 'slide',
+                    slidesPerView: 1,
+                    loop: true
+                } );
+
             },
             _onEvent = function() {
 
@@ -736,10 +812,11 @@
         //private methods
         var _initSlider = function() {
 
-                var galleryTop = new Swiper(_topGallery, {});
-                var galleryThumbs = new Swiper(_thumbsGallery, {
+                var galleryTop = new Swiper( _topGallery, {
+                });
+                var galleryThumbs = new Swiper( _thumbsGallery, {
                     centeredSlides: true,
-                    slidesPerView: 'auto',
+                    slidesPerView: 3,
                     paginationClickable: true,
                     slideToClickedSlide: true
                 });
