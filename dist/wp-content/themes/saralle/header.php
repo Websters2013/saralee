@@ -58,7 +58,6 @@ if($hero_nav) {
     $hero_nav_string .= '</nav>';
 
 }
-
 $hero_class = '';
 
 if(is_front_page()) {
@@ -69,7 +68,23 @@ if(is_front_page()) {
     $hero_class = ' hero_min';
 }
 
-
+$show_categories_in_menu = get_field('show_categories_in_menu', $home_id);
+$show_categories_in_menu_string = '';
+if(!empty($show_categories_in_menu)) {
+	$show_categories_in_menu_string .= '<div class="menu__subcategory"><ul>';
+	foreach ($show_categories_in_menu as $row) {
+	    if(!$row['category']) {continue;}
+	    $image = get_field('image', 'products_cat_' . $row['category']->term_id);
+	    $show_categories_in_menu_string .= '<li><a href="'.get_term_link($row['category']->term_id).'" class="menu__item">
+                                                    <div class="menu__item-img">
+                                                        <img src="'.$image['sizes']['thumbnail'].'" alt="'.$image['title'].'">
+                                                    </div>
+                                                    <p>'.$row['category']->name.'</p>
+                                                </a>
+                                            </li>';
+	}
+	$show_categories_in_menu_string .= '</ul></div>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -193,6 +208,7 @@ if(is_front_page()) {
 
             <!-- mobile-menu -->
             <div class="mobile-menu">
+                <div>
 	            <?php
 	            $menu_name = 'menu';
 	            $locations = get_nav_menu_locations();
@@ -200,19 +216,26 @@ if(is_front_page()) {
 		            $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
 		            $menu_items = wp_get_nav_menu_items( $menu );
 		            ?>
-                  <!-- menu -->
-                  <nav class="menu">
+                    <!-- menu -->
+                    <nav class="menu">
+                    <ul>
 	                  <?php foreach ( (array) $menu_items as $key => $menu_item ){
+	                      //var_dump($menu_item);
 		                  $perm = get_the_permalink($menu_item->object_id);
 		                  $active = '';
 		                  if (is_page( $menu_item->object_id )) {
 			                  $active = ' active ';
 		                  }
-		                  echo '<a href="'.$perm.'" class="menu__item'.$active.'">'.$menu_item->title.'</a>';
+		                  echo '<li><a href="'.$perm.'" class="menu__item'.$active.'">'.$menu_item->title.'</a>';
+		                  if($show_categories_in_menu_string && ($menu_item->object_id === '19')) {
+		                      echo $show_categories_in_menu_string;
+		                  }
+		                  echo '</li>';
 	                  }
 	                  ?>
-                  </nav>
-                  <!-- /menu -->
+	                  </ul>
+                    </nav>
+                    <!-- /menu -->
 			      <?php }
 
 		          $social_links = get_field('social_links', $contact_id);
@@ -237,11 +260,24 @@ if(is_front_page()) {
                   <!-- /social -->
 								<?php } ?>
 
+
                 <!-- search -->
-                <a href="<?= get_permalink(259); ?>" class="search">
-                    <svg viewBox="47.5 15.5 14 14"><path d="M9-10.214a3.5,3.5,0,0,1-3.5,3.5,3.5,3.5,0,0,1-3.5-3.5,3.5,3.5,0,0,1,3.5-3.5A3.5,3.5,0,0,1,9-10.214Zm4,6.5a1.006,1.006,0,0,0-.289-.7L10.031-7.1A5.487,5.487,0,0,0,11-10.214a5.5,5.5,0,0,0-5.5-5.5,5.5,5.5,0,0,0-5.5,5.5,5.5,5.5,0,0,0,5.5,5.5,5.487,5.487,0,0,0,3.117-.969L11.3-3.011a.98.98,0,0,0,.7.3A1.007,1.007,0,0,0,13-3.714Z" transform="translate(48 31.714)"/></svg>
-                </a>
+                <div class="search">
+
+                     <form class="search__form" action="<?= get_permalink(259); ?>" method="post">
+                        <input type="input" placeholder="Search" name="search"/>
+                        <button type="submit"></button>
+                     </form>
+
+                    <a href="#" class="search__open-btn">
+                        <svg viewBox="47.5 15.5 14 14">
+                            <path d="M9-10.214a3.5,3.5,0,0,1-3.5,3.5,3.5,3.5,0,0,1-3.5-3.5,3.5,3.5,0,0,1,3.5-3.5A3.5,3.5,0,0,1,9-10.214Zm4,6.5a1.006,1.006,0,0,0-.289-.7L10.031-7.1A5.487,5.487,0,0,0,11-10.214a5.5,5.5,0,0,0-5.5-5.5,5.5,5.5,0,0,0-5.5,5.5,5.5,5.5,0,0,0,5.5,5.5,5.487,5.487,0,0,0,3.117-.969L11.3-3.011a.98.98,0,0,0,.7.3A1.007,1.007,0,0,0,13-3.714Z" transform="translate(48 31.714)"/>
+                        </svg>
+                     </a>
+
+                </div>
                 <!-- /search -->
+                </div>
 
             </div>
             <!-- /mobile-menu -->

@@ -52,11 +52,7 @@ if($related_recipes) {
 }
 
 $gallery_string = '';
-$post_thumbnail = get_the_post_thumbnail_url($post_id);
 
-if($post_thumbnail) {
-	$gallery_string .= '<div class="swiper-slide" style="background-image:url('.$post_thumbnail.')"></div>';
-}
 $gallery = get_field('gallery', $post_id);
 if(!empty($gallery)) {
     foreach ($gallery as $row) {

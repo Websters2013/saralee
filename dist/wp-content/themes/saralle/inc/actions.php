@@ -133,7 +133,7 @@ function add_js() {
 		wp_enqueue_style('about-us');
 	}
 
-	if(is_page_template('page-products.php')) {
+	if(is_page_template('page-products.php') || is_tax()) {
 		wp_enqueue_script( 'index' );
 
 		wp_enqueue_style('products_page');
