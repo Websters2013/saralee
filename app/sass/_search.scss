@@ -8,6 +8,14 @@
     fill: #be1e2d;
   }
 
+  &__form{
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {

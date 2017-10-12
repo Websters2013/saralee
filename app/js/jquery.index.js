@@ -50,6 +50,10 @@
             new HeroSlider( $( this ) );
         } );
 
+        $.each( $( '.menu' ), function () {
+            new SubMenu( $( this ) );
+        } );
+
     } );
 
     var ContactUs = function ( obj ) {
@@ -520,6 +524,68 @@
         //public methods
 
         _constructor();
+
+    };
+
+    var SubMenu = function( obj ){
+
+        //private properties
+        var _obj = obj,
+            _menuBtn = _obj.find( '.menu__item' ),
+            _subMenu = _obj.find( '.menu__subcategory' ),
+            _site = $( '.site' ),
+            _window = $( window );
+
+        //private methods
+        var _init = function(){
+                _onEvents();
+            },
+            _onEvents = function(){
+
+                _site.on(
+                    'click', function ( e ) {
+
+                        if ( _subMenu.hasClass( 'show' ) && $( e.target ).closest( _subMenu ).length == 0 && $( e.target ).closest( _menuBtn ).length == 0 ){
+                            _closeSubMenu();
+                            return false;
+                        }
+
+                    }
+                );
+
+                _menuBtn.on( 'click', function() {
+
+                    var curBtn = $( this ),
+                        curSubMenu = curBtn.next( '.menu__subcategory' );
+
+                    if ( curBtn.next().is( '.menu__subcategory' ) && !curSubMenu.hasClass( 'show' ) && _window.outerWidth() < 1200  ){
+                        _openSubMenu( curSubMenu );
+                        return false;
+                    }
+
+                } );
+
+            },
+            _closeSubMenu = function () {
+
+                _subMenu.removeClass( 'show' );
+                _subMenu.removeAttr( 'style' );
+
+            },
+            _openSubMenu = function( obj ){
+
+                var subMenu = obj;
+
+                subMenu.addClass( 'show' );
+                subMenu.height( subMenu.find( 'ul' ).outerHeight() + 20 );
+
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
 
     };
 
