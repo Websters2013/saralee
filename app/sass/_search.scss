@@ -11,15 +11,56 @@
   &__form{
     position: absolute;
     top: 0;
-    right: 0;
+    right: 40px;
+    width: 0;
+    height: 33px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 15px;
     opacity: 0;
     visibility: hidden;
+    -webkit-transition: opacity .2s ease, visibility .2s ease, width .3s ease;
+    transition: opacity .2s ease, visibility .2s ease, width .3s ease;
+
+    &.show{
+      opacity: 1;
+      visibility: visible;
+      width: 125px;
+    }
+
+    input{
+      display: block;
+      width: 100%;
+      height: 33px;
+      padding: 0 15px;
+      border: none;
+      border-radius: 15px;
+      background-color: transparent;
+      @include FuturaMedium();
+      font-size: 14px;
+      line-height: 1.71;
+      text-align: left;
+      color: #535353;
+    }
+
+    button{
+      display: none;
+    }
+
   }
 
 }
 
 @media (min-width: $tablet-portrait) {
   .search {
+
+    &__form{
+
+      &.show{
+        width: 220px;
+      }
+
+    }
 
   }
 }
@@ -34,6 +75,18 @@
 
     &:hover svg{
       transform: scale(1.1);
+    }
+
+    &__form{
+
+      &.show{
+        width: 647px;
+      }
+
+      input{
+        border: 1px solid #c72233;
+      }
+
     }
 
   }

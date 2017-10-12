@@ -54,6 +54,10 @@
             new SubMenu( $( this ) );
         } );
 
+        $.each( $( '.search' ), function () {
+            new Search( $( this ) );
+        } );
+
     } );
 
     var ContactUs = function ( obj ) {
@@ -578,6 +582,64 @@
 
                 subMenu.addClass( 'show' );
                 subMenu.height( subMenu.find( 'ul' ).outerHeight() + 20 );
+
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+
+    };
+
+    var Search = function( obj ){
+
+        //private properties
+        var _obj = obj,
+            _form = _obj.find( '.search__form' ),
+            _btnOpen = _obj.find( '.search__open-btn' ),
+            _site = $( '.site' ),
+            _window = $( window );
+
+        //private methods
+        var _init = function(){
+                _onEvents();
+            },
+            _onEvents = function(){
+
+                _site.on(
+                    'click', function ( e ) {
+
+                        if ( _form.hasClass( 'show' ) && $( e.target ).closest( _form ).length == 0 ){
+                            _closeFrame();
+                            return false;
+                        }
+
+                    }
+                );
+
+                _btnOpen.on( 'click', function() {
+
+                    if ( !_form.hasClass( 'show' )  ){
+                        _openFrame();
+                    } else {
+                        _closeFrame();
+                    }
+
+                    return false;
+
+                } );
+
+            },
+            _closeFrame = function () {
+
+                _form.removeClass( 'show' );
+
+            },
+            _openFrame = function(){
+
+                _form.addClass( 'show' );
 
             };
 
