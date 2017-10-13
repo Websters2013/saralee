@@ -22,11 +22,14 @@ function toolbox_comment( $comment, $args, $depth ) {
 	?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<article id="comment-<?php comment_ID(); ?>" class="comment vcard">
-			<footer>
+			
 			  <div class="comment-author-img"><?php echo get_avatar( $comment, 75 ); ?></div>
+
+			  <footer>
 				<div class="comment-author">
 					<?php printf( __( '%s', 'themename' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-				</div><!-- .comment-author -->
+				</div>
+
 				<?php if ( $comment->comment_approved == '0' ) : ?>
 				<p class="moderation"><em><?php _e( 'Your comment is awaiting moderation.', 'themename' ); ?></em></p>
 				<?php endif; ?>
@@ -34,20 +37,21 @@ function toolbox_comment( $comment, $args, $depth ) {
 				<div class="comment-meta commentmetadata">
 					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate datetime="<?php comment_time( 'c' ); ?>">
 					<?php
-						/* translators: 1: date, 2: time */
 						printf( __( '%1$s at %2$s', 'themename' ), get_comment_date(),  get_comment_time() ); ?>
 					</time></a>
 					<?php edit_comment_link( __( '(Edit)', 'themename' ), ' ' );
 					?>
-				</div><!-- .comment-meta .commentmetadata -->
+				</div>
+			
+				<div class="comment-body"><?php comment_text(); ?></div>
+
+				<div class="reply">
+					<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+				</div>
+
 			</footer>
 
-			<div class="comment-body"><?php comment_text(); ?></div>
-
-			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-			</div><!-- .reply -->
-		</article><!-- #comment-##  -->
+		</article>
 
 	<?php
 			break;
@@ -56,6 +60,7 @@ function toolbox_comment( $comment, $args, $depth ) {
 	?>
 	<li class="post pingback">
 		<p><?php _e( 'Pingback:', 'themename' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __('(Edit)', 'themename'), ' ' ); ?></p>
+	</li>
 	<?php
 			break;
 	endswitch;
@@ -122,25 +127,11 @@ endif; // ends check for toolbox_comment()
 	<?php endif; ?>
 	
   <?php $args = array( 'fields' => apply_filters( 'comment_form_default_fields', array(
-      'author' => '<p class="comment-form-author">' .
-                  '<label for="author">' . __( 'Name' ) . '</label> ' .
-                  ( $req ? '<span class="required">*</span>' : '' ) .
-                  '<input id="author" name="author" type="text" value="Your Name *" title="Your Name *" size="30" tabindex="1"' . $aria_req . ' />' .
-                  '</p><!-- #form-section-author .form-section -->',
-      'email'  => '<p class="comment-form-email">' .
-                  '<label for="email">' . __( 'Email' ) . '</label> ' .
-                  ( $req ? '<span class="required">*</span>' : '' ) .
-                  '<input id="email" name="email" type="text" value="Your Email *" title="Your Email *" size="30" tabindex="2"' . $aria_req . ' />' .
-                  '</p><!-- #form-section-email .form-section -->',
-      'url'    => '<p class="comment-form-url">' .
-                  '<label for="url">' . __( 'Website' ) . '</label>' .
-                  '<input id="url" name="url" type="text" value="Your URL" title="Your URL" size="30" tabindex="3" />' .
-                  '</p><!-- #form-section-url .form-section -->' ) ),
-      'comment_field' => '<p class="comment-form-comment">' .
-                  '<label for="comment">' . __( 'Comment' ) . '</label>' .
-                  '<textarea id="comment" name="comment" cols="45" rows="8" tabindex="4" aria-required="true" title="Your Comment">Your Comment</textarea>' .
-                  '</p><!-- #form-section-comment .form-section -->',
-			'label_submit' => __( ' ' )
+      'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" value="Your Name *" title="Your Name *" size="30" tabindex="1" /></p>',
+      'email'  => '<p class="comment-form-email"><input id="email" name="email" type="text" value="Your Email *" title="Your Email *" size="30" tabindex="2" /></p>',
+      'url'    => '' ) ),
+      'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="3" aria-required="true" title="Your Comment">'. __('Your Comment', 'themename').'</textarea></p>',
+	  'label_submit' => __( 'Submit', 'themename' )
   ); ?>
 	<?php comment_form( $args ); ?>
 
