@@ -489,10 +489,10 @@
                 if(urlArr.length > 3) {
                     token = urlArr[ urlArr.length - 2 ]
                 } else {
-                   token = urlArr[ urlArr.length - 1 ];
+                   token = false;
                 }
 
-                console.log(urlArr);
+                console.log(token);
                 return token;
 
             },
