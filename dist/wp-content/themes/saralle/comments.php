@@ -25,7 +25,7 @@ function toolbox_comment( $comment, $args, $depth ) {
 			
 			  <div class="comment-author-img"><?php echo get_avatar( $comment, 75 ); ?></div>
 
-			  <footer>
+			  <div class="comment__content">
 				<div class="comment-author">
 					<?php printf( __( '%s', 'themename' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
 				</div>
@@ -49,7 +49,7 @@ function toolbox_comment( $comment, $args, $depth ) {
 					<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 				</div>
 
-			</footer>
+			</div>
 
 		</article>
 
