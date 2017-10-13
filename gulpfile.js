@@ -145,7 +145,7 @@ gulp.task('watch', function() {
 });
 
 function serve() {
-    return run('styles', 'scripts', 'vendorScripts', 'vendorStyles', 'php', 'fonts',  'images', 'pictures', 'views', 'serve');
+    return run('styles', 'scripts', 'vendorScripts', 'vendorStyles', 'php', 'images', 'pictures', 'fonts', 'views', 'serve');
 }
 
 gulp.task('default', ['clean'], serve());
