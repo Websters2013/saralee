@@ -27,33 +27,45 @@
   }
 
   &__years {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
     max-width: 592px;
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 0 0 30px;
     @include FuturaPTBold();
+    overflow: hidden;
+    user-select: none;
 
     &-list {
-      display: flex;
-      justify-content: space-between;
+      position: relative;
       width: 100%;
-      margin-bottom: 30px;
+      padding: 80px 0 9px;
+      overflow: hidden;
     }
 
     &-item {
-      display: block;
-      width: 20px;
-      height: 20px;
-      border-radius: 0;
-      font-size: 20px;
-      transform: rotate(-90deg) scale(.7);
-      transform-origin: center;
-      color: #fff;
-      cursor: pointer;
-      opacity: .5;
-      background: none;
-      transition: transform .3s ease-in-out, opacity .3s ease-in-out;
 
-      &.swiper-pagination-bullet-active {
+      span{
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: calc( 50% - 10px );
+        width: 20px;
+        height: 20px;
+        border-radius: 0;
+        font-size: 20px;
+        transform: rotate(-90deg) scale(.7);
+        transform-origin: center;
+        color: #fff;
+        cursor: pointer;
+        opacity: .5;
+        background: none;
+        transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+      }
+
+      &.swiper-slide-active span{
         background: none;
         opacity: 1;
         transform: rotate(-90deg) scale(1);
@@ -65,19 +77,26 @@
       position: relative;
       width: 100%;
       height: 3.5px;
+      margin-top: 20px;
       border-radius: 3px;
       background: rgba(255,255,255,.2);
 
       span {
-        @include absoluteCenterY();
-        left: 0;
+        position: absolute;
+        top: calc( 50% - 10px );
+        left: calc( 50% - 10px );
         width: 20px;
         height: 20px;
         background: url("../img/point.png") no-repeat center;
         background-size: contain;
-        transition: left .3s linear;
       }
     }
+
+    &-prev,
+    &-next{
+      display: none;
+    }
+
   }
 
   &__content {
@@ -112,13 +131,14 @@
 
     &-pic { display: none }
   }
+
 }
 
 @media (min-width: $tablet-portrait) {
   .history {
 
     &__title {
-      margin-bottom: 54px;
+      margin-bottom: 34px;
 
       span{
         font-size: 42px;
@@ -129,6 +149,58 @@
 
       &-pic { display: block }
     }
+
+    &__years {
+
+      &-list{
+        padding-bottom: 20px;
+      }
+
+      &-line{
+        margin-top: 30px;
+      }
+
+      &-prev,
+      &-next{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: calc( 50% - 70px );
+        width: 57px;
+        height: 57px;
+        border-radius: 50%;
+        background-color: rgba(0,0,0,.13);
+
+        svg {
+          width: 20px;
+          fill: #fff;
+        }
+
+      }
+
+      &-prev{
+        left: 0;
+        padding-right: 3px;
+
+        svg{
+          transform: rotate(90deg);
+        }
+
+      }
+
+      &-next {
+        right: 0;
+        padding-left: 3px;
+
+        svg{
+          transform: rotate(-90deg);
+        }
+
+      }
+
+    }
+
   }
 }
 
@@ -137,9 +209,11 @@
     padding: 28px 20px 106px;
 
     &__years {
-      padding: 30px 0 53px;
+      max-width: 813px;
+      padding: 0 110px 32px;
 
-      &-item {
+      &-item span{
+        left: calc( 50% - 15px );
         width: 30px;
         height: 30px;
         font-size: 30px;
@@ -149,12 +223,25 @@
       &-line {
 
         span {
-          left: 5px;
+          top: calc( 50% - 20px );
+          left: calc( 50% - 20px );
           width: 40px;
           height: 40px;
-          margin-left: -5px;
         }
+
       }
+
+      &-prev,
+      &-next{
+        -webkit-transition: background-color .3s ease;
+        transition: background-color .3s ease;
+
+        &:hover{
+          background-color: rgba(0,0,0,.53)
+        }
+
+      }
+
     }
 
     &__content {
@@ -188,6 +275,7 @@
         border-radius: 5px;
       }
     }
+
   }
 }
 
