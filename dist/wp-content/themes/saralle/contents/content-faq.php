@@ -34,9 +34,9 @@ if($title_sub_nav) {
             <?= $title_sub_nav; ?>
 
             <nav>
-	            <?php foreach ($pages as $row) { ?>
-                <a href="<?= basename(get_permalink($row)); ?>" <?php if(is_singular('tips') && ($row === $post->ID)) {echo 'class="active"';}?> data-post="<?= $row; ?>"><span class="faq__icon pie"><?= file_get_contents(get_field('image', $row)['url']); ?></span><?= get_the_title($row); ?></a>
-                <?php } ?>
+	            <?php $counter = 0; foreach ($pages as $row) { ?>
+                <a href="<?= basename(get_permalink($row)); ?>" <?php if((is_singular('faq') && ($row === $post->ID)) || (is_page_template('page-faq.php') && $counter === 0)) {echo 'class="active"';}?> data-post="<?= $row; ?>"><span class="faq__icon pie"><?= file_get_contents(get_field('image', $row)['url']); ?></span><?= get_the_title($row); ?></a>
+                <?php $counter++; } ?>
             </nav>
 
         </div>

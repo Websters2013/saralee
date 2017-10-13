@@ -6,10 +6,6 @@
             new ContactUs( $(this) );
         } );
 
-        $.each( $( '.dropdown' ), function () {
-            new Dropdown( $(this) );
-        } );
-
         $.each( $( '.site__header' ), function () {
             new Header( $(this) );
         } );
@@ -264,141 +260,16 @@
             _wrap = _obj.find('nav'),
             _navItems = _wrap.find('a'),
             _content = _obj.find('.list-info__content'),
-            _path = $('body').data( 'action' ),
-            _request = new XMLHttpRequest();
-
-        //private methods
-        var _constructor = function(){
-                _onEvents();
-            },
-            _onEvents = function(){
-
-                window.addEventListener("popstate", function(e) {
-                    // Передаем текущий URL
-                    // getContent(location.pathname, false);
-                    // console.log(e);
-                    // _writeNewContent(e.state.html);
-                });
-            
-                _btn.on( 'click', function() {
-
-                    if (!_wrap.hasClass('open')) {
-                        _openMenu();
-                    } else {
-                        _closeMenu();
-                    }
-
-                } );
-
-                _navItems.on( 'click', function(e) {
-
-                    e.preventDefault();
-                    var curElem = $(this),
-                        curPostData = curElem.data('post');
-
-                    if ( !curElem.hasClass('active') ) {
-                        _navItems.attr('class', '');
-                        curElem.addClass('active');
-                        //
-                        // _getContext(curPostData);
-
-                        _ajaxRequest(curPostData);
-                        _closeMenu();
-
-                        // _getContext(curPostData);
-                    }
-                    // return false;
-                } );
-
-            },
-            _ajaxRequest = function(postData) {
-
-                _request.abort();
-                _request = $.ajax({
-                    url: _path,
-                    data: { action: 'post', data: postData },
-                    dataType: 'html',
-                    timeout: 20000,
-                    type: "get",
-                    success: function (msg) {
-
-                        _writeNewContent(msg);
-
-                        history.pushState({html: msg}, null, null);
-                    },
-                    error: function ( XMLHttpRequest ) {
-                        if( XMLHttpRequest.statusText != "abort" ) {
-                            alert( 'Error!' );
-                        }
-                    }
-                });
-
-            },
-            _getContext = function(url){
-                $.get(url)
-                    .done(function( data ) {
-
-                        // Updating Content on Page
-                        _writeNewContent(data);
-
-                        history.pushState(null, null, url);
-
-                    });
-            },
-            _openMenu = function(){
-                var winScrollTop = $(window).scrollTop(),
-                    positionTop = _btn.outerHeight(),
-                    heightElem = $(window).height() - _btn.offset().top - positionTop + winScrollTop;
-
-                _wrap.addClass('open');
-                _wrap.css({
-                    'height': heightElem + 'px',
-                    'top': positionTop + 'px'
-                });
-
-                $('html').css({ 'overflow': 'hidden' });
-
-                $( '.site__header' )[0].obj.setCanUseScroll( true );
-            },
-            _closeMenu = function(){
-                _wrap.removeClass('open');
-                _wrap.attr('style', '');
-                $('html').attr('style', '');
-
-                $( '.site__header' )[0].obj.setCanUseScroll( false );
-            },
-            _writeNewContent = function(html){
-                _content.html('');
-                _content.html(html);
-            };
-
-        //public properties
-
-        //public methods
-
-        _constructor();
-
-    };
-
-    var Faq = function( obj ){
-
-        //private properties
-        var _obj = obj,
-            _btn = _obj.find('.faq__menu-title'),
-            _wrap = _obj.find( 'nav' ),
-            _navItems = _wrap.find( 'a' ),
-            _content = _obj.find('.faq__content'),
             _body = $( 'body' ),
             _link = _body.data( 'action' ),
             _type = _body.data( 'type' ),
             _path = null,
-            _window = $( window ),
             _request = new XMLHttpRequest();
 
         //private methods
         var _init = function(){
                 _onEvents();
-                _activeNavItems();
+                _ajaxRequest( _navItems.filter( '.active' ).data( 'post' ) );
             },
             _onEvents = function(){
 
@@ -454,9 +325,19 @@
                             pathSplit = path.split( '.' );
                         path = pathSplit[0];
 
-                        history.pushState( { foo: path }, null, path );
+                        var curItem = _checkUrl();
 
-                        _activeNavItems();
+                        console.log( path );
+
+                        if ( !curItem ){
+
+                            history.pushState( { foo: path }, null, path );
+
+                        } else {
+
+                            history.pushState( { back: path }, null, '../'+ path );
+
+                        }
 
                         _ajaxRequest( curPostData );
                         _closeMenu();
@@ -465,13 +346,6 @@
                     }
 
                 } );
-
-            },
-            _activeNavItems = function () {
-
-                var curItem = _checkUrl();
-
-                console.log( curItem )
 
             },
             _checkUrl= function() {
@@ -485,14 +359,13 @@
 
                 }
 
-               var token;
+                var token;
                 if(urlArr.length > 3) {
                     token = urlArr[ urlArr.length - 2 ]
                 } else {
-                   token = false;
+                    token = false;
                 }
 
-                console.log(token);
                 return token;
 
             },
@@ -547,6 +420,191 @@
             _writeNewContent = function( html ){
                 _content.html('');
                 _content.html( html );
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+
+    };
+
+    var Faq = function( obj ){
+
+        //private properties
+        var _obj = obj,
+            _btn = _obj.find('.faq__menu-title'),
+            _wrap = _obj.find( 'nav' ),
+            _navItems = _wrap.find( 'a' ),
+            _content = _obj.find('.faq__content'),
+            _body = $( 'body' ),
+            _link = _body.data( 'action' ),
+            _type = _body.data( 'type' ),
+            _path = null,
+            _request = new XMLHttpRequest();
+
+        //private methods
+        var _init = function(){
+                _onEvents();
+                _ajaxRequest( _navItems.filter( '.active' ).data( 'post' ) );
+            },
+            _onEvents = function(){
+
+                window.addEventListener( 'popstate', function( e ) {
+
+                    console.log( e.state )
+
+                    var oldPath = _path;
+
+                    if ( e.state == null ) {
+
+                        console.log( 'if'+ e.state )
+
+                    } else {
+
+                        if ( oldPath != _path ){
+
+                            console.log( 'else'+ e.state )
+
+                        }
+
+                    }
+
+                }, false);
+
+                _btn.on( 'click', function() {
+
+                    if (!_wrap.hasClass('open')) {
+                        _openMenu();
+                    } else {
+                        _closeMenu();
+                    }
+
+                } );
+
+                _navItems.on( 'click', function( e ) {
+
+                    e.preventDefault();
+
+                    var curElem = $(this),
+                        curPostData = curElem.data( 'post' );
+
+                    if ( !curElem.hasClass( 'active' ) ) {
+
+                        _navItems.removeClass( 'active' );
+                        curElem.addClass( 'active' );
+
+                        // _getContext(curPostData);
+
+                        _path = curElem.attr( 'href' );
+
+                        var path = /[^/]*$/.exec( _path )[0],
+                            pathSplit = path.split( '.' );
+                        path = pathSplit[0];
+
+                        var curItem = _checkUrl();
+
+                        console.log( path );
+
+                        if ( !curItem ){
+
+                            history.pushState( { foo: path }, null, path );
+
+                        } else {
+
+                            history.pushState( { back: path }, null, '../'+ path );
+
+                        }
+
+                        _ajaxRequest( curPostData );
+                        _closeMenu();
+
+                        // _getContext(curPostData);
+                    }
+
+                } );
+
+            },
+            _checkUrl= function() {
+
+                var url = document.location.pathname.split( '/' ),
+                    urlArr = [];
+
+                for ( var i = 0; i < url.length; i++ ) {
+
+                    urlArr.push( url[ i ] )
+
+                }
+
+               var token;
+                if(urlArr.length > 3) {
+                    token = urlArr[ urlArr.length - 2 ]
+                } else {
+                   token = false;
+                }
+
+                return token;
+
+            },
+            _ajaxRequest = function( postData ) {
+
+                _request.abort();
+                _request = $.ajax( {
+                    url: _link,
+                    data: {
+                        action: 'post',
+                        data: postData,
+                        flag: _type
+                    },
+                    dataType: 'html',
+                    timeout: 20000,
+                    type: "get",
+                    success: function ( msg ) {
+
+                        _writeNewContent( msg );
+
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if( XMLHttpRequest.statusText != "abort" ) {
+                            alert( 'Error!' );
+                        }
+                    }
+                } );
+
+            },
+            _openMenu = function(){
+                var winScrollTop = $(window).scrollTop(),
+                    positionTop = _btn.outerHeight(),
+                    heightElem = $(window).height() - _btn.offset().top - positionTop + winScrollTop;
+
+                _wrap.addClass('open');
+                _wrap.css({
+                    'height': heightElem + 'px',
+                    'top': positionTop + 'px'
+                });
+
+                $('html').css({ 'overflow': 'hidden' });
+
+                $( '.site__header' )[0].obj.setCanUseScroll( true );
+            },
+            _closeMenu = function(){
+                _wrap.removeClass('open');
+                _wrap.attr('style', '');
+                $('html').attr('style', '');
+
+                $( '.site__header' )[0].obj.setCanUseScroll( false );
+            },
+            _writeNewContent = function( html ){
+                _content.html('');
+                _content.html( html );
+
+                setTimeout(function () {
+                    $.each( $( '.dropdown' ), function () {
+                        new Dropdown( $(this) );
+                    } );
+                }, 500)
+
             };
 
         //public properties
