@@ -29,8 +29,11 @@
 }
 .FSR_full_voting_star,
 .FSR_full_star,
+.FSR_no_voting_star,
+.FSR_no_star,
 .FSR_half_star,
-.FSR_no_star{
+.FSR_half_voting_star
+{
   background-size: cover;
   height: 21px;
   width: 27px;
@@ -44,12 +47,16 @@
   background-image: url(../img/star.png);
 }
 .FSR_half_star{
-  background-image: url(../img/star.png);
-}
-.FSR_no_star{
   background-image: url(../img/star-voit-half.png);
 }
+.FSR_half_voting_star {
+  background-image: url(../img/star-half.png);
+}
 
+.FSR_no_star,
+.FSR_no_voting_star {
+  background-image: url(../img/star-null.png);
+}
 @media (min-width: $tablet-portrait) {
   .rate {
 

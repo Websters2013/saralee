@@ -389,6 +389,7 @@
             _navItems = _wrap.find( 'a' ),
             _content = _obj.find('.faq__content'),
             _link = $( 'body' ).data( 'action' ),
+            _type = $( 'body' ).data( 'type' ),
             _path = null,
             _request = new XMLHttpRequest();
 
@@ -467,7 +468,8 @@
                     url: _link,
                     data: {
                         action: 'post',
-                        data: postData
+                        data: postData,
+                        flag: _type
                     },
                     dataType: 'html',
                     timeout: 20000,
@@ -1079,12 +1081,10 @@
         //private methods
         var _onEvent = function() {
 
-                console.log( _rateItemSpan.length );
                 _rateItemSpan.on( 'click', function(){
                     _rate();
                 } );
 
-                console.log( _rateItemLabel.length );
                 _rateItemLabel.on( 'click', function(){
                     _rate();
                 } );
@@ -1092,20 +1092,41 @@
             },
             _rate = function () {
 
-                setTimeout(function () {
-                    var newRateFrame = _rateFrame.find( '.FSR_container' ),
-                        rateCalculate = newRateFrame.attr( 'data-rate' );
+                var newRateFrame = _rateFrame.find( '.FSR_container' ),
+                    rateCalculate = newRateFrame.attr( 'data-rate' );
 
-                    _rateNumber.html( rateCalculate +'/5' );
+                    if( rateCalculate === undefined ) {
+                        setTimeout(function () {
+                            _rate();
 
-                    console.log( rateCalculate )
+                        }, 500);
+                    } else {
+                        _rateNumber.html( parseFloat(rateCalculate).toFixed(1) +'/5' );
+                    }
 
-                    console.log( newRateFrame.length )
+            },
+            _loadRate = function () {
 
-                }, 500);
+                var rateContainer = _obj.find('.FSR_container'),
+                    rateContainerVote = _obj.find('.FSR_container_vote'),
+                    rateCalculate = rateContainer.attr( 'data-rate' ),
+                    rateCalculateVote = rateContainerVote.attr( 'data-rate' );
+
+                console.log( rateCalculate );
+
+                if( rateCalculate === undefined && rateCalculateVote === undefined) {
+                    setTimeout(function () {
+                        _loadRate();
+                    }, 500);
+                } else if( rateCalculate != undefined ) {
+                    _rateNumber.html( parseFloat(rateCalculate).toFixed(1) +'/5' );
+                } else if( rateCalculateVote != undefined ) {
+                    _rateNumber.html( parseFloat(rateCalculateVote).toFixed(1) +'/5' );
+                }
 
             },
             _init = function() {
+                _loadRate();
                 _onEvent();
             };
 
