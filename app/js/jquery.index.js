@@ -385,8 +385,8 @@
         //private properties
         var _obj = obj,
             _btn = _obj.find('.faq__menu-title'),
-            _wrap = _obj.find('nav'),
-            _navItems = _wrap.find('a'),
+            _wrap = _obj.find( 'nav' ),
+            _navItems = _wrap.find( 'a' ),
             _content = _obj.find('.faq__content'),
             _path = $('body').data( 'action' ),
             _request = new XMLHttpRequest();
@@ -397,11 +397,11 @@
             },
             _onEvents = function(){
 
-                window.addEventListener("popstate", function(e) {
+                window.addEventListener( "popstate", function( e ) {
                     // Передаем текущий URL
-                    // getContent(location.pathname, false);
-                    // console.log(e);
-                    // _writeNewContent(e.state.html);
+                    // getContent( location.pathname, false );
+                    console.log( e );
+                    // _writeNewContent( e.state.html );
                 });
 
                 _btn.on( 'click', function() {
@@ -417,12 +417,12 @@
                 _navItems.on( 'click', function(e) {
                     e.preventDefault();
                     var curElem = $(this),
-                        curPostData = curElem.data('post');
+                        curPostData = curElem.data( 'post' );
 
-                    if ( !curElem.hasClass('active') ) {
-                        _navItems.attr('class', '');
-                        curElem.addClass('active');
-                        //
+                    if ( !curElem.hasClass( 'active' ) ) {
+                        _navItems.removeClass( 'active' );
+                        curElem.addClass( 'active' );
+
                         // _getContext(curPostData);
 
                         _ajaxRequest( curPostData );
@@ -438,7 +438,10 @@
                 _request.abort();
                 _request = $.ajax( {
                     url: _path,
-                    data: { action: 'post', data: postData },
+                    data: {
+                        action: 'post',
+                        data: postData
+                    },
                     dataType: 'html',
                     timeout: 20000,
                     type: "get",
@@ -446,7 +449,10 @@
 
                         _writeNewContent(msg);
 
-                        history.pushState({html: msg}, null, null);
+                        history.pushState(
+                            { html: msg }, null, null
+                        );
+
                     },
                     error: function ( XMLHttpRequest ) {
                         if( XMLHttpRequest.statusText != "abort" ) {
@@ -478,9 +484,9 @@
 
                 $( '.site__header' )[0].obj.setCanUseScroll( false );
             },
-            _writeNewContent = function(html){
+            _writeNewContent = function( html ){
                 _content.html('');
-                _content.html(html);
+                _content.html( html );
             };
 
         //public properties
