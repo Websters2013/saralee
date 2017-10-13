@@ -131,7 +131,6 @@ endif; // ends check for toolbox_comment()
       'url'    => '' ) ),
       'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="3" aria-required="true" palaceholder="'. __('Your Comment', 'themename').'"></textarea></p>',
 	  'label_submit' => __( 'Submit', 'themename' ),
-      'title_reply' => ''
   ); ?>
 	<?php comment_form( $args ); ?>
 
