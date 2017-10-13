@@ -26,15 +26,32 @@ if(!empty($history) && $history_title_top && $history_title_bottom) {?>
         <!-- history__years -->
         <div class="history__years">
 
+            <a href="#" class="history__years-prev">
+                <svg viewBox="146 23 12 6"><path d="M7,10l6,6,6-6Z" transform="translate(139 13)"></path></svg>
+            </a>
+
             <!-- history__years-list -->
-            <div class="history__years-list"></div>
+            <div class="history__years-list">
+
+                <div class="swiper-wrapper">
+	                <?php foreach ($history as $row) {?>
+                    <div class="swiper-slide history__years-item"><span><?= $row['year']; ?></span></div>
+		            <?php } ?>
+
+                </div>
+
+                <!-- history__years-line -->
+                <span class="history__years-line">
+                        <span class="history__years-point"></span>
+                </span>
+                <!-- /history__years-line -->
+
+            </div>
             <!-- /history__years-list -->
 
-            <!-- history__years-line -->
-            <span class="history__years-line">
-                    <span class="history__years-point"></span>
-                </span>
-            <!-- /history__years-line -->
+            <a href="#" class="history__years-next">
+                <svg viewBox="146 23 12 6"><path d="M7,10l6,6,6-6Z" transform="translate(139 13)"></path></svg>
+            </a>
 
         </div>
         <!-- /history__years -->
@@ -43,7 +60,7 @@ if(!empty($history) && $history_title_top && $history_title_bottom) {?>
         <div class="history__content">
             <div class="swiper-wrapper">
 	            <?php foreach ($history as $row) {?>
-                <div class="swiper-slide" data-year="<?= $row['year']; ?>">
+                <div class="swiper-slide">
                     <!-- history__content-title -->
                     <strong class="history__content-title"><?= $row['year']; ?></strong>
                     <!-- /history__content-title -->
