@@ -5,6 +5,9 @@
   position: relative;
   max-height: 585px;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
   &__item{
     background-repeat: no-repeat;
