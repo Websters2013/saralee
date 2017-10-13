@@ -476,7 +476,7 @@
             },
             _checkUrl= function() {
 
-                var url = document.location.href.split( '/' ),
+                var url = document.location.pathname.split( '/' ),
                     urlArr = [];
 
                 for ( var i = 0; i < url.length; i++ ) {
@@ -485,8 +485,13 @@
 
                 }
 
-                var token = urlArr[ urlArr.length - 1 ];
-
+               var token;
+                if(urlArr.length > 3) {
+                    token = urlArr[ urlArr.length - 2 ]
+                } else {
+                   token = urlArr[ urlArr.length - 1 ];
+                }
+                console.log(urlArr);
                 return token;
 
             },
