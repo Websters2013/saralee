@@ -990,6 +990,8 @@
             _rateFrame = _obj.find( '.FSR_container' ),
             _rateItem = _rateFrame.find( '.FSR_full_voting_star' );
 
+        console.log( _rateItem.length() )
+
         //private methods
         var _onEvent = function() {
 
