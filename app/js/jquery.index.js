@@ -399,23 +399,21 @@
             },
             _onEvents = function(){
 
-                console.log( '1' )
-
                 window.addEventListener( 'popstate', function( e ) {
+
+                    console.log( e.state )
 
                     var oldPath = _path;
 
                     if ( e.state == null ) {
 
-                        console.log( e.state )
+                        console.log( 'if'+ e.state )
 
                     } else {
 
-                        _path = 'php/' + e.state.foo + '.php';
-
                         if ( oldPath != _path ){
 
-                            console.log( e.state )
+                            console.log( 'else'+ e.state )
 
                         }
 
