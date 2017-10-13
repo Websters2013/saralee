@@ -58,6 +58,10 @@
             new Search( $( this ) );
         } );
 
+        $.each( $( '.recipe__indicators-item' ), function () {
+            new Rate( $( this ) );
+        } );
+
     } );
 
     var ContactUs = function ( obj ) {
@@ -868,47 +872,18 @@
         //private properties
         var _obj = obj,
             _years = _obj.find( '.history__years' ),
-            _yearsLine = _years.find( '.history__years-line' ),
-            _yearsPoint = _yearsLine.find('.history__years-point'),
             _yearsList = _years.find( '.history__years-list' ),
             _contentSlider = _obj.find( '.history__content' ),
-            _sliderItems = _contentSlider.find('.swiper-slide'),
-            _swiper = null,
-            _window = $( window );
+            _swiper = null;
 
         //private methods
         var _initSlider = function() {
 
-                _swiper = new Swiper(_contentSlider, {
-                    pagination: _yearsList,
-                    paginationClickable: true,
-                    paginationBulletRender: function (index, className) {
-                        return '<span class="history__years-item ' + className + '">' + _sliderItems.eq(index).data('year') + '</span>';
-                    },
-                    onSlideChangeStart: function (e) {
-                        _sliding($(e.bullets[e.activeIndex]));
-                    }
-                });
+                _swiper = new Swiper(_contentSlider, {} );
 
             },
             _onEvent = function() {
 
-                _obj.on('click', '.history__years-item', function() {
-                    var activeElem = $(this);
-                    _sliding(activeElem);
-                });
-
-                $(window).on({
-                    'resize': function () {
-                        _sliding(_obj.find('.swiper-pagination-bullet-active'));
-                    }
-                });
-
-            },
-            _sliding = function(elem) {
-                _yearsPoint.css({
-                    'left': (elem.offset().left - _yearsLine.offset().left) + 'px'
-                });
             },
             _init = function() {
                 _onEvent();
@@ -995,6 +970,40 @@
                 _contents.removeClass('active');
                 _contents.eq(activeIndex).addClass('active');
                 _contentsWrap.css({ 'height': _contents.eq(activeIndex).outerHeight() + 'px' });
+            },
+            _init = function() {
+                _onEvent();
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
+    var Rate = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _rateNumber = _obj.find( 'span' ),
+            _rateFrame = _obj.find( '.FSR_container' ),
+            _rateItem = _rateFrame.find( '.FSR_full_voting_star' );
+
+        //private methods
+        var _onEvent = function() {
+
+                _rateItem.on( 'click', function(){
+
+                    var newRateFrame = _rateFrame.find( '.FSR_container' ),
+                        rateCalculate = newRateFrame.attr( 'data-rate' );
+
+                    _rateNumber.html( rateCalculate +'/5' );
+
+                    console.log( rateCalculate )
+
+                } );
+
             },
             _init = function() {
                 _onEvent();
