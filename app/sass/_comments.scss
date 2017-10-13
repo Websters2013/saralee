@@ -1,19 +1,64 @@
 #comments {
   padding: 0 20px 20px;
   @include FuturaMedium();
+  color: #797979;
 
   &-title{
-    margin-bottom: 15px;
-    padding: 160px 8px 0;
+    margin-bottom: 41px;
+    padding: 85px 8px 0;
     border-top: 4px dotted #db9577;
     font-size: 35px;
     color: #e10027;
     @include JustRealize();
   }
 
+  /*&:after{
+    display: block;
+    width: 100%;
+    border-bottom: 4px dotted #db9577;
+    content: '';
+  }*/
+
+  ::-webkit-input-placeholder {
+    color: #d4d4d4!important;
+    -webkit-transition: color 300ms ease-in-out;
+  }
+  :-moz-placeholder {
+    color: #d4d4d4!important;
+    -webkit-transition: color 300ms ease-in-out;
+    transition: color 300ms ease-in-out;
+  }
+  .placeholder {
+    color: #d4d4d4!important;
+    -webkit-transition: color 300ms ease-in-out;
+    transition: color 300ms ease-in-out;
+  }
+  :focus::-webkit-input-placeholder {color: transparent!important;}
+  :focus::-moz-placeholder          {color: transparent!important;}
+  :focus:-moz-placeholder           {color: transparent!important;}
+  :focus:-ms-input-placeholder      {color: transparent!important;}
+
 }
 
 .comment{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+
+  &__content{
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  article.comment{
+    padding-bottom: 31px;
+    border-bottom: 1px solid #d4d4d4;
+  }
+
+  &-meta a{
+    color: inherit;
+  }
 
   &-form{
     display: flex;
@@ -26,44 +71,50 @@
       width: 100%;
       margin-bottom: 15px;
       padding: 0 15px;
-      border: none;
-      background-color: #f9f9f8;
+      border: 1px solid #d4d4d4;
+      background-color: transparent;
       color: #6b6b6b;
+      @include FuturaMedium();
       font-size: 15px;
-
     }
 
     input[type=text], input[type=email]{
-      height: 45px;
+      height: 41px;
     }
 
     textarea{
-      height: 198px;
-      margin-bottom: 19px;
+      height: 171px;
+      margin-bottom: 12px;
       padding: 14px 15px;
     }
 
     input[type=submit], input[type=button]{
-      width: 100%;
-      height: 50px;
+      width: 134px;
+      height: 36px;
       border: none;
-      border-radius: 5px;
-      background-color: #a55bba;
+      border-radius: 25px;
+      background-color: #db9577;
       color: #fff;
-      font-size: 18px;
+      @include FuturaPTBold();
+      font-size: 14px;
       text-transform: uppercase;
     }
 
     &-author{
-      order: 1;
-    }
-
-    &-email{
       order: 2;
     }
 
-    &-comment{
+    &-email{
       order: 3;
+    }
+
+    &-comment{
+      width: 100%;
+      order: 1;
+    }
+
+    .form-submit{
+      order: 4;
     }
 
   }
@@ -73,10 +124,11 @@
   }
 
   &-author{
-    margin-bottom: 3px;
+    margin-bottom: 14px;
 
     cite{
       font-size: 15px;
+      font-style: normal;
       color: #252525;
 
       a{
@@ -129,17 +181,73 @@
 }
 
 .commentlist{
+  max-width: 754px;
+  margin-bottom: 32px;
   padding: 0 8px;
 }
 
 #respond{
+  max-width: 754px;
   padding: 0 8px;
+
+  h3{
+    margin-bottom: 32px;
+    font-weight: 400;
+    color: #000;
+    font-size: 22px;
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {
   #comments {
 
   }
+
+  .comment{
+
+    &__content{
+      font-size: 18px;
+      line-height: 27px;
+    }
+
+    &-author{
+      margin-bottom: 8px;
+
+      cite {
+        font-size: 22px;
+        line-height: 1;
+      }
+
+    }
+
+    &-author-img{
+      width: 85px;
+      height: 85px;
+      margin-right: 27px;
+
+      & + div{
+        width: calc( 100% - 112px );
+      }
+
+    }
+
+    &-form{
+      justify-content: space-between;
+      flex-flow: row wrap;
+
+      &-author{
+        width: 49%;
+      }
+
+      &-email{
+        width: 49%;
+      }
+
+    }
+
+  }
+
 }
 
 @media (min-width: $desktop) {
