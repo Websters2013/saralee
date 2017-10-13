@@ -415,7 +415,6 @@
                 } );
 
                 _navItems.on( 'click', function(e) {
-
                     e.preventDefault();
                     var curElem = $(this),
                         curPostData = curElem.data('post');
@@ -426,7 +425,7 @@
                         //
                         // _getContext(curPostData);
 
-                        _ajaxRequest(curPostData);
+                        _ajaxRequest( curPostData );
                         _closeMenu();
 
                         // _getContext(curPostData);
@@ -434,10 +433,10 @@
                 } );
 
             },
-            _ajaxRequest = function(postData) {
+            _ajaxRequest = function( postData ) {
 
                 _request.abort();
-                _request = $.ajax({
+                _request = $.ajax( {
                     url: _path,
                     data: { action: 'post', data: postData },
                     dataType: 'html',
@@ -454,7 +453,7 @@
                             alert( 'Error!' );
                         }
                     }
-                });
+                } );
 
             },
             _openMenu = function(){
