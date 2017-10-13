@@ -388,7 +388,8 @@
             _wrap = _obj.find( 'nav' ),
             _navItems = _wrap.find( 'a' ),
             _content = _obj.find('.faq__content'),
-            _path = $( 'body' ).data( 'action' ),
+            _link = $( 'body' ).data( 'action' ),
+            _path = null,
             _request = new XMLHttpRequest();
 
         //private methods
@@ -399,12 +400,27 @@
 
                 console.log( '1' )
 
-                window.addEventListener( "popstate", function( e ) {
-                    // Передаем текущий URL
-                    // getContent( location.pathname, false );
-                    console.log( e );
-                    // _writeNewContent( e.state.html );
-                });
+                window.addEventListener( 'popstate', function( e ) {
+
+                    var oldPath = _path;
+
+                    if ( e.state == null ) {
+
+                        console.log( e.state )
+
+                    } else {
+
+                        _path = 'php/' + e.state.foo + '.php';
+
+                        if ( oldPath != _path ){
+
+                            console.log( e.state )
+
+                        }
+
+                    }
+
+                }, false);
 
                 _btn.on( 'click', function() {
 
@@ -432,16 +448,11 @@
 
                         _path = curElem.attr( 'href' );
 
-                        console.log( _path )
-
                         var path = /[^/]*$/.exec( _path )[0],
                             pathSplit = path.split( '.' );
                         path = pathSplit[0];
 
-                        console.log( pathSplit )
-                        console.log( path )
-
-                        history.pushState( { foo: path }, null, path + '.html' );
+                        history.pushState( { foo: path }, null, path );
 
                         _ajaxRequest( curPostData );
                         _closeMenu();
@@ -455,7 +466,7 @@
 
                 _request.abort();
                 _request = $.ajax( {
-                    url: _path,
+                    url: _link,
                     data: {
                         action: 'post',
                         data: postData
