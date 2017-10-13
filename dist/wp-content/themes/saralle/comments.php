@@ -120,7 +120,7 @@ endif;
       'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" placeholder="'.__('Your Name', 'themename').' *" size="30" tabindex="1" aria-required="true" required/></p>',
       'email'  => '<p class="comment-form-email"><input id="email" name="email" type="email" placeholder="'.__('Your Email', 'themename').'" size="30" tabindex="2" aria-required="false" /></p>',
       'url'    => '' ) ),
-      'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="3" aria-required="true" placeholder="'. __('Your Comment', 'themename').'"></textarea></p>',
+      'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="3" aria-required="true" required placeholder="'. __('Your Comment', 'themename').'"></textarea></p>',
 	  'label_submit' => __( 'Submit', 'themename' ),
   ); ?>
 	<?php comment_form( $args ); ?>

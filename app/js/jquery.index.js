@@ -1071,7 +1071,7 @@
 
                         }, 500);
                     } else {
-                        _rateNumber.html( rateCalculate +'/5' );
+                        _rateNumber.html( parseFloat(rateCalculate).toFixed(1) +'/5' );
                     }
 
             },
