@@ -12,13 +12,18 @@
   }
 }
 
-.FSR_container{
+.FSR_container,
+.FSR_container_vote{
   margin-top: 10px;
 
   &:after{
     content: '';
     display: none;
     background-image: url(../img/star-voit.png), url(../img/star.png), url(../img/star-null.png), url(../img/star-voit-half.png);
+  }
+
+  .FSR_container{
+    margin-top: 0;
   }
 
 }

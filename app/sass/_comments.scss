@@ -182,8 +182,12 @@
 
 .commentlist{
   max-width: 754px;
-  margin-bottom: 32px;
   padding: 0 8px;
+
+  li{
+    margin-bottom: 32px;
+  }
+
 }
 
 #respond{
