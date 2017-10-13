@@ -12,7 +12,8 @@
   }
 }
 
-.FSR_container{
+.FSR_container,
+.FSR_container_vote{
   margin-top: 10px;
 
   &:after{
@@ -21,9 +22,15 @@
     background-image: url(../img/star-voit.png), url(../img/star.png), url(../img/star-null.png), url(../img/star-voit-half.png);
   }
 
+  .FSR_container{
+    margin-top: 0;
+  }
+
 }
 .FSR_full_voting_star,
-.FSR_full_star{
+.FSR_full_star,
+.FSR_half_star,
+.FSR_no_star{
   background-size: cover;
   height: 21px;
   width: 27px;
