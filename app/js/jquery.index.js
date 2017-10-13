@@ -876,14 +876,67 @@
         //private properties
         var _obj = obj,
             _years = _obj.find( '.history__years' ),
-            _yearsList = _years.find( '.history__years-list' ),
             _contentSlider = _obj.find( '.history__content' ),
-            _swiper = null;
+            _yearsList = _years.find( '.history__years-list' ),
+            _yearNext = _obj.find( '.history__years-next' ),
+            _yearPrev = _obj.find( '.history__years-prev' ),
+            _swiper, _swiperYearsList;
 
         //private methods
-        var _initSlider = function() {
+        var _initSliders = function() {
 
-                _swiper = new Swiper(_contentSlider, {} );
+                _swiper = new Swiper( _contentSlider, {
+                    slidesPerView: 1,
+                    onSlideChangeStart: function () {
+
+                        var promoTabsSlide = $( '.history__content' ).find( '.swiper-slide' ),
+                            curSlide = promoTabsSlide.filter( '.swiper-slide-active' ).index(),
+                            promoMainSlide = $( '.history__years-list' ).find( '.swiper-slide' ),
+                            promoMainActiveSlide = promoMainSlide.eq( curSlide );
+
+                        promoMainSlide.removeClass( 'swiper-slide-active' );
+                        promoMainActiveSlide.addClass( 'swiper-slide-active' );
+
+                        $( '.history__years-list' )[0].swiper.slideTo( curSlide, 200, false )
+
+                    }
+                } );
+
+                _swiperYearsList = new Swiper( _yearsList, {
+                    slidesPerView: 9,
+                    centeredSlides: true,
+                    nextButton: _yearNext,
+                    prevButton: _yearPrev,
+                    onInit: function () {
+
+                        var promoTabsSlide = $( '.history__years-list' ).find( '.swiper-slide' );
+
+                        promoTabsSlide.eq( 0 ).addClass( 'swiper-slide-active' );
+
+                        promoTabsSlide.on( 'click', function () {
+
+                            var curSlide = +( $( this ).index() );
+
+                            promoTabsSlide.removeClass( 'swiper-slide-active' );
+                            $( this ).addClass( 'swiper-slide-active' );
+
+                            $( '.history__years-list' )[0].swiper.slideTo( curSlide, 200, false );
+                            $( '.history__content' )[0].swiper.slideTo( curSlide, 200, false );
+
+                            return false;
+                        } );
+
+                    },
+                    onSlideChangeStart: function () {
+
+                        var promoTabsSlide = $( '.history__years-list' ).find( '.swiper-slide' ),
+                            curSlide = +( promoTabsSlide.filter( '.swiper-slide-active' ).index() ),
+                            curActiveSlide = +( promoTabsSlide.filter( '.swiper-slide-active' ).index() );
+
+                        $( '.history__content' )[0].swiper.slideTo( curSlide, 200, false );
+
+                    }
+                } );
 
             },
             _onEvent = function() {
@@ -891,7 +944,7 @@
             },
             _init = function() {
                 _onEvent();
-                _initSlider ();
+                _initSliders ();
             };
 
         //public properties
@@ -911,7 +964,7 @@
 
         //private methods
         var _initSlider = function() {
-                console.log(111);
+
                 _swiper = new Swiper ( _slider, {
                     autoplay: 3000,
                     speed: 500,
