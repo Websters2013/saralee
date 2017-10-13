@@ -1036,9 +1036,9 @@
                         _loadRate();
                     }, 500);
                 } else if( rateCalculate != undefined ) {
-                    _rateNumber.html( rateCalculate +'/5' );
+                    _rateNumber.html( parseFloat(rateCalculate).toFixed(1) +'/5' );
                 } else if( rateCalculateVote != undefined ) {
-                    _rateNumber.html( rateCalculateVote +'/5' );
+                    _rateNumber.html( parseFloat(rateCalculateVote).toFixed(1) +'/5' );
                 }
 
             },
