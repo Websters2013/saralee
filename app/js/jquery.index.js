@@ -388,14 +388,17 @@
             _wrap = _obj.find( 'nav' ),
             _navItems = _wrap.find( 'a' ),
             _content = _obj.find('.faq__content'),
-            _link = $( 'body' ).data( 'action' ),
-            _type = $( 'body' ).data( 'type' ),
+            _body = $( 'body' ),
+            _link = _body.data( 'action' ),
+            _type = _body.data( 'type' ),
             _path = null,
+            _window = $( window ),
             _request = new XMLHttpRequest();
 
         //private methods
-        var _constructor = function(){
+        var _init = function(){
                 _onEvents();
+                _activeNavItems();
             },
             _onEvents = function(){
 
@@ -453,12 +456,38 @@
 
                         history.pushState( { foo: path }, null, path );
 
+                        _activeNavItems();
+
                         _ajaxRequest( curPostData );
                         _closeMenu();
 
                         // _getContext(curPostData);
                     }
+
                 } );
+
+            },
+            _activeNavItems = function () {
+
+                var curItem = _checkUrl();
+
+                console.log( curItem )
+
+            },
+            _checkUrl= function() {
+
+                var url = document.location.href.split( '/' ),
+                    urlArr = [];
+
+                for ( var i = 0; i < url.length; i++ ) {
+
+                    urlArr.push( url[ i ] )
+
+                }
+
+                var token = urlArr[ urlArr.length - 1 ];
+
+                return token;
 
             },
             _ajaxRequest = function( postData ) {
@@ -518,7 +547,7 @@
 
         //public methods
 
-        _constructor();
+        _init();
 
     };
 
