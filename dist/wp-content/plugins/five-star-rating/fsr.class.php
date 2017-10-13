@@ -161,7 +161,7 @@ class FSR {
 		} else {
 			$rate = 0;
 		}
-		$html = '<div class="FSR_container"  data-rate="'.$rate.'"><form id="FSR_form_' . $id . '" action="' . WP_PLUGIN_URL . '/five-star-rating/fsr-ajax-stars.php" method="post" class="FSR_stars" onmouseout="FSR_star_out(this)"> ';
+		$html = '<div class="FSR_container_vote"  data-rate="'.$rate.'"><form id="FSR_form_' . $id . '" action="' . WP_PLUGIN_URL . '/five-star-rating/fsr-ajax-stars.php" method="post" class="FSR_stars" onmouseout="FSR_star_out(this)"> ';
 		for ($i = 1; $i <= 5; ++$i) {
 			if ($i <= $rate) {
 				$class = 'FSR_full_voting_' . $type;

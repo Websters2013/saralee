@@ -62,7 +62,7 @@
             new Search( $( this ) );
         } );
 
-        $.each( $( '.recipe__indicators-item' ), function () {
+        $.each( $( '.rate' ), function () {
             new Rate( $( this ) );
         } );
 
@@ -990,25 +990,37 @@
 
         //private properties
         var _obj = obj,
-            _rateNumber = _obj.find( 'span' ),
-            _rateFrame = _obj.find( '.FSR_container' ),
-            _rateItem = _rateFrame.find( '.FSR_full_voting_star' );
-
-        console.log( _rateItem.length() )
+            _rateNumber = _obj.prev( 'span' ),
+            _rateFrame = _obj.find( '.FSR_container_vote' ),
+            _rateItemSpan = _rateFrame.find( 'span' ),
+            _rateItemLabel = _rateFrame.find( 'label' );
 
         //private methods
         var _onEvent = function() {
 
-                _rateItem.on( 'click', function(){
+                console.log( _rateItemSpan.length );
+                _rateItemSpan.on( 'click', function(){
+                    _rate();
+                } );
 
+                console.log( _rateItemLabel.length );
+                _rateItemLabel.on( 'click', function(){
+                    _rate();
+                } );
+
+            },
+            _rate = function () {
+
+                setTimeout(function () {
                     var newRateFrame = _rateFrame.find( '.FSR_container' ),
                         rateCalculate = newRateFrame.attr( 'data-rate' );
 
                     _rateNumber.html( rateCalculate +'/5' );
 
-                    console.log( rateCalculate )
 
-                } );
+                    console.log( newRateFrame.length )
+
+                }, 500);
 
             },
             _init = function() {

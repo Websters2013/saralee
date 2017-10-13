@@ -185,24 +185,6 @@
   }
 }
 
-.FSR_container{
-  margin-top: 10px;
-}
-.FSR_full_voting_star,
-.FSR_full_star{
-  background-size: cover;
-  height: 21px;
-  width: 27px;
-  -webkit-transition: background-image .3s ease;
-  transition: background-image .3s ease;
-}
-.FSR_full_star{
-  background-image: url(../img/star-voit.png);
-}
-.FSR_full_voting_star{
-  background-image: url(../img/star.png);
-}
-
 @media (min-width: $tablet-portrait) {
   .product {
     padding: 16px 65px;
