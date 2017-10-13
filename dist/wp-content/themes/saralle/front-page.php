@@ -118,6 +118,38 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
     <!-- /products -->
     <?php } ?>
 
+    <?php if(!empty($recipes) && $recipes_title_top && $recipes_title_bottom) { ?>
+    <!-- recipes -->
+    <div class="recipes">
+
+        <!-- recipes__title -->
+        <div class="recipes__title">
+					<?= $recipes_title_top.$recipes_title_bottom; ?>
+
+        </div>
+        <!-- /recipes__title -->
+
+        <div class="recipes__row">
+
+					<?php $counter = 0; foreach ($recipes as $row) { if ($counter > 4) {continue;} ?>
+              <div class="recipes__item">
+								<?= get_the_post_thumbnail($row); ?>
+                  <div class="recipes__content">
+                      <h3><?= get_the_title($row); ?></h3>
+                      <p><?= get_the_excerpt($row); ?></p>
+                      <a href="<?= get_permalink($row); ?>" class="btn btn_2">View Recipe</a>
+                  </div>
+              </div>
+						<?php $counter++;} ?>
+
+        </div>
+
+			<?= $recipes_button_all; ?>
+
+    </div>
+    <!-- /recipes -->
+<?php } ?>
+
     <!-- playces -->
     <div class="places">
 
@@ -206,38 +238,6 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
 
     </div>
     <!-- /places -->
-
-    <?php if(!empty($recipes) && $recipes_title_top && $recipes_title_bottom) { ?>
-    <!-- recipes -->
-    <div class="recipes">
-
-        <!-- recipes__title -->
-        <div class="recipes__title">
-            <?= $recipes_title_top.$recipes_title_bottom; ?>
-
-        </div>
-        <!-- /recipes__title -->
-
-        <div class="recipes__row">
-
-	        <?php $counter = 0; foreach ($recipes as $row) { if ($counter > 4) {continue;} ?>
-            <div class="recipes__item">
-	            <?= get_the_post_thumbnail($row); ?>
-                <div class="recipes__content">
-                    <h3><?= get_the_title($row); ?></h3>
-                    <p><?= get_the_excerpt($row); ?></p>
-                    <a href="<?= get_permalink($row); ?>" class="btn btn_2">View Recipe</a>
-                </div>
-            </div>
-            <?php $counter++;} ?>
-
-        </div>
-
-        <?= $recipes_button_all; ?>
-
-    </div>
-    <!-- /recipes -->
-    <?php } ?>
 
 
     <?php get_template_part( '/contents/content', 'history'); ?>

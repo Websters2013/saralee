@@ -127,7 +127,7 @@ class FSR {
 		} else {
 			$rate = 0;
 		}
-		$html = '<div class="FSR_container"  data-rate="'.$rate.'"><div class="FSR_stars"> ';
+		$html = '<div class="FSR_container"  data-rate="'.$rate.'"><div class="FSR_stars">';
 		for ($i = 1; $i <= 5; ++$i) {
 			if ($i <= $rate) {
 				$class = 'FSR_full_' . $starType;
@@ -143,8 +143,7 @@ class FSR {
 		}
 		//$html .= '<span class="FSR_votes">' . (int) $votes . '</span> ';
 		//$html .= _n('<span class="FSR_tvotes">rating</span>', '<span class="FSR_tvotes">ratings'.$rate.'</span>', $votes, 'five-star-rating');
-		$html .= '</div>';
-		$html .= '</div>';
+		$html .= '</div></div>';
 		return $html;
 	}
 

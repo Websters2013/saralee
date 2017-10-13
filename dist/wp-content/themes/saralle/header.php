@@ -349,7 +349,9 @@ if(!empty($show_categories_in_menu)) {
 
                 </div>
                 <!-- Add Pagination -->
+                <?php if(!is_front_page() && !is_page(13)) { ?>
                 <div class="swiper-pagination"></div>
+                <?php } ?>
             </div>
         </div>
         <!-- /hero -->
