@@ -281,15 +281,11 @@
 
                     if ( e.state == null ) {
 
-                        console.log( 'if'+ e.state )
+                        _navItems.eq( 0 ).trigger( 'click' );
 
                     } else {
 
-                        if ( oldPath != _path ){
-
-                            console.log( 'else'+ e.state )
-
-                        }
+                        _navItems.filter( '[href='+ e.state.foo +']' ).trigger( 'click' );
 
                     }
 
@@ -459,15 +455,11 @@
 
                     if ( e.state == null ) {
 
-                        console.log( 'if'+ e.state )
+                        _navItems.eq( 0 ).trigger( 'click' );
 
                     } else {
 
-                        if ( oldPath != _path ){
-
-                            console.log( 'else'+ e.state )
-
-                        }
+                        _navItems.filter( '[href='+ e.state.foo +']' ).trigger( 'click' );
 
                     }
 
@@ -504,8 +496,6 @@
                         path = pathSplit[0];
 
                         var curItem = _checkUrl();
-
-                        console.log( path );
 
                         if ( !curItem ){
 
