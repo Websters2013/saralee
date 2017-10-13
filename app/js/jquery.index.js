@@ -388,7 +388,7 @@
             _wrap = _obj.find( 'nav' ),
             _navItems = _wrap.find( 'a' ),
             _content = _obj.find('.faq__content'),
-            _path = $('body').data( 'action' ),
+            _path = $( 'body' ).data( 'action' ),
             _request = new XMLHttpRequest();
 
         //private methods
@@ -414,16 +414,27 @@
 
                 } );
 
-                _navItems.on( 'click', function(e) {
+                _navItems.on( 'click', function( e ) {
+
                     e.preventDefault();
+
                     var curElem = $(this),
                         curPostData = curElem.data( 'post' );
 
                     if ( !curElem.hasClass( 'active' ) ) {
+
                         _navItems.removeClass( 'active' );
                         curElem.addClass( 'active' );
 
                         // _getContext(curPostData);
+
+                        _path = curElem.data( 'href' );
+
+                        var path = /[^/]*$/.exec( _path )[0],
+                            pathSplit = path.split( '.' );
+                        path = pathSplit[0];
+
+                        history.pushState( { foo: path }, null, path + '.html' );
 
                         _ajaxRequest( curPostData );
                         _closeMenu();
@@ -445,13 +456,9 @@
                     dataType: 'html',
                     timeout: 20000,
                     type: "get",
-                    success: function (msg) {
+                    success: function ( msg ) {
 
-                        _writeNewContent(msg);
-
-                        history.pushState(
-                            { html: msg }, null, null
-                        );
+                        _writeNewContent( msg );
 
                     },
                     error: function ( XMLHttpRequest ) {
