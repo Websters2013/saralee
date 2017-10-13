@@ -65,7 +65,7 @@ function toolbox_comment( $comment, $args, $depth ) {
 			break;
 	endswitch;
 }
-endif; // ends check for toolbox_comment()
+endif;
 
 ?>
 
@@ -76,7 +76,6 @@ endif; // ends check for toolbox_comment()
 	<?php return;
 		endif;
 	?>
-
 	<?php if ( have_comments() ) : ?>
 		<h2 id="comments-title">
 			<?php
@@ -84,41 +83,33 @@ endif; // ends check for toolbox_comment()
 			    //printf( _n( 'Comment (1)', 'Comments (%1$s)', get_comments_number(), 'themename' ),number_format_i18n( get_comments_number() ) );
 			?>
 		</h2>
-
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 		<nav id="comment-nav-above">
 			<h1 class="section-heading"><?php _e( 'Comment navigation', 'themename' ); ?></h1>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'themename' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'themename' ) ); ?></div>
 		</nav>
-		<?php endif; // check for comment navigation ?>
-
+		<?php endif;  ?>
 		<ol class="commentlist">
 			<?php wp_list_comments( array( 'callback' => 'toolbox_comment' ) ); ?>
 		</ol>
-
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 		<nav id="comment-nav-below">
 			<h1 class="section-heading"><?php _e( 'Comment navigation', 'themename' ); ?></h1>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'themename' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'themename' ) ); ?></div>
 		</nav>
-		<?php endif; // check for comment navigation ?>
+		<?php endif; ?>
 
-	<?php else : // this is displayed if there are no comments so far ?>
+	<?php else : ?>
 
-		<?php if ( comments_open() ) : // If comments are open, but there are no comments ?>
+		<?php if ( comments_open() ) : ?>
 
-		<?php else : // or, if we don't have comments:
-
-			/* If there are no comments and comments are closed,
-			 * let's leave a little note, shall we?
-			 * But only on posts! We don't really need the note on pages.
-			 */
+		<?php else :
 			if ( ! comments_open() && ! is_page() ) :
 			?>
 			<p class="nocomments"><?php _e( 'Comments are closed.', 'themename' ); ?></p>
-			<?php endif; // end ! comments_open() && ! is_page() ?>
+			<?php endif; ?>
 
 
 		<?php endif; ?>
@@ -126,12 +117,12 @@ endif; // ends check for toolbox_comment()
 	<?php endif; ?>
 	
   <?php $args = array( 'fields' => apply_filters( 'comment_form_default_fields', array(
-      'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" palaceholder="'.__('Your Name *', 'themename').'" size="30" tabindex="1" /></p>',
-      'email'  => '<p class="comment-form-email"><input id="email" name="email" type="email" palaceholder="'.__('Your Email *', 'themename').'" size="30" tabindex="2" /></p>',
+      'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" placeholder="'.__('Your Name', 'themename').' *" size="30" tabindex="1" aria-required="true" required/></p>',
+      'email'  => '<p class="comment-form-email"><input id="email" name="email" type="email" placeholder="'.__('Your Email', 'themename').'" size="30" tabindex="2" aria-required="false" /></p>',
       'url'    => '' ) ),
-      'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="3" aria-required="true" palaceholder="'. __('Your Comment', 'themename').'"></textarea></p>',
+      'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="3" aria-required="true" placeholder="'. __('Your Comment', 'themename').'"></textarea></p>',
 	  'label_submit' => __( 'Submit', 'themename' ),
   ); ?>
 	<?php comment_form( $args ); ?>
 
-</div><!-- #comments -->
+</div>

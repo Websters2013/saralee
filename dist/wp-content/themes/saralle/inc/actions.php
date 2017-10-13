@@ -170,6 +170,14 @@ function add_js() {
 	wp_enqueue_style('style');
 }
 
+function require_comment_name($fields) {
+
+	if ($fields['comment_author'] == '')
+		wp_die('Error: please enter a valid name.');
+
+	return $fields;
+}
+add_filter('preprocess_comment', 'require_comment_name');
 
 add_filter( 'gform_submit_button_1', 'form_submit_button', 10, 2 );
 function form_submit_button( $button, $form ) {
