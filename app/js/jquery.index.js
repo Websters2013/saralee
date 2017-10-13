@@ -397,6 +397,8 @@
             },
             _onEvents = function(){
 
+                console.log( '1' )
+
                 window.addEventListener( "popstate", function( e ) {
                     // Передаем текущий URL
                     // getContent( location.pathname, false );
@@ -428,11 +430,16 @@
 
                         // _getContext(curPostData);
 
-                        _path = curElem.data( 'href' );
+                        _path = curElem.attr( 'href' );
+
+                        console.log( _path )
 
                         var path = /[^/]*$/.exec( _path )[0],
                             pathSplit = path.split( '.' );
                         path = pathSplit[0];
+
+                        console.log( pathSplit )
+                        console.log( path )
 
                         history.pushState( { foo: path }, null, path + '.html' );
 
