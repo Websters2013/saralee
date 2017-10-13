@@ -491,6 +491,7 @@
                 } else {
                    token = urlArr[ urlArr.length - 1 ];
                 }
+
                 console.log(urlArr);
                 return token;
 
