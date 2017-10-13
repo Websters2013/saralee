@@ -389,6 +389,7 @@
             _navItems = _wrap.find( 'a' ),
             _content = _obj.find('.faq__content'),
             _link = $( 'body' ).data( 'action' ),
+            _type = $( 'body' ).data( 'type' ),
             _path = null,
             _request = new XMLHttpRequest();
 
@@ -469,7 +470,8 @@
                     url: _link,
                     data: {
                         action: 'post',
-                        data: postData
+                        data: postData,
+                        flag: _type
                     },
                     dataType: 'html',
                     timeout: 20000,

@@ -179,7 +179,7 @@ if(!empty($show_categories_in_menu)) {
 	<?php wp_head(); ?>
 
 </head>
-<body data-action="<?php echo admin_url( 'admin-ajax.php' );?>" <?= 'class="' . join( ' ', get_body_class( $class ) ) . '"' ?>>
+<body data-action="<?php echo admin_url( 'admin-ajax.php' );?>" <?= 'class="' . join( ' ', get_body_class( $class ) ) . '"' ?> data-type="<?php if(is_singular('tips') || is_page_template('page-tips.php')) { echo 'tips'; } elseif (is_singular('faq') || is_page_template('page-faq.php')) { echo 'faq'; } ?>">
 
 <!-- site -->
 <div class="site">
