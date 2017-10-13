@@ -998,12 +998,10 @@
         //private methods
         var _onEvent = function() {
 
-                console.log( _rateItemSpan.length );
                 _rateItemSpan.on( 'click', function(){
                     _rate();
                 } );
 
-                console.log( _rateItemLabel.length );
                 _rateItemLabel.on( 'click', function(){
                     _rate();
                 } );
@@ -1011,19 +1009,41 @@
             },
             _rate = function () {
 
-                setTimeout(function () {
-                    var newRateFrame = _rateFrame.find( '.FSR_container' ),
-                        rateCalculate = newRateFrame.attr( 'data-rate' );
+                var newRateFrame = _rateFrame.find( '.FSR_container' ),
+                    rateCalculate = newRateFrame.attr( 'data-rate' );
 
+                    if( rateCalculate === undefined ) {
+                        setTimeout(function () {
+                            _rate();
+
+                        }, 500);
+                    } else {
+                        _rateNumber.html( rateCalculate +'/5' );
+                    }
+
+            },
+            _loadRate = function () {
+
+                var rateContainer = _obj.find('.FSR_container'),
+                    rateContainerVote = _obj.find('.FSR_container_vote'),
+                    rateCalculate = rateContainer.attr( 'data-rate' ),
+                    rateCalculateVote = rateContainerVote.attr( 'data-rate' );
+
+                console.log( rateCalculate );
+
+                if( rateCalculate === undefined && rateCalculateVote === undefined) {
+                    setTimeout(function () {
+                        _loadRate();
+                    }, 500);
+                } else if( rateCalculate != undefined ) {
                     _rateNumber.html( rateCalculate +'/5' );
-
-
-                    console.log( newRateFrame.length )
-
-                }, 500);
+                } else if( rateCalculateVote != undefined ) {
+                    _rateNumber.html( rateCalculateVote +'/5' );
+                }
 
             },
             _init = function() {
+                _loadRate();
                 _onEvent();
             };
 

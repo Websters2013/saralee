@@ -72,17 +72,16 @@ endif; // ends check for toolbox_comment()
 	<div id="comments">
 	<?php if ( post_password_required() ) : ?>
 		<div class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'themename' ); ?></div>
-	</div><!-- .comments -->
+	</div>
 	<?php return;
 		endif;
 	?>
 
-	<?php // You can start editing here -- including this comment! ?>
-
 	<?php if ( have_comments() ) : ?>
 		<h2 id="comments-title">
 			<?php
-			    printf( _n( 'Comment (1)', 'Comments (%1$s)', get_comments_number(), 'themename' ),number_format_i18n( get_comments_number() ) );
+            echo  __('Comments','themename');
+			    //printf( _n( 'Comment (1)', 'Comments (%1$s)', get_comments_number(), 'themename' ),number_format_i18n( get_comments_number() ) );
 			?>
 		</h2>
 
@@ -127,11 +126,12 @@ endif; // ends check for toolbox_comment()
 	<?php endif; ?>
 	
   <?php $args = array( 'fields' => apply_filters( 'comment_form_default_fields', array(
-      'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" value="Your Name *" title="Your Name *" size="30" tabindex="1" /></p>',
-      'email'  => '<p class="comment-form-email"><input id="email" name="email" type="text" value="Your Email *" title="Your Email *" size="30" tabindex="2" /></p>',
+      'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" palaceholder="'.__('Your Name *', 'themename').'" size="30" tabindex="1" /></p>',
+      'email'  => '<p class="comment-form-email"><input id="email" name="email" type="email" palaceholder="'.__('Your Email *', 'themename').'" size="30" tabindex="2" /></p>',
       'url'    => '' ) ),
-      'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="3" aria-required="true" title="Your Comment">'. __('Your Comment', 'themename').'</textarea></p>',
-	  'label_submit' => __( 'Submit', 'themename' )
+      'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="3" aria-required="true" palaceholder="'. __('Your Comment', 'themename').'"></textarea></p>',
+	  'label_submit' => __( 'Submit', 'themename' ),
+      'title_reply' => ''
   ); ?>
 	<?php comment_form( $args ); ?>
 
