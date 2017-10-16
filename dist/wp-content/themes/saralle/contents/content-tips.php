@@ -17,9 +17,9 @@ $pages = get_posts(array(
         <strong class="list-info__menu-title"><?= get_field('title', 165); ?></strong>
 			<?php if (!empty($pages)) { ?>
           <nav>
-						<?php foreach ($pages as $row) { ?>
-                <a href="<?= basename(get_permalink($row)); ?>" <?php if(is_singular('tips') && ($row === $post->ID)) {echo 'class="active"';}?> data-post="<?= $row; ?>"><?= get_the_title($row); ?> <img src="<?= get_template_directory_uri(); ?>/assets/img/arrow.png" alt="arrow"></a>
-						<?php } ?>
+						<?php $counter = 0; foreach ($pages as $row) { ?>
+                <a href="<?= basename(get_permalink($row)); ?>" <?php if((is_singular('tips') && ($row === $post->ID)) || (is_page_template('page-tips.php') && $counter === 0)) {echo 'class="active"';}?> data-post="<?= $row; ?>"><?= get_the_title($row); ?> <img src="<?= get_template_directory_uri(); ?>/assets/img/arrow.png" alt="arrow"></a>
+						<?php $counter++;} ?>
           </nav>
 			<?php } ?>
 

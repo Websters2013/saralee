@@ -149,7 +149,7 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
     </div>
     <!-- /recipes -->
 <?php } ?>
-
+    <?php /*
     <!-- playces -->
     <div class="places">
 
@@ -238,6 +238,7 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
 
     </div>
     <!-- /places -->
+ */ ?>
 
 
     <?php get_template_part( '/contents/content', 'history'); ?>

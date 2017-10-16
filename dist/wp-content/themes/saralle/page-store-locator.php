@@ -6,9 +6,6 @@ get_header();
 
 $page = 4;
 
-
-require_once('product-pl.php');
-require_once('store-pl.php');
 $args = array(
   'taxonomy' => 'products_cat',
   'parent' => 0,
@@ -27,7 +24,7 @@ foreach ($categories as $c) {
 	$xmlURL = "http://productlocator.infores.com/productlocator/products/products.pli?client_id=58&brand_id=SWGS&group_id=" . $c[0];
 	$catProducts[$c[0]] = Product::loadXML($xmlURL);
 }
-
+var_dump($catProducts);
 $locatorOn = false;
 
 if (isset($_POST['upc']) and isset($_POST['zip']) and isset($_POST['miles'])) {
