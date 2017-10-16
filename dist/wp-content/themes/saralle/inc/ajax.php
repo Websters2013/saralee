@@ -128,7 +128,7 @@ function locator_ajax() {
 	$zip = $_GET['zip'];
 	$miles = $_GET['miles'];
 	$page = $_GET['page'];
-	$flag = $_GET['flag'];
+	$categories = $_GET['categories'];
 	$pages = 5;
 
 	$products = '';
@@ -153,34 +153,16 @@ function locator_ajax() {
 			},';
 		}
 		echo '{"count":"'.$storeCount.'","pagination":"'.$pagination.'","products":['.substr($products,0,-1).']}';
-	} elseif (isset($flag)) {
-		$args = array(
-			'taxonomy' => 'products_cat',
-			'parent' => 0,
-			'hide_empty' => false,
-		);
-		$catProducts = array();
-		$categories = array();
+	} elseif (isset($categories)) {
 
-		$res = get_terms($args);
+		$xmlURL = "http://productlocator.infores.com/productlocator/products/products.pli?client_id=58&brand_id=SWGS&group_id=" . $categories;
 
-		foreach ($res as $row) {
-			$categories[] = array($row->slug,$row->name);
+		$category = '';
+		foreach (Product::loadXML($xmlURL) as $key => $value) {
+			$category .= '{"name": "'.ucfirst(strtolower($value->name)).'","upc":"'.$value->code.'"},';
 		}
 
-		foreach ($categories as $c) {
-			$xmlURL = "http://productlocator.infores.com/productlocator/products/products.pli?client_id=58&brand_id=SWGS&group_id=" . $c[0];
-			$catProducts[$c[0]] = Product::loadXML($xmlURL);
-
-			$category = '';
-			foreach (Product::loadXML($xmlURL) as $key => $value) {
-				$category .= '{"name": "'.ucfirst(strtolower($value->name)).'","upc":"'.$value->code.'"},';
-			}
-
-			$products .= '{"category":"'.$c[1].'","subcategories":['.substr($category,0,-1).']},';
-		}
-
-		echo '['.substr($products,0,-1).']';
+		echo '{"category":"'.$categories.'","subcategories":['.substr($category,0,-1).']}';
 	}
 
 	exit;
