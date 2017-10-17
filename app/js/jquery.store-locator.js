@@ -26,7 +26,7 @@
             _markersArray = [],
             _windowArray = [],
             _controlNewAdd = true,
-            _initSlider = false;
+            _initSliderFlag = false;
 
         var _onEvents = function() {
 
@@ -152,7 +152,7 @@
 
                 var group = _groupSelect.find( 'option:selected' ).val();
 
-                console.log( group )
+                _form.find( '.dependent' ).addClass( 'hide' );
 
                 if ( group != 0 ) {
 
@@ -176,10 +176,6 @@
                             }
                         }
                     } );
-
-                } else {
-
-                    _form.find( '.dependent' ).addClass( 'hide' );
 
                 }
 
@@ -342,9 +338,10 @@
 
                 _storeLocatorList.height( _storeLocatorList.outerHeight() );
 
-                if ( _initSlider ) {
+                if ( _initSliderFlag ) {
+                    console.log( _initSliderFlag )
                     _sliderContainer[0].swiper.destroy( true, true );
-                    _initSlider = false;
+                    _initSliderFlag = false;
                 }
 
                 sliderWrap.empty();
@@ -431,7 +428,7 @@
                     }
                 } );
 
-                _initSlider = true;
+                _initSliderFlag = true;
 
             },
             _showNewItems = function ( item, index ) {
