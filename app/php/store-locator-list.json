@@ -1,0 +1,46 @@
+{
+  "count":"151",
+  "pagination":"31",
+  "products":[
+    {
+      "storeID":"01130239",
+      "phone":"(773) 625-2055",
+      "address":"4734 n cumberland",
+      "distance":"3.14",
+      "city":"Chicago",
+      "name":"jewel/osco combo stores",
+      "state":"IL",
+      "zip":"60656"
+    },
+    {
+      "storeID":"01130170",
+      "phone":"(847) 455-7711",
+      "address":"10203 w grand ave",
+      "distance":"3.21",
+      "city":"Franklin park",
+      "name":"jewel/osco combo stores",
+      "state":"IL",
+      "zip":"60131"
+    },
+    {
+      "storeID":"01130213",
+      "phone":"(847) 296-7787",
+      "address":"1500 s lee st",
+      "distance":"3.53",
+      "city":"Des plaines",
+      "name":"jewel/osco combo stores",
+      "state":"IL",
+      "zip":"60018"
+    },
+    {
+      "storeID":"08030994",
+      "phone":"(630) 238-0170",
+      "address":"1127 s york rd",
+      "distance":"3.64",
+      "city":"Bensenville",
+      "name":"jewel/osco combo stores",
+      "state":"IL",
+      "zip":"60106"
+    }
+  ]
+}

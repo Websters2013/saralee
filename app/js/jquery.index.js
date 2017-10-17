@@ -2,6 +2,8 @@
 
     $( function(){
 
+        new Preloader( $( '.preloader' ) );
+
         $.each( $( '.contact-us' ), function () {
             new ContactUs( $(this) );
         } );
@@ -20,10 +22,6 @@
 
         $.each( $( '.mobile-menu' ), function () {
             new Menu( $( this ) );
-        } );
-
-        $.each( $( '.preloader' ), function () {
-            new Preloader( $( this ) );
         } );
 
         $.each( $( '.product' ), function () {
