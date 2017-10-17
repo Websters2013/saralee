@@ -306,7 +306,7 @@
 
                 _storeLocatorList.height( _storeLocatorList.outerHeight() );
 
-                //_sliderContainer[0].swiper.destroy( true, true );
+                _sliderContainer[0].swiper.destroy( true, true );
                 sliderWrap.empty();
 
                 _ajaxListRequest( 1 );
