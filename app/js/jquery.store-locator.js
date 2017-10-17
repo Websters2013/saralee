@@ -204,7 +204,8 @@
                         storeListItem = $( '<div class="store-locator__list-item new" data-id="'+ storeID +'" data-address="'+ address +'" data-num="'+ i +'"><div class="store-locator__info"><span>'+ ( i + 1 ) +'</span>'+
                             '<p>'+ distance +' Miles</p></div><div class="store-locator__content"><p><strong>'+ name +'</strong></p>'+
                             '<p>'+ address +'</p><p><a href="tel:'+ phone +'">'+ phone +'</a></p>'+
-                            '<p><a href="#">Hours</a> | '+
+                            '<p>'+
+                            // '<a href="#">Hours</a> | '+
                             '<a href="http://maps.google.com/maps?q='+ address +' '+ city +','+ state +'">Directions</a></p></div></div>' );
 
                         sliderSlide.append( storeListItem ).removeClass( 'empty' );
@@ -225,13 +226,13 @@
 
                     _storeLocatorList.removeClass( 'loader' );
 
-                    if ( data.products.length == 1 ) {
+                    if ( data.products.length > 1 ) {
 
                         setTimeout( function () {
                             _centerMap();
                         }, 1000 );
 
-                    } else {
+                    } else if ( data.products.length == 1 ) {
 
                         _storeLocatorList.find( '.store-locator__list-item' ).addClass( 'active' ).trigger( 'click' );
 
@@ -252,7 +253,9 @@
 
                 _storeLocatorList.height( _sliderContainer.outerHeight() + sliderControl.outerHeight() );
 
-                google.maps.event.trigger( _map, "resize");
+                setTimeout( function () {
+                    google.maps.event.trigger( _map, "resize");
+                }, 500 );
 
             },
             _appendInStoreLocatesSlides = function ( data, page ) {
