@@ -229,9 +229,17 @@
 
                     _storeLocatorList.removeClass( 'loader' );
 
-                    setTimeout( function () {
-                        _centerMap();
-                    }, 1000 );
+                    if ( data.products.length == 1 ) {
+
+                        setTimeout( function () {
+                            _centerMap();
+                        }, 1000 );
+
+                    } else {
+
+                        _storeLocatorList.find( '.store-locator__list-item' ).addClass( 'active' ).trigger( 'click' );
+
+                    }
 
                 } else if ( data.products.length == 0 ) {
 
@@ -247,6 +255,8 @@
                 _scrollTop();
 
                 _storeLocatorList.height( _sliderContainer.outerHeight() + sliderControl.outerHeight() );
+
+                google.maps.event.trigger( _map, "resize");
 
             },
             _appendInStoreLocatesSlides = function ( data, page ) {
