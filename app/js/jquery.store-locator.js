@@ -25,7 +25,8 @@
             _map = null,
             _markersArray = [],
             _windowArray = [],
-            _controlNewAdd = true;
+            _controlNewAdd = true,
+            _initSlider = false;
 
         var _onEvents = function() {
 
@@ -149,26 +150,38 @@
             },
             _ajaxSubCatalogRequest = function () {
 
-                _request = $.ajax( {
-                    url: $( 'body' ).data('action'),
-                    data:{
-                        action: 'locator',
-                        categories: _groupSelect.find( 'option:selected' ).val()
-                    },
-                    dataType: 'json',
-                    timeout: 20000,
-                    type: 'GET',
-                    success: function ( data ) {
+                var group = _groupSelect.find( 'option:selected' ).val();
 
-                        _createUpcSelect( data );
+                console.log( group )
 
-                    },
-                    error: function ( XMLHttpRequest ) {
-                        if ( XMLHttpRequest.statusText != "abort" ) {
-                            console.log( 'err' );
+                if ( group != 0 ) {
+
+                    _request = $.ajax( {
+                        url: $( 'body' ).data( 'action' ),
+                        data:{
+                            action: 'locator',
+                            categories: _groupSelect.find( 'option:selected' ).val()
+                        },
+                        dataType: 'json',
+                        timeout: 20000,
+                        type: 'GET',
+                        success: function ( data ) {
+
+                            _createUpcSelect( data );
+
+                        },
+                        error: function ( XMLHttpRequest ) {
+                            if ( XMLHttpRequest.statusText != "abort" ) {
+                                console.log( 'err' );
+                            }
                         }
-                    }
-                } );
+                    } );
+
+                } else {
+
+                    _form.find( '.dependent' ).addClass( 'hide' );
+
+                }
 
             },
             _appendInStoreLocatesList = function ( data, page ) {
@@ -177,50 +190,63 @@
                     sliderSlide = _sliderContainer.find( '.swiper-slide' ).eq( curPage - 1 ).filter( '.empty' ),
                     sliderControl = _storeLocatorList.find( '.store-locator__list-control' );
 
-                $.each( data.products, function ( i ) {
+                if ( data.products.length > 0 ) {
 
-                    var curItem = $( this )[0],
-                        storeID = curItem.storeID,
-                        phone = curItem.phone,
-                        address = curItem.address,
-                        distance = curItem.distance,
-                        city = curItem.city,
-                        name = curItem.name,
-                        state = curItem.state,
-                        zip = curItem.zip,
-                        storeListItem;
+                    $.each( data.products, function ( i ) {
 
-                    storeListItem = $( '<div class="store-locator__list-item new" data-id="'+ storeID +'" data-address="'+ address +'" data-num="'+ i +'"><div class="store-locator__info"><span>'+ ( i + 1 ) +'</span>'+
-                        '<p>'+ distance +' Miles</p></div><div class="store-locator__content"><p><strong>'+ name +'</strong></p>'+
-                        '<p>'+ address +'</p><p><a href="tel:'+ phone +'">'+ phone +'</a></p>'+
-                        '<p><a href="#">Hours</a> | '+
-                        '<a href="http://maps.google.com/maps?q='+ address +' '+ city +','+ state +'">Directions</a></p></div></div>' );
+                        var curItem = $( this )[0],
+                            storeID = curItem.storeID,
+                            phone = curItem.phone,
+                            address = curItem.address,
+                            distance = curItem.distance,
+                            city = curItem.city,
+                            name = curItem.name,
+                            state = curItem.state,
+                            zip = curItem.zip,
+                            storeListItem;
 
-                    sliderSlide.append( storeListItem ).removeClass( 'empty' );
+                        storeListItem = $( '<div class="store-locator__list-item new" data-id="'+ storeID +'" data-address="'+ address +'" data-num="'+ i +'"><div class="store-locator__info"><span>'+ ( i + 1 ) +'</span>'+
+                            '<p>'+ distance +' Miles</p></div><div class="store-locator__content"><p><strong>'+ name +'</strong></p>'+
+                            '<p>'+ address +'</p><p><a href="tel:'+ phone +'">'+ phone +'</a></p>'+
+                            '<p><a href="#">Hours</a> | '+
+                            '<a href="http://maps.google.com/maps?q='+ address +' '+ city +','+ state +'">Directions</a></p></div></div>' );
 
-                    _addMark( address, i, storeID );
+                        sliderSlide.append( storeListItem ).removeClass( 'empty' );
 
-                } );
+                        _addMark( address, i, storeID );
 
-                var newItem = sliderSlide.find( '.new' );
+                    } );
 
-                newItem.each( function ( i ) {
+                    var newItem = sliderSlide.find( '.new' );
 
-                    var curItem = $( this );
+                    newItem.each( function ( i ) {
 
-                    _showNewItems( curItem, i );
+                        var curItem = $( this );
 
-                } );
+                        _showNewItems( curItem, i );
 
-                _storeLocatorList.removeClass( 'loader' );
+                    } );
+
+                    _storeLocatorList.removeClass( 'loader' );
+
+                    setTimeout( function () {
+                        _centerMap();
+                    }, 1000 );
+
+                } else if ( data.products.length == 0 ) {
+
+                    sliderControl.remove();
+
+                    _map = new google.maps.Map( _storeMap[ 0 ], {
+                        zoom: 10,
+                        center: {lat: 41.8957786, lng: -87.7869281}
+                    } );
+
+                }
 
                 _scrollTop();
 
                 _storeLocatorList.height( _sliderContainer.outerHeight() + sliderControl.outerHeight() );
-
-                setTimeout( function () {
-                    _centerMap();
-                }, 1000 );
 
             },
             _appendInStoreLocatesSlides = function ( data, page ) {
@@ -306,7 +332,11 @@
 
                 _storeLocatorList.height( _storeLocatorList.outerHeight() );
 
-                _sliderContainer[0].swiper.destroy( true, true );
+                if ( _initSlider ) {
+                    _sliderContainer[0].swiper.destroy( true, true );
+                    _initSlider = false;
+                }
+
                 sliderWrap.empty();
 
                 _ajaxListRequest( 1 );
@@ -341,12 +371,14 @@
 
                 } );
 
+                _form.find( '.dependent' ).removeClass( 'hide' );
+
             },
             _mapInit = function () {
 
                 _map = new google.maps.Map( _storeMap[ 0 ], {
-                    zoom: 9,
-                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 10,
+                    center: {lat: 41.8957786, lng: -87.7869281},
                     scrollwheel: false,
                     draggable: true,
                     zoomControl: false,
@@ -358,7 +390,7 @@
                 } );
 
             },
-            _initSlider = function () {
+            _initSlider = function ()  {
 
                 var storeLocatorPrev = _storeLocatorList.find( '.store-locator__swiper-prev' ),
                     storeLocatorNext = _storeLocatorList.find( '.store-locator__swiper-next' ),
@@ -388,6 +420,8 @@
 
                     }
                 } );
+
+                _initSlider = true;
 
             },
             _showNewItems = function ( item, index ) {

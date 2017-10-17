@@ -36,6 +36,11 @@
 
                 _obj.wrap( _wrap );
                 _wrap = _obj.parent();
+
+                if ( _obj.hasClass( 'dependent' ) ){
+                    _wrap.addClass( 'dependent hide' )
+                };
+
                 _wrap.append( '<div class="websters-select__arrow"></div>' );
                 _obj.before( _text );
                 _obj.find( 'option' ).each( function(){

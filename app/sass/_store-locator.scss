@@ -67,6 +67,21 @@
     .websters-select{
       width: 100%;
       margin-bottom: 20px;
+
+      &.dependent{
+        height: 52px;
+        -webkit-transition: height .3s ease, border .3s ease, margin .3s ease;
+        transition: height .3s ease, border .3s ease, margin .3s ease;
+
+        &.hide{
+          height: 0;
+          border: none;
+          margin: 0;
+          overflow: hidden;
+        }
+
+      }
+
     }
 
     button{
