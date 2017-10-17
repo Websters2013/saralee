@@ -423,6 +423,8 @@
                         _ajaxListRequest( storeLocatorSlide.filter( '.swiper-slide-active' ).index() + 1 );
                         _storeLocatorList.find( '.active' ).removeClass( 'active' );
 
+                        _storeLocatorList.addClass( 'loader' );
+
                     },
                     onSlideChangeEnd: function () {
 
