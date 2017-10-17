@@ -20,6 +20,9 @@ $current_id = 165;
 if(is_singular('faq') || is_page(177)){
 $current_id = 177;
 }
+if(is_tax('products_cat')){
+$current_id = 19;
+}
 $hero_title = get_field('hero_title', $current_id);
 $hero_button = get_field('hero_button', $current_id);
 $hero_image = get_field('hero_image', $current_id)['url'];
