@@ -20,6 +20,7 @@
             _storeMap = _obj.find( '.store-locator__map' ),
             _sliderContainer = _storeLocatorList.find( '.swiper-container' ),
             _body = $( 'html, body' ),
+            _window = $( window ),
             _request = new XMLHttpRequest(),
             _map = null,
             _markersArray = [],
