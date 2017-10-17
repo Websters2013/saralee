@@ -57,7 +57,11 @@
                     var curElem = $( this ),
                         curId = curElem.data( 'id' ),
                         curAddress = curElem.data( 'address' ),
-                        curNum = curElem.data( 'num' );
+                        curNum = curElem.data( 'num' ),
+                        curName = curElem.data( 'name' ),
+                        curCity = curElem.data( 'city' ),
+                        curState = curElem.data( 'state' ),
+                        curZip = curElem.data( 'zip' );
 
                     _storeLocatorList.find( '.store-locator__list-item' ).removeClass( 'active' );
 
@@ -65,7 +69,7 @@
 
                     _clearMarkers();
 
-                    _addMark( curAddress, curNum, curId );
+                    _addMark( curAddress, curName, curCity, curState, curZip, curNum, curId, true );
 
                     _map = new google.maps.Map( _storeMap[ 0 ], {
                         zoom: 16
@@ -83,7 +87,7 @@
                 }, 600);
 
             },
-            _addMark = function ( address, num, id ) {
+            _addMark = function ( address, name, city, state, zip, num, id, open ) {
 
                 _markersArray = [];
 
@@ -100,20 +104,35 @@
                             position: results[0].geometry.location,
                             icon: {
                                 url: window.location.origin+'/wp-content/themes/saralle/assets/img/strore-mark-'+ number +'.png',
+                                // url: 'img/strore-mark-'+ number +'.png',
                                 size: new google.maps.Size( 62, 78 )
                             }
                         } );
 
                         marker.id = id;
 
+                        marker.info = new google.maps.InfoWindow( {
+                            content: '<div class="map-place">' +
+                            '<p>'+ name +'</p>'+
+                            '<p>'+ address +'</p>'+
+                            '<p>'+ city +', '+ state +' '+ zip +'</p>'+
+                            '</div>'
+                        });
+
+                        if ( open ){
+                            marker.info.open( _map, marker );
+                        }
+
                         _markersArray.push( marker );
 
-                        console.log( _markersArray )
+                        console.log( _markersArray );
 
                         marker.addListener( 'click', function() {
 
                             _storeLocatorList.find( '.store-locator__list-item' ).removeClass( 'active' );
                             _storeLocatorList.find( '.store-locator__list-item' ).filter( '[data-id='+ $( this )[0].id +']' ).addClass( 'active' ).trigger( 'click' );
+
+                            marker.info.open( _map, marker );
 
                         } );
 
@@ -122,6 +141,8 @@
 
             },
             _ajaxListRequest = function ( page ) {
+
+            //'php/store-locator-list.json'
 
                 _request = $.ajax( {
                     url: $( 'body' ).data('action'),
@@ -201,7 +222,7 @@
                             zip = curItem.zip,
                             storeListItem;
 
-                        storeListItem = $( '<div class="store-locator__list-item new" data-id="'+ storeID +'" data-address="'+ address +'" data-num="'+ i +'"><div class="store-locator__info"><span>'+ ( i + 1 ) +'</span>'+
+                        storeListItem = $( '<div class="store-locator__list-item new" data-id="'+ storeID +'" data-address="'+ address +'" data-num="'+ i +'" data-name="'+ name +'" data-state="'+ state +'" data-city="'+ city +'" data-zip="'+ zip +'"><div class="store-locator__info"><span>'+ ( i + 1 ) +'</span>'+
                             '<p>'+ distance +' Miles</p></div><div class="store-locator__content"><p><strong>'+ name +'</strong></p>'+
                             '<p>'+ address +'</p><p><a href="tel:'+ phone +'">'+ phone +'</a></p>'+
                             '<p>'+
@@ -210,7 +231,7 @@
 
                         sliderSlide.append( storeListItem ).removeClass( 'empty' );
 
-                        _addMark( address, i, storeID );
+                        _addMark( address, name, city, state, zip, i, storeID, false );
 
                     } );
 
@@ -241,6 +262,8 @@
                 } else if ( data.products.length == 0 ) {
 
                     sliderControl.remove();
+
+                    _markersArray = [];
 
                     _map = new google.maps.Map( _storeMap[ 0 ], {
                         zoom: 10,
@@ -324,7 +347,7 @@
             },
             _clearMarkers = function () {
 
-            if ( _markersArray ) {
+                if ( _markersArray ) {
                     for ( var i in _markersArray ) {
                         _markersArray[ i ].setMap(null);
                     }
@@ -334,6 +357,7 @@
                         _windowArray[ i ].close();
                     }
                 }
+
             },
             _createNewList = function () {
 
@@ -342,7 +366,6 @@
                 _storeLocatorList.height( _storeLocatorList.outerHeight() );
 
                 if ( _initSliderFlag ) {
-                    console.log( _initSliderFlag )
                     _sliderContainer[0].swiper.destroy( true, true );
                     _initSliderFlag = false;
                 }
