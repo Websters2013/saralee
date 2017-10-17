@@ -66,6 +66,10 @@
 
                     _addMark( curAddress, curNum, curId );
 
+                    _map = new google.maps.Map( _storeMap[ 0 ], {
+                        zoom: 16
+                    } );
+
                     _scrollTop();
 
                 } );
@@ -79,6 +83,8 @@
 
             },
             _addMark = function ( address, num, id ) {
+
+                _markersArray = [];
 
                 var gcc = new google.maps.Geocoder(),
                     number = num + 1;
@@ -106,9 +112,7 @@
                         marker.addListener( 'click', function() {
 
                             _storeLocatorList.find( '.store-locator__list-item' ).removeClass( 'active' );
-                            _storeLocatorList.find( '.store-locator__list-item' ).filter( '[data-id='+ $( this )[0].id +']' ).addClass( 'active' );
-
-                            _map.setCenter( $( this )[ 0 ].position );
+                            _storeLocatorList.find( '.store-locator__list-item' ).filter( '[data-id='+ $( this )[0].id +']' ).addClass( 'active' ).trigger( 'click' );
 
                         } );
 
@@ -216,7 +220,7 @@
 
                 setTimeout( function () {
                     _centerMap();
-                }, 1000 )
+                }, 1000 );
 
             },
             _appendInStoreLocatesSlides = function ( data, page ) {
@@ -373,6 +377,7 @@
 
                         _clearMarkers();
                         _ajaxListRequest( storeLocatorSlide.filter( '.swiper-slide-active' ).index() + 1 );
+                        _storeLocatorList.find( '.active' ).removeClass( 'active' );
 
                     }
                 } );
