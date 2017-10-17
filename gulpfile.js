@@ -26,7 +26,9 @@ let paths = {
         {
             dist: 'index.min.js',
             contains: [
-                'app/js/jquery.index.js'
+                'app/js/jquery.index.js',
+                'app/js/jquery.websters-select.js',
+                'app/js/jquery.store-locator.js'
             ]
         },
         {
