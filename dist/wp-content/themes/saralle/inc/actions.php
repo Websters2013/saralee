@@ -183,3 +183,54 @@ add_filter( 'gform_submit_button_1', 'form_submit_button', 10, 2 );
 function form_submit_button( $button, $form ) {
 	return "<button type=\"submit\" class='btn' id='gform_submit_button_{$form['id']}'><span>".get_field('form_button_title', 30)."</span></button>";
 }
+
+class Saralle_Walker extends Walker_Nav_Menu {
+
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+
+		if ($depth === 0){
+			$output .= '<div class="menu__subcategory"><ul>';
+		}
+
+	}
+
+	function end_lvl( &$output, $depth = 0, $args = array() ) {
+
+		if ($depth === 0){
+			$output .= "</ul></div>";
+		}
+
+	}
+
+	function start_el(&$output, $item, $depth=0, $args=array(), $id = 0) {
+		$object = $item->object;
+		$type = $item->type;
+		$title = $item->title;
+		$description = $item->description;
+		$permalink = $item->url;
+		$output .= "<li>";
+		$active = '';
+
+		if (is_page( $item->object_id )) {
+			$active = ' active ';
+		}
+		$output .= '<a href="' . $permalink . '" class="menu__item'.$active.'">';
+
+
+		if( $description != '' && $depth == 0 ) {
+			$output .= '<small class="description">' . $description . '</small>';
+		}
+		if($depth == 1 && $type === 'taxonomy') {
+			//var_dump($item);
+			$image = get_field('image', 'products_cat_' . $item->object_id);
+			$output .= '<div class="menu__item-img">
+                      <img src="'.$image['sizes']['thumbnail'].'" alt="'.$image['title'].'">
+                  </div>
+                  <p>'.$title.'</p>';
+		} else {
+			$output .= $title;
+		}
+
+		$output .= '</a>';
+	}
+}

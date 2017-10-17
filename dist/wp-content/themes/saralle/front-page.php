@@ -4,8 +4,6 @@ Template Name: Home
 */
 get_header();
 
-require_once('product-pl.php');
-require_once('store-pl.php');
 $args = array(
   'taxonomy' => 'products_cat',
   'parent' => 0,
@@ -16,23 +14,6 @@ $categories = array();
 
 foreach ($res as $row) {
 	$categories[] = array($row->slug,$row->name);
-}
-
-$catProducts = array();
-
-foreach ($categories as $c) {
-	$xmlURL = "http://productlocator.infores.com/productlocator/products/products.pli?client_id=58&brand_id=SWGS&group_id=" . $c[0];
-	$catProducts[$c[0]] = Product::loadXML($xmlURL);
-}
-
-$locatorOn = false;
-
-if (isset($_POST['upc']) and isset($_POST['zip']) and isset($_POST['miles'])) {
-	$locatorOn = true;
-	$xmlURL = "http://productlocator.infores.com/productlocator/servlet/ProductLocatorEngine?clientid=58&productfamilyid=SWGS&producttype=upc&storesperpage=10&storespagenum=" . $_POST['page'] . "&productid=" . $_POST['upc'] . "&zip=" . $_POST['zip'] . "&searchradius=" . $_POST['miles'];
-	$storeRes = Store::loadXML($xmlURL);
-	$stores = $storeRes['stores'];
-	$storeCount = $storeRes['count'];
 }
 
 $post_id = 2;
@@ -242,132 +223,5 @@ if($recipes_button_all['title'] && $recipes_button_all['url']) {
 
 
     <?php get_template_part( '/contents/content', 'history'); ?>
-
-    <script type="text/javascript">
-        var catProducts = [];
-				<?php
-				foreach ($catProducts as $k => $v) {
-					$strComponents = array();
-					foreach ($v as $prod) {
-						$strComponents[] = "['{$prod->code}','{$prod->name}']";
-					}
-					$str = implode(',',$strComponents);
-					echo "catProducts['{$k}'] = [{$str}];\n";
-				}
-				?>
-        var map;
-        var markersArray = [];
-        var windowArray = [];
-
-
-
-        function addMarker(map,address,description) {
-            gcc = new google.maps.Geocoder();
-            gcc.geocode({address:address},function(results,status){
-                if (status == google.maps.GeocoderStatus.OK) {
-                    clearMarkers();
-                    map.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
-                        title: description
-                    });
-                    markersArray.push(marker);
-                    var infoWindow = new google.maps.InfoWindow({content: description});
-                    infoWindow.open(map,marker);
-                    windowArray.push(infoWindow);
-                }
-            });
-        }
-
-        function attemptSubmit() {
-            form = document.forms['productLocatorForm'];
-            if (form.elements['group'].value == '' || form.elements['upc'].value == '' || form.elements['zip'].value == '' || form.elements['zip'].value == 'Zip Code') {
-                return false;
-            }
-            else {
-                form.submit();
-            }
-        }
-
-        function changePage(page) {
-            document.forms['productLocatorForm'].elements['page'].value = page;
-            document.forms['productLocatorForm'].submit();
-        }
-
-        function clearMarkers() {
-            if (markersArray) {
-                for (i in markersArray) {
-                    markersArray[i].setMap(null);
-                }
-            }
-            if (windowArray) {
-                for (i in windowArray) {
-                    windowArray[i].close();
-                }
-            }
-        }
-
-        function initialize() {
-			<?php if ($locatorOn) { ?>
-            var options = {
-                zoom: 9,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            map = new google.maps.Map(document.getElementById("locatorUI"),options);
-				<?php
-                if ($storeCount > 0)  {
-                $s = $stores[0];
-                ?>
-            addMarker(map,'<?php echo $s->address . ', ' . $s->city . ', ' . $s->state . ' ' . $s->zip; ?>','<?php echo $s->name; ?><br /><?php echo $s->address; ?><br /><?php echo $s->city; ?>,<?php echo $s->state; ?> <?php echo $s->zip; ?>');
-				<?php } else { ?>
-            setPositionByAddress('<?php echo $_POST['zip']; ?>');
-				<?php } ?>
-            document.forms['productLocatorForm'].elements['group'].value = "<?php echo $_POST['group']; ?>";
-            updateProducts();
-            document.forms['productLocatorForm'].elements['upc'].value = "<?php echo $_POST['upc']; ?>";
-            document.forms['productLocatorForm'].elements['miles'].value = "<?php echo $_POST['miles']; ?>";
-			<?php } ?>
-
-        }
-
-        function setPositionByAddress(address) {
-            gcc = new google.maps.Geocoder();
-            gcc.geocode({address:address},function(results,status){
-                if (status == google.maps.GeocoderStatus.OK) {
-                    map.setCenter(results[0].geometry.location);
-                }
-            });
-        }
-
-        function updateProducts() {
-            var curCat = document.forms['productLocatorForm'].elements['group'].value;
-            var select = document.getElementById('upc');
-            select.options.length = 0;
-            select.options[0] = new Option("Select Product","",false,true);
-            count = 1;
-            if (catProducts[curCat]) {
-                for (i in catProducts[curCat]) {
-                    select.options[count] = new Option(catProducts[curCat][i][1],catProducts[curCat][i][0],false,false);
-                    count++;
-                }
-            }
-        }
-        $(window).load(initialize());
-
-				<?php
-				if (isset($_GET['upc']) and isset($_GET['cat']) and ($upc = $_GET['upc']) and ($pCat = $_GET['cat'])) {
-				$cats = array('5' => 'pound-cakes', '17' => 'cheesecakes', '39' => 'cakes', '62' => 'sweet-breakfast', '72' => 'pies', '134' => 'specialties');
-				if (isset($cats[$pCat])) {
-				$pCatN = $cats[$pCat];
-				?>
-        document.forms['productLocatorForm'].elements['group'].value = '<?php echo $pCatN; ?>';
-        updateProducts();
-        document.forms['productLocatorForm'].elements['upc'].value = '<?php echo $upc; ?>';
-				<?php
-				}
-				}
-				?>
-    </script>
 <?php
 get_footer();

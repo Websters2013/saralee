@@ -76,7 +76,7 @@ $show_categories_in_menu_string = '';
 if(!empty($show_categories_in_menu)) {
 	$show_categories_in_menu_string .= '<div class="menu__subcategory"><ul>';
 	foreach ($show_categories_in_menu as $row) {
-	    if(!$row['category']) {continue;}
+	    if(empty($row['category'])) {continue;}
 	    $image = get_field('image', 'products_cat_' . $row['category']->term_id);
 	    $show_categories_in_menu_string .= '<li><a href="'.get_term_link($row['category']->term_id).'" class="menu__item">
                                                     <div class="menu__item-img">
@@ -182,7 +182,7 @@ if(!empty($show_categories_in_menu)) {
 	<?php wp_head(); ?>
 
 </head>
-<body data-action="<?php echo admin_url( 'admin-ajax.php' );?>" <?= 'class="' . join( ' ', get_body_class( $class ) ) . '"' ?> data-type="<?php if(is_singular('tips') || is_page_template('page-tips.php')) { echo 'tips'; } elseif (is_singular('faq') || is_page_template('page-faq.php')) { echo 'faq'; } ?>">
+<body data-action="<?php echo admin_url( 'admin-ajax.php' );?>" <?= 'class="' . join( ' ', get_body_class() ) . '"' ?> data-type="<?php if(is_singular('tips') || is_page_template('page-tips.php')) { echo 'tips'; } elseif (is_singular('faq') || is_page_template('page-faq.php')) { echo 'faq'; } ?>">
 
 <!-- site -->
 <div class="site">
@@ -212,7 +212,10 @@ if(!empty($show_categories_in_menu)) {
             <!-- mobile-menu -->
             <div class="mobile-menu">
                 <div>
+                <!-- menu -->
+                    <nav class="menu">
 	            <?php
+	            /*
 	            $menu_name = 'menu';
 	            $locations = get_nav_menu_locations();
 	            if( $locations && isset($locations[ $menu_name ]) ){
@@ -239,8 +242,20 @@ if(!empty($show_categories_in_menu)) {
 	                  </ul>
                     </nav>
                     <!-- /menu -->
-			      <?php }
+			      <?php } */?>
+                    <?php
+              wp_nav_menu( array(
+	              'theme_location' => 'menu',
+		          'container'       => '',
+		              'items_wrap'      => '<ul>%3$s</ul>',
+		              'walker' => new Saralle_Walker()
+              ) );
+              ?>
+	            </nav>
+                    <!-- /menu -->
 
+
+                    <?php
 		          $social_links = get_field('social_links', $contact_id);
 		          if(!empty($social_links)) {?>
                   <!-- social -->
@@ -262,6 +277,8 @@ if(!empty($show_categories_in_menu)) {
                   </div>
                   <!-- /social -->
 								<?php } ?>
+
+
 
 
                 <!-- search -->
