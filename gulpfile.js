@@ -48,6 +48,14 @@ let paths = {
                 'app/js/jquery.index.js',
                 'app/js/jquery.websters-select.js'
             ]
+        },
+        {
+            dist: 'store-locator.min.js',
+            contains: [
+                'app/js/jquery.index.js',
+                'app/js/jquery.websters-select.js',
+                'app/js/jquery.store-locator.js'
+            ]
         }
     ],
     vendorScripts: 'app/js/vendors/**/*.js',
@@ -95,7 +103,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('php', function () {
-    return gulp.src(paths.fonts, {
+    return gulp.src(paths.php, {
         base: 'app/php'
     }).pipe(gulp.dest(`${ distPath }/php`));
 });
