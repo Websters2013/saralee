@@ -375,9 +375,16 @@
                     prevButton: storeLocatorPrev,
                     onSlideChangeStart: function () {
 
+                        _storeLocatorList.addClass( 'not-toched' );
+
                         _clearMarkers();
                         _ajaxListRequest( storeLocatorSlide.filter( '.swiper-slide-active' ).index() + 1 );
                         _storeLocatorList.find( '.active' ).removeClass( 'active' );
+
+                    },
+                    onSlideChangeEnd: function () {
+
+                        _storeLocatorList.removeClass( 'not-toched' );
 
                     }
                 } );

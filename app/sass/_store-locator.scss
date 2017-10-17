@@ -160,6 +160,10 @@
 
     }
 
+    &.not-toched{
+      pointer-events: none;
+    }
+
   }
 
   &__info{
