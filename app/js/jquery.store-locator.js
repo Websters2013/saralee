@@ -98,7 +98,7 @@
                             map: _map,
                             position: results[0].geometry.location,
                             icon: {
-                                url: 'img/strore-mark-'+ number +'.png',
+                                url: window.location.origin+'/wp-content/themes/saralle/assets/img/strore-mark-'+ number +'.png',
                                 size: new google.maps.Size( 62, 78 )
                             }
                         } );
@@ -123,7 +123,7 @@
             _ajaxListRequest = function ( page ) {
 
                 _request = $.ajax( {
-                    url: 'php/store-locator-list.json',
+                    url: $( 'body' ).data('action'),
                     data:{
                         action: 'locator',
                         upc: _upcSelect.find( 'option:selected' ).val(),
@@ -150,7 +150,7 @@
             _ajaxSubCatalogRequest = function () {
 
                 _request = $.ajax( {
-                    url: 'php/store-locator-subcategories.json',
+                    url: $( 'body' ).data('action'),
                     data:{
                         action: 'locator',
                         categories: _groupSelect.find( 'option:selected' ).val()
@@ -306,7 +306,7 @@
 
                 _storeLocatorList.height( _storeLocatorList.outerHeight() );
 
-                _sliderContainer[0].swiper.destroy( true, true );
+                //_sliderContainer[0].swiper.destroy( true, true );
                 sliderWrap.empty();
 
                 _ajaxListRequest( 1 );

@@ -131,6 +131,8 @@ $category_count = count($category);
 					<input type="search" placeholder="Enter Zipcode" name="zip" maxlength="10" size="6">
                     <input type="hidden" name="miles" value="5">
                     <input type="hidden" name="upc" value="<?= get_field('upc', $post_id); ?>">
+                    <input type="hidden" name="group" value="<?= get_the_terms($post_id, 'products_cat')[0]->slug; ?>">
+                    <input type="hidden" name="product_name" value="<?= get_the_title($post_id); ?>">
 
 				</form>
 				<!-- /product__list-item -->

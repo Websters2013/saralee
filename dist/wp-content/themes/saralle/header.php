@@ -43,7 +43,6 @@ if($hero_title) {
     }
 }
 
-
 if($hero_button) {
 	$hero_button = '<a href="'.$hero_button['url'].'" class="btn btn_1">'.$hero_button['title'].'</a>';
 }
@@ -69,24 +68,6 @@ if(is_front_page()) {
     $hero_class = ' hero_centering';
 } else {
     $hero_class = ' hero_min';
-}
-
-$show_categories_in_menu = get_field('show_categories_in_menu', $home_id);
-$show_categories_in_menu_string = '';
-if(!empty($show_categories_in_menu)) {
-	$show_categories_in_menu_string .= '<div class="menu__subcategory"><ul>';
-	foreach ($show_categories_in_menu as $row) {
-	    if(empty($row['category'])) {continue;}
-	    $image = get_field('image', 'products_cat_' . $row['category']->term_id);
-	    $show_categories_in_menu_string .= '<li><a href="'.get_term_link($row['category']->term_id).'" class="menu__item">
-                                                    <div class="menu__item-img">
-                                                        <img src="'.$image['sizes']['thumbnail'].'" alt="'.$image['title'].'">
-                                                    </div>
-                                                    <p>'.$row['category']->name.'</p>
-                                                </a>
-                                            </li>';
-	}
-	$show_categories_in_menu_string .= '</ul></div>';
 }
 ?>
 <!DOCTYPE html>
@@ -212,74 +193,42 @@ if(!empty($show_categories_in_menu)) {
             <!-- mobile-menu -->
             <div class="mobile-menu">
                 <div>
-                <!-- menu -->
-                    <nav class="menu">
-	            <?php
-	            /*
-	            $menu_name = 'menu';
-	            $locations = get_nav_menu_locations();
-	            if( $locations && isset($locations[ $menu_name ]) ){
-		            $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-		            $menu_items = wp_get_nav_menu_items( $menu );
-		            ?>
+
                     <!-- menu -->
                     <nav class="menu">
-                    <ul>
-	                  <?php foreach ( (array) $menu_items as $key => $menu_item ){
-	                      //var_dump($menu_item);
-		                  $perm = get_the_permalink($menu_item->object_id);
-		                  $active = '';
-		                  if (is_page( $menu_item->object_id )) {
-			                  $active = ' active ';
-		                  }
-		                  echo '<li><a href="'.$perm.'" class="menu__item'.$active.'">'.$menu_item->title.'</a>';
-		                  if($show_categories_in_menu_string && ($menu_item->object_id === '19')) {
-		                      echo $show_categories_in_menu_string;
-		                  }
-		                  echo '</li>';
-	                  }
-	                  ?>
-	                  </ul>
-                    </nav>
-                    <!-- /menu -->
-			      <?php } */?>
                     <?php
-              wp_nav_menu( array(
-	              'theme_location' => 'menu',
-		          'container'       => '',
-		              'items_wrap'      => '<ul>%3$s</ul>',
-		              'walker' => new Saralle_Walker()
-              ) );
-              ?>
-	            </nav>
+                      wp_nav_menu( array(
+                          'theme_location' => 'menu',
+                          'container'       => '',
+                          'items_wrap'      => '<ul>%3$s</ul>',
+                          'walker' => new Saralle_Walker()
+                      ) );
+                    ?>
+	                </nav>
                     <!-- /menu -->
 
-
                     <?php
-		          $social_links = get_field('social_links', $contact_id);
-		          if(!empty($social_links)) {?>
-                  <!-- social -->
-                  <div class="social">
-	                  <?php
-	                  foreach ( $social_links as $row ) {
-		                  if(is_array($row['show_in'])) {
-			                  if(!in_array('0', $row['show_in']) || empty($row['image'])) {
-				                  continue;
-			                  }
-		                  }else {
-			                  if($row['show_in'] !== '0' || empty($row['image'])) {
-				                  continue;
-			                  }
-		                  }
-		                  echo '<a class="social__item social__item-'.strtolower ($row['social_name']).'" href="'.$row['url'].'" target="_blank">'.file_get_contents($row['image']['url']).'</a>';
-	                  }
-	                  ?>
-                  </div>
-                  <!-- /social -->
-								<?php } ?>
-
-
-
+                      $social_links = get_field('social_links', $contact_id);
+                      if(!empty($social_links)) {?>
+                      <!-- social -->
+                      <div class="social">
+                          <?php
+                          foreach ( $social_links as $row ) {
+                              if(is_array($row['show_in'])) {
+                                  if(!in_array('0', $row['show_in']) || empty($row['image'])) {
+                                      continue;
+                                  }
+                              }else {
+                                  if($row['show_in'] !== '0' || empty($row['image'])) {
+                                      continue;
+                                  }
+                              }
+                              echo '<a class="social__item social__item-'.strtolower ($row['social_name']).'" href="'.$row['url'].'" target="_blank">'.file_get_contents($row['image']['url']).'</a>';
+                          }
+                          ?>
+                      </div>
+                      <!-- /social -->
+                                    <?php } ?>
 
                 <!-- search -->
                 <div class="search">

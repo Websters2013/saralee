@@ -129,7 +129,7 @@ function locator_ajax() {
 	$miles = $_GET['miles'];
 	$page = $_GET['page'];
 	$categories = $_GET['categories'];
-	$pages = 5;
+	$pages = 4;
 
 	$products = '';
 	if (isset($upc) and isset($zip) and isset($miles)) {
@@ -151,6 +151,9 @@ function locator_ajax() {
 			"state":"'.$value->state.'",
 			"zip":"'.$value->zip.'"
 			},';
+		}
+		if(!$storeCount) {
+			$storeCount = 0;
 		}
 		echo '{"count":"'.$storeCount.'","pagination":"'.$pagination.'","products":['.substr($products,0,-1).']}';
 	} elseif (isset($categories)) {

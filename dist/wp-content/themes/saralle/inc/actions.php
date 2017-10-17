@@ -65,7 +65,8 @@ function add_js() {
 	wp_register_script('recipe', get_template_directory_uri() . '/assets/js/recipe.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/recipe.min.js'), true);
 	wp_register_script('recipes', get_template_directory_uri() . '/assets/js/recipes.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/recipes.min.js'), true);
 	wp_register_script('contact-us', get_template_directory_uri() . '/assets/js/contact-us.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/contact-us.min.js'), true);
-	wp_register_script('map',  'http://maps.google.com/maps/api/js?key=AIzaSyBBm0kRd1Ala8zPQVH9XJR46H3s_IUisoU', false, '', false);
+	wp_register_script('store-locator', get_template_directory_uri() . '/assets/js/store-locator.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/store-locator.min.js'), true);
+	wp_register_script('map',  'http://maps.google.com/maps/api/js?key=AIzaSyCzQBHDPzqd6nR0Tm3OnJ0LxE3mUjEBAtY', false, '', false);
 
 	wp_register_style('style', get_stylesheet_uri(), false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/style.css'));
 	wp_register_style('index', get_template_directory_uri() . '/assets/css/index.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/index.css'));
@@ -149,13 +150,16 @@ function add_js() {
 		wp_enqueue_script('perfect-scrollbar');
 		wp_enqueue_script( 'contact-us' );
 
+		wp_enqueue_style('perfect-scrollbar');
 		wp_enqueue_style('contact-us');
 	}
 
 	if(is_page_template('page-store-locator.php')) {
 		wp_enqueue_script('map');
-		wp_enqueue_script( 'index' );
+		wp_enqueue_script('perfect-scrollbar');
+		wp_enqueue_script( 'store-locator' );
 
+		wp_enqueue_style('perfect-scrollbar');
 		wp_enqueue_style('store-locator_page');
 	}
 
@@ -221,7 +225,7 @@ class Saralle_Walker extends Walker_Nav_Menu {
 			$output .= '<small class="description">' . $description . '</small>';
 		}
 		if($depth == 1 && $type === 'taxonomy') {
-			//var_dump($item);
+
 			$image = get_field('image', 'products_cat_' . $item->object_id);
 			$output .= '<div class="menu__item-img">
                       <img src="'.$image['sizes']['thumbnail'].'" alt="'.$image['title'].'">
