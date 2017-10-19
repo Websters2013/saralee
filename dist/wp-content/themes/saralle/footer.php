@@ -35,7 +35,7 @@ $footer_links = get_field('footer_links', $contact_id);
             <div><?= get_field('copyright', $contact_id); ?></div>
 
 	        <?php
-	        $menu_name = 'menu';
+	        $menu_name = 'menu_footer';
 	        $locations = get_nav_menu_locations();
 	        if( $locations && isset($locations[ $menu_name ]) ){
 		        $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );

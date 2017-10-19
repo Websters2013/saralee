@@ -141,6 +141,7 @@ function locator_ajax() {
 
 		foreach ($stores as $key => $value){
 			//var_dump($value);
+            if( !$value->storeID ) { continue; }
 			$products .= '{
 			"storeID":"'.$value->storeID.'",
 			"phone":"'.$value->phone.'",

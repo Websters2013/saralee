@@ -94,7 +94,10 @@
                 var gcc = new google.maps.Geocoder(),
                     number = num + 1;
 
-                gcc.geocode( { address:address },function( results, status ){
+                gcc.geocode( { address:address, componentRestrictions: { country: 'USA', postalCode: zip } },function( results, status ){
+
+                    console.log( results )
+
                     if ( status == google.maps.GeocoderStatus.OK ) {
 
                         _map.setCenter( results[0].geometry.location );
@@ -125,7 +128,7 @@
 
                         _markersArray.push( marker );
 
-                        console.log( _markersArray );
+                        // console.log( _markersArray );
 
                         marker.addListener( 'click', function() {
 
@@ -141,8 +144,6 @@
 
             },
             _ajaxListRequest = function ( page ) {
-
-            //'php/store-locator-list.json'
 
                 _request = $.ajax( {
                     url: $( 'body' ).data('action'),
@@ -255,9 +256,11 @@
 
                     } else if ( data.products.length == 1 ) {
 
-                        _storeLocatorList.find( '.store-locator__list-item' ).addClass( 'active' ).trigger( 'click' );
+                        _storeLocatorList.find( '.swiper-slide-active' ).find( '.store-locator__list-item' ).addClass( 'active' ).trigger( 'click' );
 
                     }
+
+                    _scrollTop();
 
                 } else if ( data.products.length == 0 ) {
 
@@ -271,8 +274,6 @@
                     } );
 
                 }
-
-                _scrollTop();
 
                 _storeLocatorList.height( _sliderContainer.outerHeight() + sliderControl.outerHeight() );
 
@@ -289,7 +290,7 @@
 
                 if ( page == 1 && data.pagination > 1 ) {
 
-                    for ( var n = 0; n <= data.pagination; n++ ){
+                    for ( var n = 1; n <= data.pagination; n++ ){
 
                         var sliderSlide = $( '<div class="swiper-slide empty"></div>' );
 
@@ -318,7 +319,7 @@
 
                 } else if ( page == 1 ) {
 
-                    var sliderSlide = $( '<div class="swiper-slide"></div>' );
+                    var sliderSlide = $( '<div class="swiper-slide empty"></div>' );
 
                     sliderWrap.append( sliderSlide );
 
@@ -340,12 +341,14 @@
                     latlngbounds.extend( _markersArray[ i ].position );
                  }
 
-                 console.log( latlngbounds );
+                 // console.log( latlngbounds );
 
                  _map.setCenter( latlngbounds.getCenter(), _map.fitBounds( latlngbounds ) );
 
             },
             _clearMarkers = function () {
+
+            // console.log( 'clear:'+ _markersArray )
 
                 if ( _markersArray ) {
                     for ( var i in _markersArray ) {
@@ -361,6 +364,8 @@
             },
             _createNewList = function () {
 
+                _controlNewAdd = true;
+
                 var sliderWrap = _sliderContainer.find( '.swiper-wrapper' );
 
                 _storeLocatorList.height( _storeLocatorList.outerHeight() );
@@ -372,6 +377,7 @@
 
                 sliderWrap.empty();
 
+                _clearMarkers();
                 _ajaxListRequest( 1 );
 
             },
@@ -412,6 +418,7 @@
                 _map = new google.maps.Map( _storeMap[ 0 ], {
                     zoom: 10,
                     center: {lat: 41.8957786, lng: -87.7869281},
+                    mapTypeId: 'roadmap',
                     scrollwheel: false,
                     draggable: true,
                     zoomControl: false,

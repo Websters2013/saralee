@@ -66,7 +66,7 @@ function add_js() {
 	wp_register_script('recipes', get_template_directory_uri() . '/assets/js/recipes.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/recipes.min.js'), true);
 	wp_register_script('contact-us', get_template_directory_uri() . '/assets/js/contact-us.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/contact-us.min.js'), true);
 	wp_register_script('store-locator', get_template_directory_uri() . '/assets/js/store-locator.min.js', false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/assets/js/store-locator.min.js'), true);
-	wp_register_script('map',  'http://maps.google.com/maps/api/js?key=AIzaSyCzQBHDPzqd6nR0Tm3OnJ0LxE3mUjEBAtY', false, '', false);
+	wp_register_script('map',  'http://maps.google.com/maps/api/js?key=AIzaSyDAHTVipQ9zV3CVomKMzAKZ-kEakVS5ur8&libraries=places', false, '', false);
 
 	wp_register_style('style', get_stylesheet_uri(), false, filemtime(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/style.css'));
 	wp_register_style('index', get_template_directory_uri() . '/assets/css/index.css',false, filemtime( realpath(__DIR__ . DIRECTORY_SEPARATOR . '..').'/assets/css/index.css'));
@@ -94,10 +94,12 @@ function add_js() {
 	wp_enqueue_style('swiper');
 
 	if(is_front_page()) {
-		wp_enqueue_script('map');
-		wp_enqueue_script( 'index' );
+        wp_enqueue_script('map');
+        wp_enqueue_script( 'index' );
+        wp_enqueue_script('perfect-scrollbar');
 
-		wp_enqueue_style('index');
+        wp_enqueue_style('perfect-scrollbar');
+        wp_enqueue_style('index');
 	}
 
 	if(is_singular('tips') || is_page_template('page-tips.php')) {
