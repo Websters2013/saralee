@@ -253,6 +253,22 @@
     height: 100vh;
   }
 
+  &__message{
+    display: none;
+    color: #fff;
+    @include FuturaHeavyRegular();
+    font-size: 16px;
+
+    i{
+      font-style: normal;
+    }
+
+    &.show{
+      display: block;
+    }
+
+  }
+
   &__swiper-prev,
   &__swiper-next{
     position: relative;

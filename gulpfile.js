@@ -115,7 +115,7 @@ gulp.task('styles', function () {
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer({ browsers: ['last 2 versions'] }))
-        .pipe(sourcemaps.write())
+        //.pipe(sourcemaps.write())
         .pipe(gulp.dest(`${ distPath }/css`))
         .pipe(browserSync.stream());
 });
@@ -127,7 +127,7 @@ gulp.task( 'scripts', function () {
             // .pipe(babel({presets: ['es2015']})) //for js6
             .pipe(uglify())
             .pipe(concat(paths.scripts[ i ].dist))
-            .pipe(sourcemaps.write())
+            //.pipe(sourcemaps.write())
             .pipe(gulp.dest(`${ distPath }/js/`));
     }
 });

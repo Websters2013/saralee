@@ -19,6 +19,9 @@
             _storeLocatorList = _obj.find( '.store-locator__list' ),
             _storeMap = _obj.find( '.store-locator__map' ),
             _sliderContainer = _storeLocatorList.find( '.swiper-container' ),
+            _emptyMessage = _obj.find( '.store-locator__message' ),
+            _messageMiles = _emptyMessage.find( 'store-locator__message-miles' ),
+            _messageZip = _emptyMessage.find( 'store-locator__message-zip' ),
             _body = $( 'html, body' ),
             _window = $( window ),
             _request = new XMLHttpRequest(),
@@ -273,6 +276,11 @@
                         center: {lat: 41.8957786, lng: -87.7869281}
                     } );
 
+                    _emptyMessage.addClass( 'show' );
+
+                    _messageMiles.text( _milesSelect.find( 'option:checked' ).text() );
+                    _messageZip.text( _zipField.find( 'option:checked' ).text() );
+
                 }
 
                 _storeLocatorList.height( _sliderContainer.outerHeight() + sliderControl.outerHeight() );
@@ -376,6 +384,8 @@
                 }
 
                 sliderWrap.empty();
+
+                _emptyMessage.removeClass( 'show' );
 
                 _clearMarkers();
                 _ajaxListRequest( 1 );
