@@ -278,6 +278,10 @@
 
                     _emptyMessage.addClass( 'show' );
 
+                    console.log( _zipField.val() )
+                    console.log( _groupSelect.val() )
+                    console.log( _milesSelect.find( 'option:checked' ).text() )
+
                     if ( _zipField.val() != '' && _groupSelect.val() != 0 ) {
 
                         _messageMiles.text( _milesSelect.find( 'option:checked' ).text() );
