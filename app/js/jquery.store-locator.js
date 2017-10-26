@@ -276,7 +276,7 @@
                         center: {lat: 41.8957786, lng: -87.7869281}
                     } );
 
-                    if ( _zipField.val() != '' ) {
+                    if ( _zipField.val() != '' && _groupSelect.val() != 0 ) {
 
                         _emptyMessage.addClass( 'show' );
 
