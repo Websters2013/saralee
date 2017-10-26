@@ -20,8 +20,8 @@
             _storeMap = _obj.find( '.store-locator__map' ),
             _sliderContainer = _storeLocatorList.find( '.swiper-container' ),
             _emptyMessage = _obj.find( '.store-locator__message' ),
-            _messageMiles = _emptyMessage.find( 'store-locator__message-miles' ),
-            _messageZip = _emptyMessage.find( 'store-locator__message-zip' ),
+            _messageMiles = _emptyMessage.find( '.store-locator__message-miles' ),
+            _messageZip = _emptyMessage.find( '.store-locator__message-zip' ),
             _body = $( 'html, body' ),
             _window = $( window ),
             _request = new XMLHttpRequest(),
@@ -278,8 +278,12 @@
 
                     _emptyMessage.addClass( 'show' );
 
-                    _messageMiles.text( _milesSelect.find( 'option:checked' ).text() );
-                    _messageZip.text( _zipField.val() );
+                    if ( _zipField.val() != '' && _groupSelect.val() != 0 ) {
+
+                        _messageMiles.text( _milesSelect.find( 'option:checked' ).text() );
+                        _messageZip.text( _zipField.val() );
+
+                    }
 
                 }
 
