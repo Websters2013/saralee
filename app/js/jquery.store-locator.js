@@ -276,13 +276,9 @@
                         center: {lat: 41.8957786, lng: -87.7869281}
                     } );
 
-                    _emptyMessage.addClass( 'show' );
+                    if ( _zipField.val() != '' ) {
 
-                    console.log( _zipField.val() )
-                    console.log( _groupSelect.val() )
-                    console.log( _milesSelect.find( 'option:checked' ).text() )
-
-                    if ( _zipField.val() != '' && _groupSelect.val() != 0 ) {
+                        _emptyMessage.addClass( 'show' );
 
                         _messageMiles.text( _milesSelect.find( 'option:checked' ).text() );
                         _messageZip.text( _zipField.val() );
