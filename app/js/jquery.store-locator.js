@@ -279,7 +279,7 @@
                     _emptyMessage.addClass( 'show' );
 
                     _messageMiles.text( _milesSelect.find( 'option:checked' ).text() );
-                    _messageZip.text( _zipField.find( 'option:checked' ).text() );
+                    _messageZip.text( _zipField.val() );
 
                 }
 
